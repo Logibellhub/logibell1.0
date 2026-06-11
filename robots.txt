@@ -1,0 +1,6 @@
+# LogiBell robots.txt
+# PROVISIONAL — confirm domain before launch (see PRE-LAUNCH.md)
+User-agent: *
+Allow: /
+
+Sitemap: https://logibell.com/sitemap.xml

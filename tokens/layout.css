@@ -1,0 +1,53 @@
+/* ============================================================
+   LogiBell — Spacing, radius, shadow, layout tokens
+   Base unit: 4px
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale ---- */
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-section: 96px;   /* vertical rhythm between major bands */
+
+  /* ---- Border radius ----
+     Squared-but-friendly: logistics = sturdy, not pill-soft. */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;   /* buttons, inputs */
+  --radius-lg: 14px;   /* cards */
+  --radius-xl: 20px;   /* hero panels, feature blocks */
+  --radius-2xl: 28px;  /* large marquee surfaces */
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ----
+     Restrained, cool-navy tinted. Depth via elevation, not drama. */
+  --shadow-xs: 0 1px 2px rgba(15, 35, 80, 0.06);
+  --shadow-sm: 0 1px 3px rgba(15, 35, 80, 0.08), 0 1px 2px rgba(15, 35, 80, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 35, 80, 0.08), 0 2px 4px rgba(15, 35, 80, 0.05);
+  --shadow-lg: 0 12px 28px rgba(15, 35, 80, 0.12), 0 4px 10px rgba(15, 35, 80, 0.06);
+  --shadow-xl: 0 24px 56px rgba(15, 35, 80, 0.16), 0 8px 20px rgba(15, 35, 80, 0.08);
+  /* Gold accent glow — used sparingly on the primary CTA hover */
+  --shadow-gold: 0 6px 20px rgba(255, 198, 41, 0.35);
+
+  /* ---- Layout ---- */
+  --container-max: 1200px;
+  --container-narrow: 760px;
+  --container-wide: 1320px;
+  --nav-height: 72px;
+  --announce-height: 40px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast: 120ms; /* @kind other */
+  --dur-base: 200ms; /* @kind other */
+  --dur-slow: 320ms; /* @kind other */
+}

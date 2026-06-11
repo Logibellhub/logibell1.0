@@ -1,0 +1,213 @@
+/* LogiBell — site chrome: AnnouncementBar, TopNav (with Services dropdown), Footer.
+   One consistent nav + footer is reused across every routed page. */
+(function () {
+  const { Button } = window.DS;
+  const Icon = window.Icon;
+  const LOGO = "./assets/logo/logibell-wordmark.png";
+  const LOGO_NAVY = "./assets/logo/logibell-wordmark-onnavy.png";
+
+  function AnnouncementBar() {
+    return (
+      <div style={{ background: "var(--navy-900)", color: "var(--on-navy)", borderBottom: "1px solid var(--navy-700)" }}>
+        <div className="lb-wrap" style={{ height: "var(--announce-height)", display: "flex", alignItems: "center", justifyContent: "center", gap: 18, fontFamily: "var(--font-sans)", fontSize: 13.5, flexWrap: "wrap" }}>
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "var(--on-navy-soft)" }}>
+            <Icon name="tag" size={15} color="var(--gold-500)" />
+            <span><strong style={{ color: "#fff", fontWeight: 600 }}>Published dispatch pricing</strong></span>
+          </span>
+          <span style={{ color: "var(--on-navy-soft)" }}>Semi&nbsp;<strong style={{ color: "var(--gold-500)" }}>6%</strong>&nbsp;· Box / Hotshot&nbsp;<strong style={{ color: "var(--gold-500)" }}>6–8%</strong></span>
+          <span style={{ color: "var(--on-navy-faint)", display: "inline-flex", alignItems: "center", gap: 6 }}><Icon name="check" size={14} color="var(--success)" />No setup fees · No monthly minimums</span>
+        </div>
+      </div>
+    );
+  }
+
+  /* Services dropdown — the New Authority program lives here now,
+     titled "Special Treatment Program — Newer Authorities". */
+  const SERVICES_MENU = [
+    { label: "Dispatch & Load Sourcing", desc: "Stay loaded and represented in the market.", icon: "route", page: "services", anchor: "dispatch" },
+    { label: "Operations & Back-Office", desc: "The admin work that keeps the operation organized.", icon: "clipboard-check", page: "services", anchor: "operations" },
+    { label: "Partner & Growth Support", desc: "Opportunities that open as the relationship develops.", icon: "trending-up", page: "services", anchor: "partner-growth" },
+    { label: "Special Treatment Program — Newer Authorities", desc: "Same dispatch service, more effort, for newer MCs.", icon: "rocket", page: "authority", feature: true },
+  ];
+
+  const NAV = [
+    { id: "services", label: "Services", page: "services", menu: SERVICES_MENU },
+    { id: "pricing", label: "Pricing", page: "pricing" },
+    { id: "about", label: "Who We Are", page: "about" },
+    { id: "partners", label: "Partner Access", page: "partners" },
+    { id: "contact", label: "Contact", page: "contact" },
+  ];
+
+  function TopNav({ page, navigate }) {
+    const [scrolled, setScrolled] = React.useState(false);
+    const [open, setOpen] = React.useState(false);       // mobile sheet
+    const [menuOpen, setMenuOpen] = React.useState(false); // desktop services dropdown
+    const closeTimer = React.useRef(null);
+
+    React.useEffect(() => {
+      const el = document.getElementById("lb-scroll") || window;
+      const onScroll = () => setScrolled((el.scrollTop || window.scrollY || 0) > 8);
+      el.addEventListener("scroll", onScroll);
+      return () => el.removeEventListener("scroll", onScroll);
+    }, []);
+
+    function openMenu() { clearTimeout(closeTimer.current); setMenuOpen(true); }
+    function scheduleClose() { clearTimeout(closeTimer.current); closeTimer.current = setTimeout(() => setMenuOpen(false), 140); }
+
+    function go(item, e) {
+      if (e) e.preventDefault();
+      setOpen(false); setMenuOpen(false);
+      navigate(item.page, item.anchor);
+    }
+
+    return (
+      <header style={{ position: "sticky", top: 0, zIndex: 50, background: scrolled ? "rgba(246,248,252,0.85)" : "var(--surface-page)", backdropFilter: scrolled ? "saturate(180%) blur(12px)" : "none", borderBottom: `1px solid ${scrolled ? "var(--hairline)" : "transparent"}`, transition: "background var(--dur-base), border-color var(--dur-base)" }}>
+        <div className="lb-wrap" style={{ height: "var(--nav-height)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
+          <a href="#/" onClick={(e) => { e.preventDefault(); navigate("home"); }} style={{ display: "flex", alignItems: "center", padding: "4px 0" }} aria-label="LogiBell home">
+            <img src={LOGO} alt="LogiBell" style={{ height: 42, width: "auto", display: "block" }} />
+          </a>
+
+          <nav style={{ display: "flex", alignItems: "center", gap: 4 }} className="lb-desktop-nav">
+            {NAV.map((item) => {
+              const active = item.page === page || (item.id === "services" && page === "authority");
+              if (item.menu) {
+                return (
+                  <div key={item.id} style={{ position: "relative" }} onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
+                    <a href="#/services" onClick={(e) => go(item, e)}
+                      style={{ display: "inline-flex", alignItems: "center", gap: 5, fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 500, color: active ? "var(--navy-800)" : "var(--text-body)", padding: "8px 14px", borderRadius: "var(--radius-sm)", transition: "color var(--dur-base), background var(--dur-base)" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = "var(--navy-800)"; e.currentTarget.style.background = "var(--mist-100)"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = active ? "var(--navy-800)" : "var(--text-body)"; e.currentTarget.style.background = "transparent"; }}>
+                      {item.label}<Icon name="chevron-down" size={15} style={{ transition: "transform var(--dur-base)", transform: menuOpen ? "rotate(180deg)" : "none" }} />
+                    </a>
+                    {menuOpen ? (
+                      <div style={{ position: "absolute", top: "calc(100% + 8px)", left: 0, width: 360, background: "var(--surface-card)", border: "1px solid var(--hairline)", borderRadius: "var(--radius-lg)", boxShadow: "var(--shadow-xl)", padding: 8, zIndex: 60 }}>
+                        {item.menu.map((m, i) => (
+                          <a key={i} href={"#/" + m.page} onClick={(e) => go(m, e)}
+                            style={{ display: "flex", gap: 13, alignItems: "flex-start", padding: "12px 12px", borderRadius: "var(--radius-md)", textDecoration: "none", transition: "background var(--dur-base)", borderTop: m.feature ? "1px solid var(--hairline-soft)" : "none", marginTop: m.feature ? 6 : 0, paddingTop: m.feature ? 16 : 12 }}
+                            onMouseEnter={(e) => (e.currentTarget.style.background = "var(--mist-100)")} onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}>
+                            <span style={{ width: 38, height: 38, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+                              <Icon name={m.icon} size={19} color="var(--gold-500)" />
+                            </span>
+                            <span>
+                              <span style={{ display: "block", fontFamily: "var(--font-display)", fontSize: 14.5, fontWeight: 600, color: "var(--text-heading)", lineHeight: 1.3 }}>{m.label}</span>
+                              <span style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.45, marginTop: 3 }}>{m.desc}</span>
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              }
+              return (
+                <a key={item.id} href={"#/" + item.page} onClick={(e) => go(item, e)}
+                  style={{ fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 500, color: active ? "var(--navy-800)" : "var(--text-body)", padding: "8px 14px", borderRadius: "var(--radius-sm)", transition: "color var(--dur-base), background var(--dur-base)" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = "var(--navy-800)"; e.currentTarget.style.background = "var(--mist-100)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = active ? "var(--navy-800)" : "var(--text-body)"; e.currentTarget.style.background = "transparent"; }}>
+                  {item.label}
+                </a>
+              );
+            })}
+          </nav>
+
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="lb-desktop-actions">
+            <Button variant="primary" size="sm" iconLeft={<Icon name="bell" size={16} color="#FFCB1F" className="lb-cta-bell-float" />} onClick={() => navigate("contact", "onboard")}><span style={{ color: "#F6F7F8" }}>Ring the LogiBell</span></Button>
+          </div>
+
+          <button className="lb-burger" onClick={() => setOpen((o) => !o)} aria-label="Menu" style={{ display: "none", background: "transparent", border: "none", cursor: "pointer", color: "var(--navy-800)", padding: 8 }}>
+            <Icon name={open ? "x" : "menu"} size={26} />
+          </button>
+        </div>
+
+        {open ? (
+          <div className="lb-mobile-sheet" style={{ borderTop: "1px solid var(--hairline)", background: "var(--surface-page)", padding: "12px 20px 20px", maxHeight: "calc(100vh - var(--nav-height))", overflowY: "auto" }}>
+            <a href="#/services" onClick={(e) => go({ page: "services" }, e)} style={{ display: "block", fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 600, color: "var(--navy-800)", padding: "14px 0 8px" }}>Services</a>
+            <div style={{ paddingLeft: 4, marginBottom: 8 }}>
+              {SERVICES_MENU.map((m, i) => (
+                <a key={i} href={"#/" + m.page} onClick={(e) => go(m, e)} style={{ display: "flex", gap: 10, alignItems: "center", fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 500, color: m.feature ? "var(--gold-700)" : "var(--text-body)", padding: "9px 0" }}>
+                  <Icon name={m.icon} size={17} color={m.feature ? "var(--gold-700)" : "var(--navy-700)"} />{m.label}
+                </a>
+              ))}
+            </div>
+            {NAV.filter((n) => n.id !== "services").map((item) => (
+              <a key={item.id} href={"#/" + item.page} onClick={(e) => go(item, e)} style={{ display: "block", fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 600, color: "var(--navy-800)", padding: "14px 0", borderTop: "1px solid var(--hairline-soft)" }}>{item.label}</a>
+            ))}
+            <div style={{ marginTop: 16 }}>
+              <Button variant="primary" full size="md" iconLeft={<Icon name="bell" size={16} />} onClick={() => { setOpen(false); navigate("contact", "onboard"); }}>Ring the LogiBell</Button>
+            </div>
+          </div>
+        ) : null}
+      </header>
+    );
+  }
+
+  /* Footer — every link routes to a real page (no dead preventDefault stubs). */
+  const FOOT = {
+    Services: [
+      { label: "Dispatch & Load Sourcing", page: "services", anchor: "dispatch" },
+      { label: "Operations & Back-Office", page: "services", anchor: "operations" },
+      { label: "Partner & Growth Support", page: "services", anchor: "partner-growth" },
+      { label: "Published Pricing", page: "pricing" },
+    ],
+    Company: [
+      { label: "Who We Are", page: "about" },
+      { label: "Special Treatment Program", page: "authority" },
+      { label: "Partner Access", page: "partners" },
+      { label: "Contact", page: "contact" },
+    ],
+    "Get Started": [
+      { label: "Ring the LogiBell", page: "contact", anchor: "onboard" },
+      { label: "See Pricing", page: "pricing" },
+      { label: "Referral Program", page: "contact", anchor: "referral" },
+      { label: "Insurance & Lease-On", page: "partners" },
+    ],
+  };
+
+  function Footer({ navigate }) {
+    const link = (l) => (e) => { e.preventDefault(); navigate(l.page, l.anchor); };
+    return (
+      <footer style={{ background: "var(--navy-900)", color: "var(--on-navy-soft)", position: "relative", overflow: "hidden" }}>
+        {/* signature watermark — oversized cropped bell mark, ~2.5% opacity, decorative only */}
+        <img src={"./assets/logo/logibell-mark.svg"} alt="" aria-hidden="true" style={{ position: "absolute", right: -140, bottom: -200, width: 580, height: "auto", opacity: 0.025, pointerEvents: "none", userSelect: "none" }} />
+        <div className="lb-wrap" style={{ paddingTop: 64, paddingBottom: 40, position: "relative", zIndex: 1 }}>
+          <div className="lb-foot-grid" style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 40 }}>
+            <div>
+              <a href="#/" onClick={(e) => { e.preventDefault(); navigate("home"); }} style={{ display: "inline-block" }} aria-label="LogiBell home">
+                <img src={LOGO_NAVY} alt="LogiBell" style={{ height: 30, width: "auto", marginBottom: 18, display: "block" }} />
+              </a>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 14.5, lineHeight: 1.6, color: "var(--on-navy-soft)", maxWidth: 320, margin: "0 0 20px" }}>
+                Carrier-focused operations support, starting with dispatch — built for carriers of every size, from owner-operators to small and larger fleets. Your operation, fully backed.
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: "var(--font-sans)", fontSize: 14 }}>
+                {/* PROVISIONAL — confirm before launch: phone, email, address (see PRE-LAUNCH note). */}
+                <a href="tel:+18184811886" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="phone" size={15} color="var(--gold-500)" /> (818) 481-1886</a>
+                <a href="mailto:info@logibell.com" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="mail" size={15} color="var(--gold-500)" /> info@logibell.com</a>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><Icon name="map-pin" size={15} color="var(--gold-500)" /> Los Angeles, CA</span>
+              </div>
+            </div>
+            {Object.keys(FOOT).map((col) => (
+              <div key={col}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", color: "#fff", marginBottom: 16 }}>{col}</div>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 11 }}>
+                  {FOOT[col].map((l) => (
+                    <li key={l.label}><a href={"#/" + l.page} onClick={link(l)} style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--on-navy-soft)", textDecoration: "none", transition: "color var(--dur-base)" }} onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold-500)")} onMouseLeave={(e) => (e.currentTarget.style.color = "var(--on-navy-soft)")}>{l.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div style={{ height: 1, background: "var(--navy-700)", margin: "40px 0 24px" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--on-navy-faint)" }}>
+            <span>© 2026 LogiBell. Carrier-focused operations support.</span>
+            <span style={{ display: "flex", gap: 20 }}>
+              <a href="#/privacy" onClick={(e) => { e.preventDefault(); navigate("privacy"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Privacy</a>
+              <a href="#/terms" onClick={(e) => { e.preventDefault(); navigate("terms"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Terms</a>
+            </span>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
+  window.LBChrome = { AnnouncementBar, TopNav, Footer };
+})();

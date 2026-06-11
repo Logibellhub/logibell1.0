@@ -1,0 +1,12 @@
+/* ============================================================
+   LogiBell — Webfonts
+   ------------------------------------------------------------
+   Display  Poppins        — geometric sans echoing the LogiBell
+                             wordmark (used for headings + the
+                             "Ring the LogiBell" voice).
+   Body/UI  IBM Plex Sans  — humanist, operational, credible;
+                             carries running copy, nav, labels.
+   Data     IBM Plex Mono  — pricing %, lane/load tabular data.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");

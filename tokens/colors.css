@@ -1,0 +1,121 @@
+/* ============================================================
+   LogiBell — Color tokens
+   Official brand palette (single source of truth)
+   navy  #193960   ·   gold  #FFCB1F   ·   gold-ink (text on light)  #8A6A00
+   ============================================================ */
+
+:root {
+  /* ---- Brand navy (base scale, anchored on official #193960) ---- */
+  --navy-950: #0E2138;   /* deepest — footer floor, overlays */
+  --navy-900: #142F4F;   /* dark section background (navy-deep) */
+  --navy-800: #193960;   /* CORE BRAND NAVY — wordmark, primary action */
+  --navy-700: #355173;   /* hover/elevated navy (navy-soft) */
+  --navy-600: #4C6583;   /* navy-on-navy borders / lines (navy-line) */
+  --navy-500: #5A6E8C;   /* muted navy text on light */
+
+  /* ---- Brand gold (base scale, anchored on official #FFCB1F) ---- */
+  --gold-700: #8A6A00;   /* gold-ink — REQUIRED for gold TEXT on light (AA: 5.07:1 on white) */
+  --gold-600: #C99A00;   /* gold hover / pressed */
+  --gold-500: #FFCB1F;   /* CORE BRAND GOLD — accent, highlights, fills */
+  --gold-400: #FFD75A;   /* lighter gold, hover glows */
+  --gold-100: #FFF4D0;   /* gold wash / tint backgrounds */
+
+  /* ---- Neutrals (cool-leaning, pairs with navy) ---- */
+  --white:    #FFFFFF;
+  --paper:    #F6F8FC;   /* page canvas — subtle cool off-white */
+  --mist-100: #EEF2F9;   /* soft surface band */
+  --mist-200: #E4EAF4;   /* strong surface / chips */
+  --line:     #E2E8F1;   /* hairline border on light */
+  --line-strong: #CFD8E6;/* stronger divider */
+
+  /* ---- Ink / text (base) ---- */
+  --ink-900: #193960;    /* headings — uses brand navy */
+  --ink-700: #2C3650;    /* strong body */
+  --ink-600: #39435C;    /* default running text */
+  --ink-500: #5A6480;    /* secondary / sub-labels */
+  --ink-400: #828BA3;    /* captions, fine print */
+
+  /* ---- On-dark text ---- */
+  --on-navy:       #FFFFFF;
+  --on-navy-soft:  #B7C2DC;  /* secondary text on navy */
+  --on-navy-faint: #7E8AA8;  /* fine print on navy */
+
+  /* ---- Semantic (base) ---- */
+  --green-600: #1F8A5B;
+  --green-500: #27A56C;
+  --green-100: #DBF1E6;
+  --red-600:   #C0392B;
+  --red-500:   #D84B3C;
+  --red-100:   #FBE3E0;
+  --amber-600: #C8930A;
+  --amber-100: #FBEBC4;
+
+  /* ========================================================
+     Semantic aliases — use these in components
+     ======================================================== */
+
+  /* Primary action = navy (the trustworthy CTA) */
+  --primary:          var(--navy-800);
+  --primary-hover:    var(--navy-700);
+  --primary-active:   var(--navy-900);
+  --primary-disabled: var(--mist-200);
+  --on-primary:       var(--white);
+
+  /* Accent = gold (the "bell" highlight — used scarcely, with intent) */
+  --accent:          var(--gold-500);
+  --accent-hover:    var(--gold-400);
+  --accent-active:   var(--gold-600);
+  --accent-ink:      var(--gold-700);  /* gold rendered as readable text */
+  --on-accent:       var(--navy-800);  /* navy text on gold fills */
+
+  /* Surfaces */
+  --surface-page:    var(--paper);
+  --surface-card:    var(--white);
+  --surface-soft:    var(--mist-100);
+  --surface-strong:  var(--mist-200);
+  --surface-dark:    var(--navy-800);
+  --surface-darker:  var(--navy-900);
+  --surface-darkest: var(--navy-950);
+  --surface-dark-elevated: var(--navy-700);
+
+  /* Text */
+  --text-heading: var(--ink-900);
+  --text-strong:  var(--ink-700);
+  --text-body:    var(--ink-600);
+  --text-muted:   var(--ink-500);
+  --text-faint:   var(--ink-400);
+  --text-on-dark:       var(--on-navy);
+  --text-on-dark-soft:  var(--on-navy-soft);
+  --text-on-dark-faint: var(--on-navy-faint);
+
+  /* Lines */
+  --hairline:        var(--line);
+  --hairline-strong: var(--line-strong);
+  --hairline-on-dark: var(--navy-600);
+
+  /* Status */
+  --success: var(--green-500);
+  --success-soft: var(--green-100);
+  --warning: var(--amber-600);
+  --warning-soft: var(--amber-100);
+  --error: var(--red-500);
+  --error-soft: var(--red-100);
+
+  /* Focus ring (navy @ low alpha) */
+  --focus-ring: 0 0 0 3px rgba(25, 57, 96, 0.22);
+  /* Focus ring on gold/dark surfaces */
+  --focus-ring-gold: 0 0 0 3px rgba(255, 203, 31, 0.45);
+
+  /* ========================================================
+     Official-palette flat aliases (consumer-facing names)
+     ======================================================== */
+  --navy:         var(--navy-800);   /* #193960 */
+  --navy-deep:    var(--navy-900);   /* #142F4F */
+  --navy-soft:    var(--navy-700);   /* #355173 */
+  --navy-line:    var(--navy-600);   /* #4C6583 */
+  --gold:         var(--gold-500);   /* #FFCB1F — fills / active */
+  --gold-on-navy: var(--gold-500);   /* #FFCB1F — text/icons on navy (AA) */
+  --gold-ink:     var(--gold-700);   /* #8A6A00 — gold TEXT on light (AA) */
+  --offwhite:     #F5F5F3;           /* warm near-white (cards/panels when needed) */
+  --mid:          var(--line);       /* divider alias */
+}

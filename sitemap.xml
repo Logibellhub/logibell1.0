@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PROVISIONAL — confirm domain and finalize before launch (see PRE-LAUNCH.md).
+     Paths assume production server-side routing on the real domain. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://logibell.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://logibell.com/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logibell.com/pricing</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://logibell.com/new-authority</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logibell.com/who-we-are</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://logibell.com/partner-access</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://logibell.com/contact</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://logibell.com/privacy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://logibell.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

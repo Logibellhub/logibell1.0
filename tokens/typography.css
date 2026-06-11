@@ -1,0 +1,45 @@
+/* ============================================================
+   LogiBell — Typography tokens
+   Display  Poppins (geometric, echoes wordmark)
+   Body/UI  IBM Plex Sans (humanist, operational)
+   Data     IBM Plex Mono (pricing %, lane data)
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-display: "Poppins", "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ---- Weights ---- */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extrabold: 800; /* @kind font */
+
+  /* ---- Display scale (Poppins, tight tracking) ----
+     Use for hero + section headlines. Strong, geometric. */
+  --display-xl-size: 60px;  --display-xl-lh: 1.05; /* @kind font */ --display-xl-ls: -1.5px; /* @kind font */ --display-xl-weight: 700; /* @kind font */
+  --display-lg-size: 46px;  --display-lg-lh: 1.08; /* @kind font */ --display-lg-ls: -1px; /* @kind font */ --display-lg-weight: 700; /* @kind font */
+  --display-md-size: 34px;  --display-md-lh: 1.12; /* @kind font */ --display-md-ls: -0.6px; /* @kind font */ --display-md-weight: 700; /* @kind font */
+  --display-sm-size: 26px;  --display-sm-lh: 1.18; /* @kind font */ --display-sm-ls: -0.3px; /* @kind font */ --display-sm-weight: 600; /* @kind font */
+
+  /* ---- Title scale (Poppins for card/section titles) ---- */
+  --title-lg-size: 21px; --title-lg-lh: 1.3; /* @kind font */ --title-lg-ls: -0.2px; /* @kind font */ --title-lg-weight: 600; /* @kind font */
+  --title-md-size: 18px; --title-md-lh: 1.4; /* @kind font */ --title-md-ls: 0; /* @kind font */ --title-md-weight: 600; /* @kind font */
+  --title-sm-size: 16px; --title-sm-lh: 1.4; /* @kind font */ --title-sm-ls: 0; /* @kind font */ --title-sm-weight: 600; /* @kind font */
+
+  /* ---- Body scale (IBM Plex Sans) ---- */
+  --body-lg-size: 18px; --body-lg-lh: 1.6; /* @kind font */ --body-lg-weight: 400; /* @kind font */
+  --body-md-size: 16px; --body-md-lh: 1.6; /* @kind font */ --body-md-weight: 400; /* @kind font */
+  --body-sm-size: 14px; --body-sm-lh: 1.55; /* @kind font */ --body-sm-weight: 400; /* @kind font */
+
+  /* ---- Supporting ---- */
+  --caption-size: 13px; --caption-lh: 1.4; /* @kind font */ --caption-weight: 500; /* @kind font */
+  --eyebrow-size: 12.5px; --eyebrow-lh: 1.3; /* @kind font */ --eyebrow-ls: 1.6px; /* @kind font */ --eyebrow-weight: 600; /* @kind font */
+  --label-size: 13px; --label-lh: 1.3; /* @kind font */ --label-weight: 600; /* @kind font */
+  --button-size: 15px; --button-lh: 1; /* @kind font */ --button-weight: 600; /* @kind font */
+  --nav-size: 15px; --nav-lh: 1.4; /* @kind font */ --nav-weight: 500; /* @kind font */
+  --code-size: 14px; --code-lh: 1.6; /* @kind font */ --code-weight: 400; /* @kind font */
+}

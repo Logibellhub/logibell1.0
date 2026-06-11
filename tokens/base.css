@@ -1,0 +1,46 @@
+/* ============================================================
+   LogiBell — Base layer
+   Element defaults + a few shared utilities. Imported last so
+   tokens are available. Keep this lean; components own their look.
+   ============================================================ */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--body-md-size);
+  line-height: var(--body-md-lh);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  color: var(--text-heading);
+  margin: 0;
+  font-weight: var(--fw-bold);
+}
+
+p { margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ---- Type helper classes (mirror the typography tokens) ---- */
+.lb-display-xl { font-family: var(--font-display); font-size: var(--display-xl-size); line-height: var(--display-xl-lh); letter-spacing: var(--display-xl-ls); font-weight: var(--display-xl-weight); color: var(--text-heading); }
+.lb-display-lg { font-family: var(--font-display); font-size: var(--display-lg-size); line-height: var(--display-lg-lh); letter-spacing: var(--display-lg-ls); font-weight: var(--display-lg-weight); color: var(--text-heading); }
+.lb-display-md { font-family: var(--font-display); font-size: var(--display-md-size); line-height: var(--display-md-lh); letter-spacing: var(--display-md-ls); font-weight: var(--display-md-weight); color: var(--text-heading); }
+.lb-display-sm { font-family: var(--font-display); font-size: var(--display-sm-size); line-height: var(--display-sm-lh); letter-spacing: var(--display-sm-ls); font-weight: var(--display-sm-weight); color: var(--text-heading); }
+.lb-title-lg { font-family: var(--font-display); font-size: var(--title-lg-size); line-height: var(--title-lg-lh); letter-spacing: var(--title-lg-ls); font-weight: var(--title-lg-weight); color: var(--text-heading); }
+.lb-title-md { font-family: var(--font-display); font-size: var(--title-md-size); line-height: var(--title-md-lh); font-weight: var(--title-md-weight); color: var(--text-heading); }
+.lb-body-lg { font-family: var(--font-sans); font-size: var(--body-lg-size); line-height: var(--body-lg-lh); color: var(--text-body); }
+.lb-body-md { font-family: var(--font-sans); font-size: var(--body-md-size); line-height: var(--body-md-lh); color: var(--text-body); }
+.lb-body-sm { font-family: var(--font-sans); font-size: var(--body-sm-size); line-height: var(--body-sm-lh); color: var(--text-body); }
+.lb-eyebrow { font-family: var(--font-sans); font-size: var(--eyebrow-size); line-height: var(--eyebrow-lh); letter-spacing: var(--eyebrow-ls); font-weight: var(--eyebrow-weight); text-transform: uppercase; color: var(--accent-ink); }
+.lb-mono { font-family: var(--font-mono); font-size: var(--code-size); line-height: var(--code-lh); }
