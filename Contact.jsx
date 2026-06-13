@@ -49,7 +49,7 @@
     const methods = [
       { ic: "phone", t: "Call us", v: "(818) 481-1886", href: "tel:+18184811886" },
       { ic: "mail", t: "Email", v: "info@logibell.com", href: "mailto:info@logibell.com" },
-      { ic: "map-pin", t: "Office", v: "Los Angeles, CA", href: null },
+      { ic: "map-pin", t: "Office", v: "5320 Harmony Ave, Los Angeles, CA 91601", href: null },
       { ic: "clock", t: "Hours", v: "Mon–Fri · after-hours when time-sensitive", href: null },
     ];
 

@@ -3,8 +3,8 @@
 (function () {
   const { Button } = window.DS;
   const Icon = window.Icon;
-  const LOGO = "../../assets/logo/logibell-wordmark.png";
-  const LOGO_NAVY = "../../assets/logo/logibell-wordmark-onnavy.png";
+  const LOGO = "./assets/logo/logibell-wordmark.png";
+  const LOGO_NAVY = "./assets/logo/logibell-wordmark-onnavy.png";
 
   function AnnouncementBar() {
     return (
@@ -74,8 +74,10 @@
               const active = item.id !== "feedback" && (item.page === page || (item.id === "services" && page === "authority"));
               if (item.menu) {
                 return (
-                  <div key={item.id} style={{ position: "relative" }} onMouseEnter={openMenu} onMouseLeave={scheduleClose}>
-                    <a href="#/services" onClick={(e) => go(item, e)}
+                  <div key={item.id} style={{ position: "relative" }} onMouseEnter={openMenu} onMouseLeave={scheduleClose}
+                    onFocusCapture={openMenu} onBlurCapture={scheduleClose}
+                    onKeyDown={(e) => { if (e.key === "Escape") setMenuOpen(false); }}>
+                    <a href="#/services" onClick={(e) => go(item, e)} aria-haspopup="true" aria-expanded={menuOpen}
                       style={{ display: "inline-flex", alignItems: "center", gap: 5, fontFamily: "var(--font-sans)", fontSize: 15, fontWeight: 500, color: active ? "var(--navy-800)" : "var(--text-body)", padding: "8px 14px", borderRadius: "var(--radius-sm)", transition: "color var(--dur-base), background var(--dur-base)" }}
                       onMouseEnter={(e) => { e.currentTarget.style.color = "var(--navy-800)"; e.currentTarget.style.background = "var(--mist-100)"; }}
                       onMouseLeave={(e) => { e.currentTarget.style.color = active ? "var(--navy-800)" : "var(--text-body)"; e.currentTarget.style.background = "transparent"; }}>
@@ -189,7 +191,7 @@
     return (
       <footer style={{ background: "var(--navy-900)", color: "var(--on-navy-soft)", position: "relative", overflow: "hidden" }}>
         {/* signature watermark — oversized cropped bell mark, ~2.5% opacity, decorative only */}
-        <img src={"../../assets/logo/logibell-mark.svg"} alt="" aria-hidden="true" style={{ position: "absolute", right: -140, bottom: -200, width: 580, height: "auto", opacity: 0.025, pointerEvents: "none", userSelect: "none" }} />
+        <img src={"./assets/logo/logibell-mark.svg"} alt="" aria-hidden="true" style={{ position: "absolute", right: -140, bottom: -200, width: 580, height: "auto", opacity: 0.025, pointerEvents: "none", userSelect: "none" }} />
         <div className="lb-wrap" style={{ paddingTop: 64, paddingBottom: 40, position: "relative", zIndex: 1 }}>
           <div className="lb-foot-grid" style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr 1fr 1fr", gap: 40 }}>
             <div>
@@ -200,10 +202,10 @@
                 Carrier-focused operations support, starting with dispatch — built for carriers of every size, from owner-operators to small and larger fleets. Your operation, fully backed.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: "var(--font-sans)", fontSize: 14 }}>
-                {/* PROVISIONAL — confirm before launch: phone, email, address (see PRE-LAUNCH note). */}
+                {/* PROVISIONAL — confirm before launch: phone, email (see PRE-LAUNCH note). Address per brand strategy v1.9. */}
                 <a href="tel:+18184811886" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="phone" size={15} color="var(--gold-500)" /> (818) 481-1886</a>
                 <a href="mailto:info@logibell.com" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="mail" size={15} color="var(--gold-500)" /> info@logibell.com</a>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><Icon name="map-pin" size={15} color="var(--gold-500)" /> Los Angeles, CA</span>
+                <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><Icon name="map-pin" size={15} color="var(--gold-500)" /> 5320 Harmony Ave, Los Angeles, CA 91601</span>
               </div>
             </div>
             {Object.keys(FOOT).map((col) => (

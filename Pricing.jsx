@@ -55,7 +55,7 @@
               Our pricing is published because carriers should understand the cost of service before investing time in a conversation. These figures are the flat dispatch fee — operational support, representation, and partner access come with the relationship.
             </p>
             <div style={{ display: "flex", gap: 22, justifyContent: "center", marginTop: 24, flexWrap: "wrap" }}>
-              {[["circle-x", "No setup fees"], ["circle-x", "No monthly minimums"], ["gift", "Free first ELD cycle or week"]].map(([ic, t], i) => (
+              {[["circle-check", "No setup fees"], ["circle-check", "No monthly minimums"], ["gift", "Free first ELD cycle or week"]].map(([ic, t], i) => (
                 <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-sans)", fontSize: 14.5, fontWeight: 500, color: "var(--text-strong)" }}>
                   <Icon name={ic} size={17} color="var(--success)" /> {t}
                 </span>
@@ -77,8 +77,8 @@
                 back={<ExampleBack title="On a $1,000 load at 7%" rows={[["Load pays", "$1,000"], ["Dispatch fee (7%, mid-range)", "− $70"]]} emphasis={["You keep", "$930"]} note="Example uses the middle of the 6–8% range. You're told exactly where your rate lands at onboarding — not after." ctaLabel="Ring the LogiBell" onCta={() => navigate("contact", "onboard")} />}
               />
               <FlipCard className="lb-flip-lift lb-flip-reserve" frontDark backDark frontHint="Cost example" backHint="Back" label="Trusted Partner — flip for how the rate compares"
-                front={<PricingCard featured name="Trusted Partner" rate="Below" rateUnit="standard rate" badge="Higher tier" description="Every type of carrier can grow into a Trusted Partner. Earned through the relationship — not purchased at signup." features={["Preferred pricing below standard", "Weekly performance reporting", "Dedicated account management", "Priority load matching"]} ctaLabel="See how it's earned" onCta={() => navigate("contact")} />}
-                back={<ExampleBack dark title="Same $2,000 load, preferred rate" rows={[["Standard dispatch fee (6%)", "$120"], ["Trusted Partner fee", "Below $120"]]} emphasis={["You keep", "More per load"]} note="The exact preferred rate is set as the relationship grows — earned through sustained work together, never sold at signup." ctaLabel="See how it's earned" onCta={() => navigate("contact")} />}
+                front={<PricingCard featured name="Trusted Partner" rate="Below" rateUnit="standard rate" badge="Higher tier" description="Every type of carrier can grow into a Trusted Partner. Earned through the relationship — not purchased at signup." features={["Preferred pricing below standard", "Weekly performance reporting", "Dedicated account management", "Priority load matching"]} ctaLabel="See how it's earned" onCta={() => navigate("pricing", "trusted-partner")} />}
+                back={<ExampleBack dark title="Same $2,000 load, preferred rate" rows={[["Standard dispatch fee (6%)", "$120"], ["Trusted Partner fee", "Below $120"]]} emphasis={["You keep", "More per load"]} note="The exact preferred rate is set as the relationship grows — earned through sustained work together, never sold at signup." ctaLabel="See how it's earned" onCta={() => navigate("pricing", "trusted-partner")} />}
               />
             </div>
             {/* why 6-8 note */}
@@ -95,7 +95,7 @@
         </section>
 
         {/* trusted partner comparison */}
-        <section style={{ background: "var(--navy-800)", paddingTop: "clamp(72px, 10vw, 128px)", paddingBottom: "clamp(72px, 10vw, 128px)", position: "relative", overflow: "hidden" }}>
+        <section id="trusted-partner" style={{ background: "var(--navy-800)", paddingTop: "clamp(72px, 10vw, 128px)", paddingBottom: "clamp(72px, 10vw, 128px)", position: "relative", overflow: "hidden", scrollMarginTop: 128 }}>
           <NavyDrift variant={2} />
           <div className="lb-wrap" style={{ position: "relative" }}>
             <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto clamp(48px, 6vw, 80px)" }}>

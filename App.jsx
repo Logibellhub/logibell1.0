@@ -5,7 +5,7 @@
   const { AnnouncementBar, TopNav, Footer } = window.LBChrome;
   const Icon = window.Icon;
   const { Hero, WhatIs, Services, ReferralBand } = window.LBHome;
-  const { Different, WhoWeAre, NewAuthority, FinalCTA } = window.LBHome2;
+  const { Different, WhoWeAre, NewAuthority, PricingBand, PartnerBand, FinalCTA } = window.LBHome2;
   const { PricingPage } = window.LBPricing;
   const { ContactPage } = window.LBContact;
   const { ServicesPage, WhoWeArePage, NewAuthorityPage, PartnerPage } = window.LBPages;
@@ -181,6 +181,8 @@
               <Different />
               <WhoWeAre navigate={navigate} />
               <NewAuthority navigate={navigate} />
+              <PricingBand navigate={navigate} />
+              <PartnerBand navigate={navigate} />
               <LogiGuardStrip navigate={navigate} />
               <ReferralBand navigate={navigate} />
               <FeedbackSection />

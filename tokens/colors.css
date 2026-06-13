@@ -38,7 +38,7 @@
   /* ---- On-dark text ---- */
   --on-navy:       #FFFFFF;
   --on-navy-soft:  #B7C2DC;  /* secondary text on navy */
-  --on-navy-faint: #7E8AA8;  /* fine print on navy */
+  --on-navy-faint: #97A5C6;  /* fine print on navy (AA: 4.74:1 on navy-800) */
 
   /* ---- Semantic (base) ---- */
   --green-600: #1F8A5B;
@@ -96,6 +96,7 @@
   /* Status */
   --success: var(--green-500);
   --success-soft: var(--green-100);
+  --success-on-dark: #4CC38A;  /* success TEXT on navy surfaces (AA: 5.28:1 on navy-800) */
   --warning: var(--amber-600);
   --warning-soft: var(--amber-100);
   --error: var(--red-500);

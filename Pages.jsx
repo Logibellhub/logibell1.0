@@ -53,10 +53,10 @@
       anchor: "dispatch", tag: "A", icon: "route", step: "Entry point",
       title: "Dispatch & Load Sourcing",
       tagline: "Where the working relationship starts.",
-      desc: "We keep your truck moving by sourcing loads matched to your equipment, communicating directly with brokers on your behalf, and negotiating rates. Every load we book is confirmed in writing before you roll.",
+      desc: "We keep your truck moving by sourcing loads matched to your equipment, communicating directly with brokers on your behalf, and supporting rate discussions during booking. Every load we book is confirmed in writing before you roll.",
       cta: { label: "Get started with dispatch", page: "contact", anchor: "onboard" },
-      left: ["Load sourcing & lane matching", "Broker communication on your behalf", "Rate negotiation support", "Access to off-board opportunities"],
-      right: ["Rate-discussion support during booking", "Lane planning and market guidance", "Check calls and in-transit coordination", "New-authority onboarding support"],
+      left: ["Load sourcing & lane matching", "Broker communication on your behalf", "Rate-discussion support during booking", "Access to off-board opportunities"],
+      right: ["Established broker relationships behind you", "Lane planning and market guidance", "Check calls and in-transit coordination", "New-authority onboarding support"],
     },
     {
       anchor: "operations", tag: "B", icon: "clipboard-check", step: "After the load",
@@ -74,12 +74,12 @@
       desc: "Over time, LogiBell connects carriers to vetted contacts in insurance, factoring, and compliance support. We also provide lane guidance based on market conditions to help you plan where your operation runs next.",
       cta: { label: "Learn about partner access", page: "partners" },
       left: ["Lane planning & market guidance", "Free, competitive insurance quotes", "Vetted factoring contact introductions", "Early-stage MC guidance & broker readiness"],
-      right: ["Lease-on connections for carriers", "Compliance support contacts", "Quarterly lane and market review", "Carrier network access"],
+      right: ["Lease-on connections for carriers", "Compliance support contacts", "Trusted Partner tier — earned over time", "Carrier network access"],
     },
   ];
 
   const PANEL_TEXT = "#39435C";   // slate body (brief spec)
-  const PANEL_SUBHEAD = "#828BA3"; // muted sub-header (brief spec)
+  const PANEL_SUBHEAD = "#5A6480"; // muted sub-header (AA: 5.88:1 on white; was #828BA3 @ 3.40:1)
 
   function ServicesExplorer({ navigate }) {
     const ids = SERVICE_PANELS.map((p) => p.anchor);
@@ -211,7 +211,7 @@
             <div>
               <h3 style={{ fontFamily: "var(--font-display)", fontSize: 19, fontWeight: 600, color: "#fff", margin: "0 0 6px" }}>Determining your cost</h3>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: 14.5, lineHeight: 1.6, color: "var(--on-navy-soft)", margin: 0 }}>
-                A flat dispatch fee — <span style={{ fontFamily: "var(--font-mono)", color: "var(--gold-500)" }}>Semi 6%</span>, <span style={{ fontFamily: "var(--font-mono)", color: "var(--gold-500)" }}>Box/Hotshot 6–8%</span> — confirmed at onboarding, with an affordable minimum so it works for smaller operations too.
+                A flat dispatch fee — <span style={{ fontFamily: "var(--font-mono)", color: "var(--gold-500)" }}>Semi 6%</span>, <span style={{ fontFamily: "var(--font-mono)", color: "var(--gold-500)" }}>Box/Hotshot 6–8%</span> — confirmed at onboarding, with no setup fees and no monthly minimums.
               </p>
             </div>
           </div>

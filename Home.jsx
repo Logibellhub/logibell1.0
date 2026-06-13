@@ -34,7 +34,7 @@
     return (
       <div style={{ position: "relative" }}>
         <div style={{ position: "absolute", inset: "-26px -26px auto auto", width: 116, height: 116, background: "var(--white)", border: "1px solid var(--line)", borderRadius: "var(--radius-2xl)", boxShadow: "var(--shadow-md)", zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 14 }}>
-          <img src="../../assets/logo/logibell-emblem.jpg" alt="" aria-hidden="true" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+          <img src="./assets/logo/logibell-emblem.jpg" alt="" aria-hidden="true" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
         </div>
         <Card surface="dark" radius="2xl" pad="none" style={{ position: "relative", zIndex: 1, overflow: "hidden", boxShadow: "var(--shadow-xl)" }}>
           {/* header */}
@@ -42,7 +42,7 @@
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 15.5, color: "#fff" }}>
               <Icon name="radio" size={17} color="var(--gold-500)" /> Lane activity
             </span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: "var(--font-sans)", fontSize: 12.5, fontWeight: 600, color: "var(--success)" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: "var(--font-sans)", fontSize: 12.5, fontWeight: 600, color: "var(--success-on-dark)" }}>
               <span className="lb-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--success)", display: "inline-block" }} /> On the road
             </span>
           </div>
@@ -86,7 +86,7 @@
         <RouteMotif corner="br" />
         <div className="lb-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 64, alignItems: "center", position: "relative" }}>
           <div>
-            <Eyebrow>Carrier-Focused Operations</Eyebrow>
+            <Eyebrow>Carrier-Focused Operations Support</Eyebrow>
             <h1 className="lb-display-xl" style={{ marginBottom: 22 }}>Your Operation.<br /><span style={{ color: "var(--navy-700)" }}>Fully Backed.</span></h1>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 19, lineHeight: 1.55, color: "var(--text-strong)", maxWidth: 520, marginBottom: 14, fontWeight: 500 }}>
               Dispatch is the entry point; operational support builds the business.

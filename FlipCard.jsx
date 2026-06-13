@@ -11,7 +11,7 @@
    · The hidden face is aria-hidden + inert so SRs / tab order see one face. */
 (function () {
   const Icon = window.Icon;
-  const MARK = "../../assets/logo/logibell-mark.svg";
+  const MARK = "./assets/logo/logibell-mark.svg";
 
   function Aff({ dark, label, back }) {
     return (

@@ -8,13 +8,13 @@
 | Item | Where | Status |
 |---|---|---|
 | **Phone** `(818) 481-1886` | `Chrome.jsx` (header + footer + mobile), `Home.jsx` (hero), `Contact.jsx` | ✅ Confirmed by owner (June 2026) |
-| **Address** `Los Angeles, CA` | `Chrome.jsx` (footer), `Contact.jsx` | ⚠️ Provisional — confirm full address |
+| **Address** `5320 Harmony Ave, Los Angeles, CA 91601` | `Chrome.jsx` (footer), `Contact.jsx` | ✅ Full address per brand strategy v1.9 Company Information |
 | **Email** `info@logibell.com` | `Chrome.jsx`, `Contact.jsx`, `Legal.jsx` | ⚠️ Provisional — confirm mailbox exists |
 | **Contact form destination** | `Contact.jsx` `<form name="onboarding" data-netlify="true">` | ⚠️ Defaults to **Netlify Forms**. Confirm destination + notification email, or swap to the real backend. Prototype currently shows a success state on submit. |
 | **Domain** `logibell.com` | `App.jsx` (`SITE`), `index.html` (canonical/OG) | ⚠️ Provisional — confirm registered domain |
 | **Page metadata** (titles/descriptions) | `App.jsx` `META`, `index.html` | ⚠️ Review copy with the business |
 | **Canonical + OG tags** | `index.html`, updated per-route in `App.jsx` | ⚠️ Confirm domain; replace OG image (see below) |
-| **OG / social image** | `index.html` (`og:image`) | ⚠️ Currently the on-navy wordmark. A purpose-built 1200×630 social card is recommended. |
+| **OG / social image** | `index.html` (`og:image`) | ✅ Purpose-built 1200×630 card (`assets/brand/og-card.png`) — navy gradient, wordmark, gold underline. |
 | **Favicon** | `index.html` (`<link rel="icon">`) | ✅ Now the LogiBell **bell mark** (`logibell-bell-gold-edge.png`). Optional: add multi-size `.ico` / 180px apple-touch for crisper small sizes. |
 | **sitemap.xml** | `sitemap.xml` | ⚠️ Provisional — paths assume server-side routing on the real domain |
 | **robots.txt** | `robots.txt` | ⚠️ Provisional — confirm before launch |
@@ -30,6 +30,8 @@
 | **Contact vs onboarding split** | `Contact.jsx`, `Chrome.jsx` | Nav "Contact" → top (general reach-us); "Ring the LogiBell" → `#onboard` (get-started form). Confirm the split reads correctly with final copy. |
 
 ## Production notes
+
+- **Performance:** the prototype loads React *development* builds and compiles JSX in the browser via Babel standalone — fine for preview, but it will not reach Lighthouse 90+. Precompile the JSX and switch to production React (or bundle with Vite/esbuild) before launch.
 
 - **Routing:** the prototype uses client-side **hash routing** (`#/services`, `#/new-authority`, …) so it works as a static file. For production with clean URLs (`/services`), serve `index.html` for all routes (SPA fallback) and keep the canonical paths in `App.jsx` `META` aligned with `sitemap.xml`.
 - **No dead links:** all nav and footer links resolve to real routed pages — no `preventDefault` stubs remain.
