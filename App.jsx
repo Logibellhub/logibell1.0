@@ -37,16 +37,25 @@
   const slugFor = (key) => (key in KEY_TO_SLUG ? KEY_TO_SLUG[key] : key);
   const keyFor = (slug) => (slug in SLUG_TO_KEY ? SLUG_TO_KEY[slug] : slug);
 
+  // Section ids that live on the Home page. Lets hashes like "#/feedback"
+  // (used by the Feedback nav link) resolve to Home + smooth-scroll instead
+  // of falling through to the 404 page.
+  const HOME_SECTION_IDS = ["feedback", "faq", "different", "whatis"];
+
   function parseHash() {
     const raw = (window.location.hash || "").replace(/^#\/?/, "");
     const [slug, anchor] = raw.split("/");
     const key = keyFor(slug || "");
-    const valid = PAGES.includes(key) ? key : (slug ? "notfound" : "home");
-    return { page: valid, anchor: anchor || null };
+    if (PAGES.includes(key)) return { page: key, anchor: anchor || null };
+    // unknown slug that matches a Home section id → Home + that anchor
+    if (HOME_SECTION_IDS.includes(slug)) return { page: "home", anchor: slug };
+    return { page: slug ? "notfound" : "home", anchor: anchor || null };
   }
 
   function hashFor(key, anchor) {
-    const slug = slugFor(key === "notfound" ? "404" : key);
+    // Home anchors are encoded unambiguously as "#/home/<anchor>" so parseHash
+    // never mistakes a section id for a page slug.
+    const slug = key === "home" ? (anchor ? "home" : "") : slugFor(key === "notfound" ? "404" : key);
     return "#/" + slug + (anchor ? (slug ? "/" : "") + anchor : "");
   }
 
