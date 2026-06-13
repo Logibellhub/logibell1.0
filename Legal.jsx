@@ -77,7 +77,7 @@
     return (
       <section style={{ background: "var(--surface-page)", minHeight: "60vh", display: "flex", alignItems: "center", paddingTop: 80, paddingBottom: 96 }}>
         <div className="lb-wrap" style={{ textAlign: "center", maxWidth: 560 }}>
-          <img src="./assets/logo/logibell-wordmark.png" alt="LogiBell" style={{ height: 40, width: "auto", margin: "0 auto 28px", display: "block" }} />
+          <img src="../../assets/logo/logibell-wordmark.png" alt="LogiBell" style={{ height: 40, width: "auto", margin: "0 auto 28px", display: "block" }} />
           <div style={{ fontFamily: "var(--font-mono)", fontSize: 14, color: "var(--gold-700)", letterSpacing: "2px", marginBottom: 10 }}>404</div>
           <h1 className="lb-display-md" style={{ marginBottom: 14 }}>This route isn't on the board.</h1>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.6, color: "var(--text-body)", marginBottom: 28 }}>

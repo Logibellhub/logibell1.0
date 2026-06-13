@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"LogibellDesignSystem_20d6f4","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"Tabs","sourcePath":"components/core/Tabs.jsx"},{"name":"PricingCard","sourcePath":"components/marketing/PricingCard.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"73f54f2b409e","components/core/Button.jsx":"d74da33622af","components/core/Card.jsx":"78d650f90326","components/core/Input.jsx":"1107a7210f78","components/core/Tabs.jsx":"72cf5b7e0a2f","components/marketing/PricingCard.jsx":"5112af5b61bb","ui_kits/website/App.jsx":"b0eb6d64f055","ui_kits/website/Chrome.jsx":"b72d7051ed70","ui_kits/website/Contact.jsx":"c65f607033e5","ui_kits/website/FlipCard.jsx":"8d036cc6f8e2","ui_kits/website/Home.jsx":"6b08b0050ef4","ui_kits/website/Home2.jsx":"2d53a2177f03","ui_kits/website/Legal.jsx":"b0cb674a86cd","ui_kits/website/Pages.jsx":"6e29a8a9374e","ui_kits/website/Pricing.jsx":"fa8a89872161","ui_kits/website/ambient.jsx":"825b52013442","ui_kits/website/ds.jsx":"0b6aa2fc1b9e","ui_kits/website/icons.jsx":"0db675ffe745","ui_kits/website/lanes.js":"7368e699ce5a"},"inlinedExternals":[],"unexposedExports":[]} */
+/* @ds-bundle: {"format":3,"namespace":"LogibellDesignSystem_20d6f4","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Card","sourcePath":"components/core/Card.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"Tabs","sourcePath":"components/core/Tabs.jsx"},{"name":"PricingCard","sourcePath":"components/marketing/PricingCard.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"73f54f2b409e","components/core/Button.jsx":"d74da33622af","components/core/Card.jsx":"78d650f90326","components/core/Input.jsx":"1107a7210f78","components/core/Tabs.jsx":"72cf5b7e0a2f","components/marketing/PricingCard.jsx":"5112af5b61bb","ui_kits/website/App.jsx":"9f1cce6cae54","ui_kits/website/Chrome.jsx":"996b7a7ee90b","ui_kits/website/Contact.jsx":"930944b5753f","ui_kits/website/Extras.jsx":"35bc96ec9ccc","ui_kits/website/FlipCard.jsx":"8d036cc6f8e2","ui_kits/website/Home.jsx":"f4025125f97b","ui_kits/website/Home2.jsx":"d6c03ee78897","ui_kits/website/Legal.jsx":"b0cb674a86cd","ui_kits/website/LogiGuard.jsx":"22be7a024d9c","ui_kits/website/Pages.jsx":"8c4d80457d95","ui_kits/website/Pricing.jsx":"13958f48961a","ui_kits/website/ambient.jsx":"825b52013442","ui_kits/website/ds.jsx":"0b6aa2fc1b9e","ui_kits/website/icons.jsx":"0db675ffe745","ui_kits/website/lanes.js":"7368e699ce5a"},"inlinedExternals":[],"unexposedExports":[]} */
 
 (() => {
 
@@ -707,6 +707,13 @@ try { (() => {
     TermsPage,
     NotFound
   } = window.LBLegal;
+  const {
+    LogiGuardStrip
+  } = window.LBGuard;
+  const {
+    FeedbackSection,
+    FAQSection
+  } = window.LBExtras;
 
   /* Per-page SEO metadata (title + description). Canonical/OG base lives in
      index.html; we update title + description + canonical path on navigation. */
@@ -720,7 +727,7 @@ try { (() => {
     services: {
       path: "/services",
       title: "Services — LogiBell",
-      desc: "Dispatch & load sourcing, operations & back-office, and partner & growth support for carriers of every size, from owner-operators to small and larger fleets."
+      desc: "Dispatch & load sourcing, operations & back-office, and partner & growth support — plus LogiGuard, a free verification check on any broker, MC, or load."
     },
     pricing: {
       path: "/pricing",
@@ -740,7 +747,7 @@ try { (() => {
     partners: {
       path: "/partner-access",
       title: "Partner Access — LogiBell",
-      desc: "Access to vetted insurance contacts, lease-on referrals, and factoring/compliance partners that open up as the relationship develops. Access and referrals, never guarantees."
+      desc: "Free, competitive insurance quotes through vetted partners, lease-on referrals, and factoring/compliance contacts that open up as the relationship develops."
     },
     contact: {
       path: "/contact",
@@ -821,7 +828,7 @@ try { (() => {
       if (anchor) {
         const el = document.getElementById(anchor);
         if (el) {
-          const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 88;
+          const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 128;
           root.scrollTo({
             top,
             behavior: "smooth"
@@ -949,7 +956,11 @@ try { (() => {
             navigate: navigate
           }), /*#__PURE__*/React.createElement(NewAuthority, {
             navigate: navigate
+          }), /*#__PURE__*/React.createElement(LogiGuardStrip, {
+            navigate: navigate
           }), /*#__PURE__*/React.createElement(ReferralBand, {
+            navigate: navigate
+          }), /*#__PURE__*/React.createElement(FeedbackSection, null), /*#__PURE__*/React.createElement(FAQSection, {
             navigate: navigate
           }), /*#__PURE__*/React.createElement(FinalCTA, {
             navigate: navigate
@@ -1026,10 +1037,12 @@ try { (() => {
       "aria-label": "Back to top",
       tabIndex: showTop ? 0 : -1
     }, /*#__PURE__*/React.createElement(Icon, {
-      name: "arrow-up",
+      name: "arrow-up-to-line",
       size: 22,
       stroke: 2.4
-    })));
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "lb-back-top-label"
+    }, "Top")));
   }
   ReactDOM.createRoot(document.getElementById("root")).render(/*#__PURE__*/React.createElement(App, null));
 })();
@@ -1051,7 +1064,10 @@ try { (() => {
       style: {
         background: "var(--navy-900)",
         color: "var(--on-navy)",
-        borderBottom: "1px solid var(--navy-700)"
+        borderBottom: "1px solid var(--navy-700)",
+        position: "sticky",
+        top: 0,
+        zIndex: 51
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "lb-wrap",
@@ -1066,6 +1082,7 @@ try { (() => {
         flexWrap: "wrap"
       }
     }, /*#__PURE__*/React.createElement("span", {
+      className: "lb-announce-label",
       style: {
         display: "inline-flex",
         alignItems: "center",
@@ -1094,6 +1111,7 @@ try { (() => {
         color: "var(--gold-500)"
       }
     }, "6\u20138%")), /*#__PURE__*/React.createElement("span", {
+      className: "lb-announce-detail",
       style: {
         color: "var(--on-navy-faint)",
         display: "inline-flex",
@@ -1107,8 +1125,8 @@ try { (() => {
     }), "No setup fees \xB7 No monthly minimums")));
   }
 
-  /* Services dropdown — the New Authority program lives here now,
-     titled "Special Treatment Program — Newer Authorities". */
+  /* Services dropdown — core flow in order (Dispatch → Operations → Partner &
+     Growth → Special Treatment); LogiGuard rides along as an added feature. */
   const SERVICES_MENU = [{
     label: "Dispatch & Load Sourcing",
     desc: "Stay loaded and represented in the market.",
@@ -1129,11 +1147,18 @@ try { (() => {
     anchor: "partner-growth"
   }, {
     label: "Special Treatment Program — Newer Authorities",
-    desc: "Same dispatch service, more effort, for newer MCs.",
+    desc: "Authority age isn't the barrier here.",
     icon: "rocket",
     page: "authority",
     feature: true
   }];
+  const SERVICES_EXTRA = {
+    label: "LogiGuard — free verification check",
+    desc: "Verify any broker, MC, or load before you haul.",
+    icon: "shield-check",
+    page: "services",
+    anchor: "logiguard"
+  };
   const NAV = [{
     id: "services",
     label: "Services",
@@ -1151,6 +1176,11 @@ try { (() => {
     id: "partners",
     label: "Partner Access",
     page: "partners"
+  }, {
+    id: "feedback",
+    label: "Feedback",
+    page: "home",
+    anchor: "feedback"
   }, {
     id: "contact",
     label: "Contact",
@@ -1187,7 +1217,7 @@ try { (() => {
     return /*#__PURE__*/React.createElement("header", {
       style: {
         position: "sticky",
-        top: 0,
+        top: "var(--announce-height)",
         zIndex: 50,
         background: scrolled ? "rgba(246,248,252,0.85)" : "var(--surface-page)",
         backdropFilter: scrolled ? "saturate(180%) blur(12px)" : "none",
@@ -1231,7 +1261,7 @@ try { (() => {
       },
       className: "lb-desktop-nav"
     }, NAV.map(item => {
-      const active = item.page === page || item.id === "services" && page === "authority";
+      const active = item.id !== "feedback" && (item.page === page || item.id === "services" && page === "authority");
       if (item.menu) {
         return /*#__PURE__*/React.createElement("div", {
           key: item.id,
@@ -1273,15 +1303,21 @@ try { (() => {
         })), menuOpen ? /*#__PURE__*/React.createElement("div", {
           style: {
             position: "absolute",
-            top: "calc(100% + 8px)",
+            top: "calc(100% + 10px)",
             left: 0,
-            width: 360,
-            background: "var(--surface-card)",
+            width: "min(620px, calc(100vw - 48px))",
+            background: "var(--white)",
             border: "1px solid var(--hairline)",
             borderRadius: "var(--radius-lg)",
             boxShadow: "var(--shadow-xl)",
-            padding: 8,
+            padding: 10,
             zIndex: 60
+          }
+        }, /*#__PURE__*/React.createElement("div", {
+          style: {
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 2
           }
         }, item.menu.map((m, i) => /*#__PURE__*/React.createElement("a", {
           key: i,
@@ -1289,23 +1325,78 @@ try { (() => {
           onClick: e => go(m, e),
           style: {
             display: "flex",
-            gap: 13,
+            gap: 12,
             alignItems: "flex-start",
-            padding: "12px 12px",
+            padding: "11px 12px",
             borderRadius: "var(--radius-md)",
             textDecoration: "none",
-            transition: "background var(--dur-base)",
-            borderTop: m.feature ? "1px solid var(--hairline-soft)" : "none",
-            marginTop: m.feature ? 6 : 0,
-            paddingTop: m.feature ? 16 : 12
+            transition: "background var(--dur-base)"
           },
           onMouseEnter: e => e.currentTarget.style.background = "var(--mist-100)",
           onMouseLeave: e => e.currentTarget.style.background = "transparent"
         }, /*#__PURE__*/React.createElement("span", {
           style: {
-            width: 38,
-            height: 38,
+            width: 36,
+            height: 36,
+            borderRadius: "50%",
+            background: "var(--navy-800)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flex: "none",
+            marginTop: 2
+          }
+        }, /*#__PURE__*/React.createElement(Icon, {
+          name: m.icon,
+          size: 17,
+          color: "var(--gold-500)"
+        })), /*#__PURE__*/React.createElement("span", {
+          style: {
+            minWidth: 0,
+            whiteSpace: "normal"
+          }
+        }, /*#__PURE__*/React.createElement("span", {
+          style: {
+            display: "block",
+            fontFamily: "var(--font-display)",
+            fontSize: 14,
+            fontWeight: 600,
+            color: "var(--text-heading)",
+            lineHeight: 1.3,
+            whiteSpace: "normal"
+          }
+        }, m.label), /*#__PURE__*/React.createElement("span", {
+          style: {
+            display: "block",
+            fontFamily: "var(--font-sans)",
+            fontSize: 12.5,
+            color: "var(--text-muted)",
+            lineHeight: 1.4,
+            marginTop: 3,
+            whiteSpace: "normal"
+          }
+        }, m.desc))))), /*#__PURE__*/React.createElement("a", {
+          href: "#/" + SERVICES_EXTRA.page,
+          onClick: e => go(SERVICES_EXTRA, e),
+          style: {
+            display: "flex",
+            gap: 10,
+            alignItems: "center",
+            margin: "8px 2px 2px",
+            padding: "10px 12px",
             borderRadius: "var(--radius-md)",
+            textDecoration: "none",
+            background: "var(--surface-soft)",
+            border: "1px solid var(--hairline-soft)",
+            transition: "background var(--dur-base)"
+          },
+          onMouseEnter: e => e.currentTarget.style.background = "var(--mist-100)",
+          onMouseLeave: e => e.currentTarget.style.background = "var(--surface-soft)"
+        }, /*#__PURE__*/React.createElement("span", {
+          style: {
+            width: 28,
+            height: 28,
+            borderRadius: "50%",
             background: "var(--navy-800)",
             display: "flex",
             alignItems: "center",
@@ -1313,28 +1404,35 @@ try { (() => {
             flex: "none"
           }
         }, /*#__PURE__*/React.createElement(Icon, {
-          name: m.icon,
-          size: 19,
+          name: SERVICES_EXTRA.icon,
+          size: 14,
           color: "var(--gold-500)"
-        })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+        })), /*#__PURE__*/React.createElement("span", {
           style: {
-            display: "block",
-            fontFamily: "var(--font-display)",
-            fontSize: 14.5,
-            fontWeight: 600,
-            color: "var(--text-heading)",
-            lineHeight: 1.3
-          }
-        }, m.label), /*#__PURE__*/React.createElement("span", {
-          style: {
-            display: "block",
+            flex: 1,
+            minWidth: 0,
             fontFamily: "var(--font-sans)",
             fontSize: 13,
-            color: "var(--text-muted)",
-            lineHeight: 1.45,
-            marginTop: 3
+            fontWeight: 600,
+            color: "var(--text-heading)",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis"
           }
-        }, m.desc))))) : null);
+        }, SERVICES_EXTRA.label), /*#__PURE__*/React.createElement("span", {
+          style: {
+            flex: "none",
+            fontFamily: "var(--font-sans)",
+            fontSize: 10.5,
+            fontWeight: 700,
+            letterSpacing: "0.8px",
+            textTransform: "uppercase",
+            color: "var(--gold-700)",
+            background: "rgba(255,203,31,0.16)",
+            borderRadius: "var(--radius-pill)",
+            padding: "4px 9px"
+          }
+        }, "Added feature"))) : null);
       }
       return /*#__PURE__*/React.createElement("a", {
         key: item.id,
@@ -1365,7 +1463,15 @@ try { (() => {
         gap: 12
       },
       className: "lb-desktop-actions"
-    }, /*#__PURE__*/React.createElement(Button, {
+    }, /*#__PURE__*/React.createElement("a", {
+      className: "lb-nav-phone",
+      href: "tel:+18184811886",
+      "aria-label": "Call LogiBell"
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "phone",
+      size: 15,
+      color: "var(--gold-500)"
+    }), " (818) 481-1886"), /*#__PURE__*/React.createElement(Button, {
       variant: "primary",
       size: "sm",
       iconLeft: /*#__PURE__*/React.createElement(Icon, {
@@ -1421,7 +1527,7 @@ try { (() => {
         paddingLeft: 4,
         marginBottom: 8
       }
-    }, SERVICES_MENU.map((m, i) => /*#__PURE__*/React.createElement("a", {
+    }, SERVICES_MENU.concat([SERVICES_EXTRA]).map((m, i) => /*#__PURE__*/React.createElement("a", {
       key: i,
       href: "#/" + m.page,
       onClick: e => go(m, e),
@@ -1454,7 +1560,10 @@ try { (() => {
       }
     }, item.label)), /*#__PURE__*/React.createElement("div", {
       style: {
-        marginTop: 16
+        marginTop: 16,
+        display: "flex",
+        flexDirection: "column",
+        gap: 12
       }
     }, /*#__PURE__*/React.createElement(Button, {
       variant: "primary",
@@ -1468,7 +1577,28 @@ try { (() => {
         setOpen(false);
         navigate("contact", "onboard");
       }
-    }, "Ring the LogiBell"))) : null);
+    }, "Ring the LogiBell"), /*#__PURE__*/React.createElement("a", {
+      href: "tel:+18184811886",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 9,
+        fontFamily: "var(--font-sans)",
+        fontSize: 15.5,
+        fontWeight: 600,
+        color: "var(--navy-800)",
+        textDecoration: "none",
+        padding: "12px 0",
+        border: "1px solid var(--line)",
+        borderRadius: "var(--radius-md)",
+        background: "var(--white)"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "phone",
+      size: 16,
+      color: "var(--gold-700)"
+    }), " Call (818) 481-1886"))) : null);
   }
 
   /* Footer — every link routes to a real page (no dead preventDefault stubs). */
@@ -1509,6 +1639,10 @@ try { (() => {
     }, {
       label: "See Pricing",
       page: "pricing"
+    }, {
+      label: "Free LogiGuard Check",
+      page: "services",
+      anchor: "logiguard"
     }, {
       label: "Referral Program",
       page: "contact",
@@ -1874,7 +2008,7 @@ try { (() => {
         style: {
           width: 44,
           height: 44,
-          borderRadius: "var(--radius-md)",
+          borderRadius: "50%",
           background: "var(--navy-800)",
           display: "flex",
           alignItems: "center",
@@ -1951,7 +2085,7 @@ try { (() => {
         background: "var(--surface-soft)",
         paddingTop: 56,
         paddingBottom: 56,
-        scrollMarginTop: 88
+        scrollMarginTop: 128
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "lb-wrap",
@@ -1977,7 +2111,7 @@ try { (() => {
       style: {
         width: 56,
         height: 56,
-        borderRadius: "var(--radius-lg)",
+        borderRadius: "50%",
         background: "var(--navy-800)",
         display: "flex",
         alignItems: "center",
@@ -2022,7 +2156,7 @@ try { (() => {
         background: "var(--surface-page)",
         paddingTop: "clamp(72px, 9vw, 112px)",
         paddingBottom: "clamp(72px, 10vw, 128px)",
-        scrollMarginTop: 80
+        scrollMarginTop: 124
       }
     }, /*#__PURE__*/React.createElement("div", {
       className: "lb-wrap"
@@ -2303,6 +2437,523 @@ try { (() => {
   };
 })();
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Contact.jsx", error: String((e && e.message) || e) }); }
+
+// ui_kits/website/Extras.jsx
+try { (() => {
+/* LogiBell — Home page extras: Feedback (real reviews only) + FAQ accordion. */
+(function () {
+  const {
+    Button,
+    Card,
+    Badge,
+    Input,
+    Tabs
+  } = window.DS;
+  const Icon = window.Icon;
+  const {
+    Section,
+    Eyebrow
+  } = window.LBHome;
+
+  /* =================== FEEDBACK ===================
+     REAL REVIEWS ONLY. Paste reviews below as they come in — each entry:
+       { quote: "…", name: "First L.", company: "…" (optional), role: "owner-operator" | "driver" | "dispatcher" | "broker" }
+     Reviews are moderated. */
+  const REVIEWS = [{
+    quote: "Thank you so much, Thomas, for your constant support and for always taking care of me while I travel from origin to destination. Your communication, attention, and help on the road make a real difference.",
+    name: "Pedro",
+    company: "Rosales Express",
+    role: "driver"
+  }];
+  const ROLES = [{
+    id: "carrier",
+    label: "Carrier"
+  }, {
+    id: "driver",
+    label: "Driver"
+  }, {
+    id: "owner-operator",
+    label: "Owner-operator"
+  }, {
+    id: "dispatcher",
+    label: "Dispatcher"
+  }, {
+    id: "broker",
+    label: "Broker"
+  }];
+  /* The form keeps it simple: Carrier / Broker / Other (free text). */
+  const FORM_ROLES = [{
+    id: "carrier",
+    label: "Carrier"
+  }, {
+    id: "broker",
+    label: "Broker"
+  }, {
+    id: "other",
+    label: "Other"
+  }];
+  const roleLabel = id => (ROLES.find(r => r.id === id) || {}).label || id;
+  function FeedbackForm() {
+    const [sent, setSent] = React.useState(false);
+    const [role, setRole] = React.useState("carrier");
+    const [customRole, setCustomRole] = React.useState("");
+    const [form, setForm] = React.useState({
+      name: "",
+      text: ""
+    });
+    const [errors, setErrors] = React.useState({});
+    const set = k => e => {
+      const v = e.target.value;
+      setForm(f => ({
+        ...f,
+        [k]: v
+      }));
+      setErrors(er => er[k] ? {
+        ...er,
+        [k]: undefined
+      } : er);
+    };
+    function handleSubmit(e) {
+      e.preventDefault();
+      const submitter = e.nativeEvent && e.nativeEvent.submitter;
+      if (submitter && submitter.getAttribute("type") !== "submit") return;
+      const errs = {};
+      if (!form.name.trim()) errs.name = "Please add your name.";
+      if (!form.text.trim()) errs.text = "Tell us how it went — a sentence is plenty.";
+      if (Object.keys(errs).length) {
+        setErrors(errs);
+        return;
+      }
+      /* PROVISIONAL: Netlify Forms (name="feedback") — confirm destination before launch. */
+      setErrors({});
+      setSent(true);
+    }
+    return /*#__PURE__*/React.createElement(Card, {
+      surface: "white",
+      radius: "xl",
+      pad: "xl",
+      style: {
+        boxShadow: "var(--shadow-md)"
+      }
+    }, sent ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "28px 14px"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 58,
+        height: 58,
+        borderRadius: "50%",
+        background: "var(--success-soft)",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "check",
+      size: 28,
+      color: "var(--success)"
+    })), /*#__PURE__*/React.createElement("h3", {
+      className: "lb-display-sm",
+      style: {
+        marginBottom: 8
+      }
+    }, "Thank you."), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 15,
+        color: "var(--text-body)",
+        maxWidth: 340,
+        margin: "0 auto",
+        lineHeight: 1.6
+      }
+    }, "Your feedback goes through moderation before it appears \u2014 we keep it genuine in both directions.")) : /*#__PURE__*/React.createElement("form", {
+      name: "feedback",
+      method: "POST",
+      "data-netlify": "true",
+      "netlify-honeypot": "bot-field",
+      noValidate: true,
+      onSubmit: handleSubmit
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "hidden",
+      name: "form-name",
+      value: "feedback"
+    }), /*#__PURE__*/React.createElement("input", {
+      type: "hidden",
+      name: "role",
+      value: role === "other" ? customRole.trim() || "other" : role
+    }), /*#__PURE__*/React.createElement("p", {
+      style: {
+        display: "none"
+      }
+    }, /*#__PURE__*/React.createElement("label", null, "Don't fill this out: ", /*#__PURE__*/React.createElement("input", {
+      name: "bot-field"
+    }))), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontFamily: "var(--font-display)",
+        fontSize: 21,
+        fontWeight: 600,
+        color: "var(--text-heading)",
+        marginBottom: 6
+      }
+    }, "Share your experience"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 14,
+        color: "var(--text-muted)",
+        marginBottom: 20
+      }
+    }, "Worked with us? We'd like to hear how it went."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 13,
+        fontWeight: 600,
+        color: "var(--ink-700)",
+        display: "block",
+        marginBottom: 9
+      }
+    }, "I am a\u2026"), /*#__PURE__*/React.createElement(Tabs, {
+      value: role,
+      onChange: setRole,
+      tabs: FORM_ROLES
+    }), role === "other" ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginTop: 10
+      }
+    }, /*#__PURE__*/React.createElement(Input, {
+      label: "Your role",
+      name: "role-other",
+      placeholder: "Owner-operator, fleet manager, vendor\u2026",
+      value: customRole,
+      onChange: e => setCustomRole(e.target.value)
+    })) : null), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement(Input, {
+      label: "Name",
+      name: "name",
+      placeholder: "Jordan C.",
+      required: true,
+      error: errors.name,
+      value: form.name,
+      onChange: set("name")
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 20
+      }
+    }, /*#__PURE__*/React.createElement(Input, {
+      label: "Your feedback",
+      name: "text",
+      multiline: true,
+      rows: 4,
+      placeholder: "How was working with LogiBell?",
+      required: true,
+      error: errors.text,
+      value: form.text,
+      onChange: set("text")
+    })), /*#__PURE__*/React.createElement(Button, {
+      variant: "primary",
+      full: true,
+      size: "md",
+      type: "submit"
+    }, "Submit feedback"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 12.5,
+        color: "var(--text-muted)",
+        textAlign: "center",
+        marginTop: 12
+      }
+    }, "Reviews are moderated before they appear, to keep feedback genuine.")));
+  }
+  function FeedbackSection() {
+    const [filter, setFilter] = React.useState("all");
+    const shown = filter === "all" ? REVIEWS : REVIEWS.filter(r => r.role === filter);
+    // role chips only once there's something to filter: 2+ reviews across 2+ roles
+    const presentRoles = ROLES.filter(r => REVIEWS.some(v => v.role === r.id));
+    const showChips = REVIEWS.length > 1 && presentRoles.length > 1;
+    return /*#__PURE__*/React.createElement(Section, {
+      id: "feedback",
+      bg: "var(--surface-soft)"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "lb-who-grid",
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 56,
+        alignItems: "start"
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Eyebrow, null, "Feedback"), /*#__PURE__*/React.createElement("h2", {
+      className: "lb-display-md",
+      style: {
+        marginBottom: 18
+      }
+    }, "What carriers say."), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 16.5,
+        lineHeight: 1.65,
+        color: "var(--text-body)",
+        maxWidth: 460,
+        marginBottom: 14
+      }
+    }, "Real feedback from the people we work with \u2014 collected as we go, never invented, and moderated to keep it genuine."), REVIEWS.length === 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 14,
+        lineHeight: 1.6,
+        color: "var(--text-muted)",
+        maxWidth: 480,
+        display: "flex",
+        gap: 8,
+        alignItems: "flex-start"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "badge-check",
+      size: 17,
+      color: "var(--navy-700)",
+      style: {
+        marginTop: 1,
+        flex: "none"
+      }
+    }), "As more reviews come in, they'll appear right here.")) : /*#__PURE__*/React.createElement(React.Fragment, null, showChips ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 8,
+        flexWrap: "wrap",
+        marginBottom: 24
+      }
+    }, [{
+      id: "all",
+      label: "All"
+    }].concat(presentRoles).map(r => /*#__PURE__*/React.createElement("button", {
+      key: r.id,
+      type: "button",
+      onClick: () => setFilter(r.id),
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 13.5,
+        fontWeight: 600,
+        padding: "7px 15px",
+        borderRadius: "var(--radius-pill)",
+        cursor: "pointer",
+        border: "1px solid " + (filter === r.id ? "var(--navy-800)" : "var(--line)"),
+        background: filter === r.id ? "var(--navy-800)" : "var(--white)",
+        color: filter === r.id ? "#fff" : "var(--text-body)",
+        transition: "background var(--dur-base), border-color var(--dur-base)"
+      }
+    }, r.label))) : null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 16
+      }
+    }, shown.map((r, i) => /*#__PURE__*/React.createElement(Card, {
+      key: i,
+      surface: "white",
+      radius: "lg",
+      pad: "lg"
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "quote",
+      size: 22,
+      color: "var(--gold-500)"
+    }), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 15.5,
+        lineHeight: 1.6,
+        color: "var(--text-strong)",
+        margin: "10px 0 14px"
+      }
+    }, r.quote), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 13.5,
+        color: "var(--text-muted)"
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "var(--text-heading)",
+        fontWeight: 600
+      }
+    }, r.name), r.company ? ", " + r.company : "", " \xB7 ", roleLabel(r.role))))), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 13,
+        color: "var(--text-muted)",
+        marginTop: 18,
+        display: "flex",
+        gap: 8,
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "badge-check",
+      size: 15,
+      color: "var(--navy-700)"
+    }), " Reviews are moderated to keep feedback genuine."))), /*#__PURE__*/React.createElement(FeedbackForm, null)));
+  }
+
+  /* =================== FAQ ===================
+     Conservative answers, consistent with the site's tone — confident,
+     no over-promising. Placed above the final CTA per the brand doc. */
+  const FAQ_ITEMS = [{
+    q: "What does LogiBell do?",
+    a: "LogiBell is a carrier-focused operations support company. We start with dispatch — load sourcing and broker communication — and support the operation around it: paperwork coordination, issue resolution, and access to trusted partners."
+  }, {
+    q: "What does it cost?",
+    a: "Pricing is published. Semi trucks are a 6% flat dispatch fee; box trucks, hotshots, and sprinters are 6–8% based on equipment and service needs. No setup fees and no monthly minimums — your exact rate is confirmed at onboarding."
+  }, {
+    q: "Do you work with new authorities?",
+    a: "Yes — it's one of our core strengths. The Special Treatment Program gives newer authorities structured early-stage support: first-load strategy, broker-readiness guidance, rate education, compliance guidance, and insurance setup support during the first months on the road."
+  }, {
+    q: "How does LogiGuard work?",
+    a: "LogiGuard is our verification practice. We work to confirm the brokers, partners, and vendors involved in a load — authority, MC number, and insurance status — and stay current on freight-fraud tactics. Anyone, client or not, can submit a broker, MC, or load for a free check and get a result by email."
+  }, {
+    q: "How do I get started?",
+    a: "Ring the LogiBell to speak with a dispatch specialist, or schedule a call. Our published pricing means you know the cost before you reach out."
+  }];
+  function FAQItem({
+    item,
+    open,
+    onToggle,
+    idx
+  }) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        borderBottom: "1px solid var(--hairline)"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      "aria-expanded": open,
+      "aria-controls": "lb-faq-a-" + idx,
+      onClick: onToggle,
+      style: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: 18,
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        padding: "22px 4px",
+        textAlign: "left"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "var(--font-display)",
+        fontSize: 17.5,
+        fontWeight: 600,
+        color: open ? "var(--navy-800)" : "var(--text-heading)",
+        lineHeight: 1.35
+      }
+    }, item.q), /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 30,
+        height: 30,
+        borderRadius: "50%",
+        background: open ? "var(--navy-800)" : "rgba(25,57,96,0.07)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: "none",
+        transition: "background var(--dur-base)"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "chevron-down",
+      size: 17,
+      color: open ? "var(--gold-500)" : "var(--navy-800)",
+      style: {
+        transition: "transform var(--dur-base)",
+        transform: open ? "rotate(180deg)" : "none"
+      }
+    }))), /*#__PURE__*/React.createElement("div", {
+      id: "lb-faq-a-" + idx,
+      role: "region",
+      style: {
+        display: "grid",
+        gridTemplateRows: open ? "1fr" : "0fr",
+        transition: "grid-template-rows 260ms var(--ease-out)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        overflow: "hidden"
+      }
+    }, /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 15.5,
+        lineHeight: 1.65,
+        color: "var(--text-body)",
+        margin: "0 4px",
+        paddingBottom: 24,
+        maxWidth: 680
+      }
+    }, item.a))));
+  }
+  function FAQSection({
+    navigate
+  }) {
+    const go = navigate || window.__lbnav || (() => {});
+    const [open, setOpen] = React.useState(0);
+    return /*#__PURE__*/React.createElement(Section, {
+      id: "faq"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "lb-who-grid",
+      style: {
+        display: "grid",
+        gridTemplateColumns: "0.8fr 1.2fr",
+        gap: 56,
+        alignItems: "start"
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Eyebrow, null, "FAQ"), /*#__PURE__*/React.createElement("h2", {
+      className: "lb-display-md",
+      style: {
+        marginBottom: 16
+      }
+    }, "Common questions."), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 16,
+        lineHeight: 1.6,
+        color: "var(--text-body)",
+        maxWidth: 380,
+        marginBottom: 24
+      }
+    }, "Services, pricing, and how the relationship works. Anything else \u2014 ask us directly."), /*#__PURE__*/React.createElement(Button, {
+      variant: "secondary",
+      size: "md",
+      iconLeft: /*#__PURE__*/React.createElement(Icon, {
+        name: "phone",
+        size: 16
+      }),
+      onClick: () => go("contact")
+    }, "Schedule a Call")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        borderTop: "1px solid var(--hairline)"
+      }
+    }, FAQ_ITEMS.map((item, i) => /*#__PURE__*/React.createElement(FAQItem, {
+      key: i,
+      item: item,
+      idx: i,
+      open: open === i,
+      onToggle: () => setOpen(open === i ? -1 : i)
+    })))));
+  }
+  window.LBExtras = {
+    FeedbackSection,
+    FAQSection,
+    REVIEWS
+  };
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Extras.jsx", error: String((e && e.message) || e) }); }
 
 // ui_kits/website/FlipCard.jsx
 try { (() => {
@@ -2789,12 +3440,28 @@ try { (() => {
         size: 16
       }),
       onClick: () => navigate("pricing")
-    }, "See our pricing")), /*#__PURE__*/React.createElement("p", {
+    }, "See our pricing"), /*#__PURE__*/React.createElement(Button, {
+      variant: "ghost",
+      size: "lg",
+      iconLeft: /*#__PURE__*/React.createElement(Icon, {
+        name: "phone",
+        size: 17
+      }),
+      onClick: () => navigate("contact")
+    }, "Schedule a Call")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 22,
+        flexWrap: "wrap",
+        alignItems: "center",
+        marginTop: 18
+      }
+    }, /*#__PURE__*/React.createElement("p", {
       style: {
         fontFamily: "var(--font-sans)",
         fontSize: 13.5,
         color: "var(--text-muted)",
-        marginTop: 18,
+        margin: 0,
         display: "inline-flex",
         alignItems: "center",
         gap: 8
@@ -2803,7 +3470,23 @@ try { (() => {
       name: "circle-check",
       size: 15,
       color: "var(--success)"
-    }), " Our pricing is published, so you know the cost before you call.")), /*#__PURE__*/React.createElement(LoadBoard, null)));
+    }), " Our pricing is published, so you know the cost before you call."), /*#__PURE__*/React.createElement("a", {
+      href: "tel:+18184811886",
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 13.5,
+        fontWeight: 600,
+        color: "var(--navy-800)",
+        textDecoration: "none",
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 7
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "phone",
+      size: 14,
+      color: "var(--gold-700)"
+    }), " (818) 481-1886"))), /*#__PURE__*/React.createElement(LoadBoard, null)));
   }
 
   /* ---------- WHAT LOGIBELL IS ---------- */
@@ -2878,7 +3561,7 @@ try { (() => {
     title: "Partner & Growth Support",
     promise: "Opportunities that open as the relationship develops — not standard day-one features.",
     blurb: "Access and referrals that grow with the working relationship.",
-    points: ["Early-stage MC guidance & broker-readiness", "Insurance partner access through vetted contacts (access, not a guaranteed outcome)", "Lease-on connections for carriers without an active MC (a referral, not LogiBell holding the authority)", "Potential factoring & compliance access as the network expands"]
+    points: ["Early-stage MC guidance & broker-readiness", "Free, competitive insurance quotes through vetted partners", "Lease-on referrals for carriers without an active MC", "Factoring & compliance access as the network expands"]
   }];
 
   /* Home preview — flip cards: front is the trimmed summary, back is the full
@@ -2933,7 +3616,7 @@ try { (() => {
         style: {
           width: 50,
           height: 50,
-          borderRadius: "var(--radius-md)",
+          borderRadius: "50%",
           background: "var(--navy-800)",
           display: "flex",
           alignItems: "center",
@@ -3145,7 +3828,7 @@ try { (() => {
       style: {
         width: 56,
         height: 56,
-        borderRadius: "var(--radius-lg)",
+        borderRadius: "50%",
         background: "var(--navy-700)",
         display: "flex",
         alignItems: "center",
@@ -3290,7 +3973,7 @@ try { (() => {
       style: {
         width: 46,
         height: 46,
-        borderRadius: "var(--radius-md)",
+        borderRadius: "50%",
         background: "var(--navy-700)",
         display: "flex",
         alignItems: "center",
@@ -3321,7 +4004,7 @@ try { (() => {
   }
 
   /* ---------- WHO WE ARE (reusable section) ---------- */
-  const NEW_AUTH_ITEMS = ["First-load strategy", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Tunnelling to the source ", "Structure through the first year"];
+  const NEW_AUTH_ITEMS = ["First-load strategy", "Early-stage authority support", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Insurance setup support"];
   function WhoWeAre({
     navigate
   }) {
@@ -3444,11 +4127,11 @@ try { (() => {
       style: {
         margin: "18px 0 18px"
       }
-    }, "Most won't work with you yet.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    }, "Authority age", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
       style: {
         color: "var(--navy-700)"
       }
-    }, "We will.")), /*#__PURE__*/React.createElement("p", {
+    }, "isn't the barrier here.")), /*#__PURE__*/React.createElement("p", {
       style: {
         fontFamily: "var(--font-sans)",
         fontSize: 16.5,
@@ -3456,7 +4139,7 @@ try { (() => {
         color: "var(--text-body)",
         maxWidth: 480
       }
-    }, "Authority age isn't the barrier here. Brokers already know and trust LogiBell, so a young MC isn't a reason to turn you away \u2014 it's the same dispatch service, with extra effort and our established relationships working behind you."), /*#__PURE__*/React.createElement("div", {
+    }, "Most brokers won't touch a new MC. We design a clear roadmap that channels you to the right sources \u2014 the same dispatch service, with extra effort and our established broker relationships working behind you while your authority gains age."), /*#__PURE__*/React.createElement("div", {
       style: {
         marginTop: 26
       }
@@ -3840,6 +4523,435 @@ try { (() => {
 })();
 })(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/Legal.jsx", error: String((e && e.message) || e) }); }
 
+// ui_kits/website/LogiGuard.jsx
+try { (() => {
+/* LogiBell — LogiGuard (Security & Integrity).
+   · LogiGuardSection — the full, prominent section on the Services page:
+     verification practice + the free check form, open to everyone.
+   · LogiGuardStrip — a slim mention band for the Home page welcome flow.
+   Wording stays confident and protective: "work to confirm", "help protect",
+   "reduce exposure" — never "fraud-proof" or "guaranteed safe". */
+(function () {
+  const {
+    Button,
+    Card,
+    Badge,
+    Input
+  } = window.DS;
+  const Icon = window.Icon;
+  const {
+    Section,
+    Eyebrow
+  } = window.LBHome;
+  const GUARD_POINTS = [["shield-check", "Broker, partner & vendor verification", "Authority, MC number, and insurance status reviewed before loads are coordinated."], ["user-check", "A legitimate network", "Carrier onboarding includes identity and authority checks to help keep the network legitimate."], ["scan-search", "Current on the tactics", "We stay current on how freight fraud is evolving, applied to every booking decision."]];
+
+  /* ---- Free check form (open to non-clients) ----
+     PROVISIONAL: wire to real backend before launch. Default destination =
+     Netlify Forms (name="logiguard-check") → reply goes out from info@logibell.com. */
+  function LogiGuardCheckForm() {
+    const [sent, setSent] = React.useState(false);
+    const [form, setForm] = React.useState({
+      broker: "",
+      mc: "",
+      email: "",
+      details: ""
+    });
+    const [errors, setErrors] = React.useState({});
+    const set = k => e => {
+      const v = e.target.value;
+      setForm(f => ({
+        ...f,
+        [k]: v
+      }));
+      setErrors(er => er[k] ? {
+        ...er,
+        [k]: undefined
+      } : er);
+    };
+    function validate() {
+      const errs = {};
+      if (!form.broker.trim() && !form.mc.trim()) errs.broker = "Give us a broker or company name — or just an MC number below.";
+      if (!form.email.trim()) errs.email = "We reply by email — please add one.";else if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) errs.email = "That email doesn't look right.";
+      return errs;
+    }
+    function handleSubmit(e) {
+      e.preventDefault();
+      const submitter = e.nativeEvent && e.nativeEvent.submitter;
+      if (submitter && submitter.getAttribute("type") !== "submit") return;
+      const errs = validate();
+      if (Object.keys(errs).length) {
+        setErrors(errs);
+        return;
+      }
+      setErrors({});
+      setSent(true);
+    }
+    return /*#__PURE__*/React.createElement(Card, {
+      surface: "white",
+      radius: "xl",
+      pad: "xl",
+      style: {
+        boxShadow: "var(--shadow-lg)"
+      }
+    }, sent ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "32px 16px"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 64,
+        height: 64,
+        borderRadius: "50%",
+        background: "var(--success-soft)",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "shield-check",
+      size: 30,
+      color: "var(--success)"
+    })), /*#__PURE__*/React.createElement("h3", {
+      className: "lb-display-sm",
+      style: {
+        marginBottom: 10
+      }
+    }, "Check received."), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 15.5,
+        color: "var(--text-body)",
+        maxWidth: 360,
+        margin: "0 auto 22px",
+        lineHeight: 1.6
+      }
+    }, "We'll run the verification and reply to ", form.email || "your email", " \u2014 usually well before you'd need to commit to the load."), /*#__PURE__*/React.createElement(Button, {
+      variant: "secondary",
+      size: "md",
+      onClick: () => {
+        setSent(false);
+        setForm({
+          broker: "",
+          mc: "",
+          email: "",
+          details: ""
+        });
+      }
+    }, "Run another check")) : /*#__PURE__*/React.createElement("form", {
+      name: "logiguard-check",
+      method: "POST",
+      "data-netlify": "true",
+      "netlify-honeypot": "bot-field",
+      noValidate: true,
+      onSubmit: handleSubmit
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "hidden",
+      name: "form-name",
+      value: "logiguard-check"
+    }), /*#__PURE__*/React.createElement("p", {
+      style: {
+        display: "none"
+      }
+    }, /*#__PURE__*/React.createElement("label", null, "Don't fill this out: ", /*#__PURE__*/React.createElement("input", {
+      name: "bot-field"
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        marginBottom: 6
+      }
+    }, /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontFamily: "var(--font-display)",
+        fontSize: 22,
+        fontWeight: 600,
+        color: "var(--text-heading)",
+        margin: 0
+      }
+    }, "Run a free check"), /*#__PURE__*/React.createElement(Badge, {
+      tone: "goldsoft",
+      uppercase: true
+    }, "Free")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 14,
+        color: "var(--text-muted)",
+        marginBottom: 22
+      }
+    }, "Client or not \u2014 send the details and we'll reply by email with what we find."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 16,
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement(Input, {
+      label: "Broker / company name",
+      name: "broker",
+      placeholder: "Broker or company",
+      error: errors.broker,
+      value: form.broker,
+      onChange: set("broker")
+    }), /*#__PURE__*/React.createElement(Input, {
+      label: "MC number",
+      name: "mc",
+      placeholder: "MC-000000",
+      value: form.mc,
+      onChange: set("mc")
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement(Input, {
+      label: "Your email",
+      name: "email",
+      type: "email",
+      placeholder: "you@company.com",
+      required: true,
+      error: errors.email,
+      value: form.email,
+      onChange: set("email")
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 22
+      }
+    }, /*#__PURE__*/React.createElement(Input, {
+      label: "Load details (optional)",
+      name: "details",
+      multiline: true,
+      rows: 3,
+      placeholder: "Lane, rate, pickup date, anything that felt off\u2026",
+      value: form.details,
+      onChange: set("details")
+    })), /*#__PURE__*/React.createElement(Button, {
+      variant: "primary",
+      full: true,
+      size: "lg",
+      type: "submit",
+      iconLeft: /*#__PURE__*/React.createElement(Icon, {
+        name: "shield-check",
+        size: 18,
+        color: "rgb(255, 203, 31)"
+      })
+    }, "Verify before you haul"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 12.5,
+        color: "var(--text-muted)",
+        textAlign: "center",
+        marginTop: 14,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 7
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "lock",
+      size: 13,
+      color: "var(--text-muted)"
+    }), " Results go to your email only. No spam, no obligations.")));
+  }
+
+  /* ---- Full section (Services page, anchor #logiguard) ---- */
+  function LogiGuardSection() {
+    return /*#__PURE__*/React.createElement("section", {
+      id: "logiguard",
+      style: {
+        background: "var(--navy-900)",
+        paddingTop: "clamp(56px, 8vw, 96px)",
+        paddingBottom: "clamp(56px, 8vw, 96px)",
+        position: "relative",
+        overflow: "hidden",
+        scrollMarginTop: 128
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "absolute",
+        top: -90,
+        left: -70,
+        width: 340,
+        height: 340,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(255,203,31,0.10), transparent 70%)"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      className: "lb-wrap",
+      style: {
+        position: "relative"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "lb-who-grid",
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1.05fr 0.95fr",
+        gap: 56,
+        alignItems: "start"
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement(Badge, {
+      tone: "gold",
+      uppercase: true
+    }, "Added Feature"), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 12.5,
+        fontWeight: 600,
+        letterSpacing: "1.6px",
+        textTransform: "uppercase",
+        color: "var(--gold-400)"
+      }
+    }, "LogiGuard \u2014 Security & Integrity")), /*#__PURE__*/React.createElement("h2", {
+      className: "lb-display-md",
+      style: {
+        color: "#fff",
+        margin: "16px 0 14px"
+      }
+    }, "Verify before ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: "var(--gold-500)"
+      }
+    }, "you haul.")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 15.5,
+        lineHeight: 1.65,
+        color: "var(--on-navy-soft)",
+        maxWidth: 520,
+        marginBottom: 24
+      }
+    }, "Every service above comes with LogiGuard working in the background: before a load is coordinated, we work to confirm the brokers, partners, and vendors involved are legitimate \u2014 authority, MC number, and insurance status. And it's open to everyone: client or not, submit a broker, MC, or load for a free check."), /*#__PURE__*/React.createElement("ul", {
+      style: {
+        listStyle: "none",
+        margin: 0,
+        padding: 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: 16
+      }
+    }, GUARD_POINTS.map(([ic, t, d], i) => /*#__PURE__*/React.createElement("li", {
+      key: i,
+      style: {
+        display: "flex",
+        gap: 16,
+        alignItems: "flex-start"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 42,
+        height: 42,
+        borderRadius: "50%",
+        background: "var(--navy-700)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: "none"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: ic,
+      size: 20,
+      color: "var(--gold-500)"
+    })), /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "block",
+        fontFamily: "var(--font-display)",
+        fontSize: 16,
+        fontWeight: 600,
+        color: "#fff",
+        marginBottom: 3
+      }
+    }, t), /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "block",
+        fontFamily: "var(--font-sans)",
+        fontSize: 14,
+        lineHeight: 1.55,
+        color: "var(--on-navy-soft)"
+      }
+    }, d)))))), /*#__PURE__*/React.createElement(LogiGuardCheckForm, null))));
+  }
+
+  /* ---- Slim Home mention (sits in the welcome flow, links to Services) ---- */
+  function LogiGuardStrip({
+    navigate
+  }) {
+    const go = navigate || window.__lbnav || (() => {});
+    return /*#__PURE__*/React.createElement(Section, {
+      pt: 0,
+      pb: 56
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "var(--surface-card)",
+        border: "1px solid var(--hairline)",
+        borderRadius: "var(--radius-2xl)",
+        padding: "26px 32px",
+        display: "flex",
+        gap: 22,
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
+        boxShadow: "var(--shadow-xs)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 18,
+        alignItems: "center",
+        maxWidth: 700
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 50,
+        height: 50,
+        borderRadius: "50%",
+        background: "var(--navy-800)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flex: "none"
+      }
+    }, /*#__PURE__*/React.createElement(Icon, {
+      name: "shield-check",
+      size: 24,
+      color: "var(--gold-500)"
+    })), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontFamily: "var(--font-sans)",
+        fontSize: 15.5,
+        lineHeight: 1.55,
+        color: "var(--text-body)",
+        margin: 0
+      }
+    }, /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "var(--text-heading)",
+        fontWeight: 600
+      }
+    }, "LogiGuard \u2014 verify before you haul."), " ", "A free verification check on any broker, MC, or load \u2014 open to every carrier, client or not.")), /*#__PURE__*/React.createElement(Button, {
+      variant: "secondary",
+      size: "md",
+      iconRight: /*#__PURE__*/React.createElement(Icon, {
+        name: "arrow-right",
+        size: 16
+      }),
+      onClick: () => go("services", "logiguard")
+    }, "Run a free check")));
+  }
+  window.LBGuard = {
+    LogiGuardSection,
+    LogiGuardStrip
+  };
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ui_kits/website/LogiGuard.jsx", error: String((e && e.message) || e) }); }
+
 // ui_kits/website/Pages.jsx
 try { (() => {
 /* LogiBell — routed content pages built on the shared Home sections.
@@ -3867,6 +4979,9 @@ try { (() => {
     FinalCTA,
     NEW_AUTH_ITEMS
   } = window.LBHome2;
+  const {
+    LogiGuardSection
+  } = window.LBGuard;
 
   /* Shared page header band. */
   function PageHero({
@@ -3941,7 +5056,7 @@ try { (() => {
       style: {
         margin: "16px 0 10px"
       }
-    }, "Most won't work with you yet. We will."), /*#__PURE__*/React.createElement("p", {
+    }, "Authority age isn't the barrier here."), /*#__PURE__*/React.createElement("p", {
       style: {
         fontFamily: "var(--font-sans)",
         fontSize: 16,
@@ -3949,7 +5064,7 @@ try { (() => {
         color: "var(--text-body)",
         margin: 0
       }
-    }, "The same dispatch service \u2014 with extra effort and our established broker relationships working behind a young authority, designed to keep your business running through the first stretch.")), /*#__PURE__*/React.createElement(Button, {
+    }, "A clear roadmap that channels a young authority to the right sources \u2014 the same dispatch service, with extra effort and our established broker relationships working behind you through the first stretch.")), /*#__PURE__*/React.createElement(Button, {
       variant: "primary",
       size: "lg",
       iconRight: /*#__PURE__*/React.createElement(Icon, {
@@ -4010,7 +5125,7 @@ try { (() => {
       label: "Learn about partner access",
       page: "partners"
     },
-    left: ["Lane planning & market guidance", "Vetted insurance contact introductions", "Vetted factoring contact introductions", "Early-stage MC guidance & broker readiness"],
+    left: ["Lane planning & market guidance", "Free, competitive insurance quotes", "Vetted factoring contact introductions", "Early-stage MC guidance & broker readiness"],
     right: ["Lease-on connections for carriers", "Compliance support contacts", "Quarterly lane and market review", "Carrier network access"]
   }];
   const PANEL_TEXT = "#39435C"; // slate body (brief spec)
@@ -4167,7 +5282,7 @@ try { (() => {
       style: {
         width: 48,
         height: 48,
-        borderRadius: "var(--radius-md)",
+        borderRadius: "50%",
         background: "var(--navy-800)",
         display: "flex",
         alignItems: "center",
@@ -4301,7 +5416,7 @@ try { (() => {
       style: {
         width: 52,
         height: 52,
-        borderRadius: "var(--radius-lg)",
+        borderRadius: "50%",
         background: "var(--navy-700)",
         display: "flex",
         alignItems: "center",
@@ -4359,9 +5474,9 @@ try { (() => {
       intro: "Dispatch starts the relationship. Operations support builds the business."
     }), /*#__PURE__*/React.createElement(ServicesExplorer, {
       navigate: navigate
-    }), /*#__PURE__*/React.createElement(Different, null), /*#__PURE__*/React.createElement(AuthorityCallout, {
+    }), /*#__PURE__*/React.createElement(AuthorityCallout, {
       navigate: navigate
-    }), /*#__PURE__*/React.createElement(FinalCTA, {
+    }), /*#__PURE__*/React.createElement(LogiGuardSection, null), /*#__PURE__*/React.createElement(Different, null), /*#__PURE__*/React.createElement(FinalCTA, {
       navigate: navigate
     }));
   }
@@ -4401,7 +5516,7 @@ try { (() => {
       style: {
         width: 48,
         height: 48,
-        borderRadius: "var(--radius-md)",
+        borderRadius: "50%",
         background: "var(--navy-800)",
         display: "flex",
         alignItems: "center",
@@ -4436,14 +5551,14 @@ try { (() => {
   function NewAuthorityPage({
     navigate
   }) {
-    const how = [["handshake", "Brokers already know LogiBell", "Established broker relationships let us direct capacity to loads — your authority's age isn't the deciding factor in the conversation."], ["rocket", "More effort, same service", "It's the same dispatch service, with extra effort and stronger connections applied while your authority is young."], ["calendar-clock", "From activation through year one", "Structured for the hardest stretch — activation through roughly your first year — so the business keeps running while the authority gains age."]];
+    const how = [["handshake", "Brokers already know LogiBell", "Established broker relationships let us direct capacity to loads — your authority's age isn't the deciding factor in the conversation."], ["rocket", "More effort, same service", "It's the same dispatch service, with extra effort and stronger connections applied while your authority is young."], ["calendar-clock", "Through the first months", "Structured for the hardest stretch — your first months on the road — so the business keeps running while the authority gains age."]];
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(PageHero, {
       badge: "Special Treatment Program \u2014 Newer Authorities",
-      title: /*#__PURE__*/React.createElement(React.Fragment, null, "Most won't work with you yet.", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+      title: /*#__PURE__*/React.createElement(React.Fragment, null, "Authority age", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
         style: {
           color: "var(--navy-700)"
         }
-      }, "We will."))
+      }, "isn't the barrier here."))
     }), /*#__PURE__*/React.createElement(Section, {
       pt: 8,
       pb: 84
@@ -4459,14 +5574,14 @@ try { (() => {
         lineHeight: 1.35,
         marginBottom: 18
       }
-    }, "Authority age isn't the barrier here."), /*#__PURE__*/React.createElement("p", {
+    }, "Built for the hardest stretch \u2014 the first one."), /*#__PURE__*/React.createElement("p", {
       style: {
         fontFamily: "var(--font-sans)",
         fontSize: 17.5,
         lineHeight: 1.65,
         color: "var(--text-body)"
       }
-    }, "Most brokers won't touch a new MC. We're different \u2014 brokers already know and trust LogiBell, so a young authority isn't a reason to turn you away. It's the same dispatch service, with extra effort and our established broker relationships working behind you, designed to keep your business running through the hardest stretch \u2014 the first stretch \u2014 while your authority gains age."))), /*#__PURE__*/React.createElement(Section, {
+    }, "Most brokers won't touch a new MC. We design a clear roadmap that channels you to the right sources, so a young authority isn't a reason to be turned away. It's the same dispatch service \u2014 with extra effort and our established broker relationships working behind you \u2014 built to keep your business moving through the hardest stretch, the first one, while your authority gains age."))), /*#__PURE__*/React.createElement(Section, {
       bg: "var(--surface-soft)"
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -4491,7 +5606,7 @@ try { (() => {
       style: {
         width: 48,
         height: 48,
-        borderRadius: "var(--radius-md)",
+        borderRadius: "50%",
         background: "var(--navy-800)",
         display: "flex",
         alignItems: "center",
@@ -4530,7 +5645,7 @@ try { (() => {
       style: {
         marginBottom: 16
       }
-    }, "Structure for the first year on the road."), /*#__PURE__*/React.createElement("p", {
+    }, "Structure for the first months on the road."), /*#__PURE__*/React.createElement("p", {
       style: {
         fontFamily: "var(--font-sans)",
         fontSize: 16.5,
@@ -4593,29 +5708,7 @@ try { (() => {
         color: "var(--text-strong)",
         lineHeight: 1.4
       }
-    }, it))))))), /*#__PURE__*/React.createElement(Section, {
-      pt: 8,
-      pb: 88
-    }, /*#__PURE__*/React.createElement("p", {
-      style: {
-        fontFamily: "var(--font-sans)",
-        fontSize: 13.5,
-        lineHeight: 1.6,
-        color: "var(--text-muted)",
-        maxWidth: 720,
-        display: "flex",
-        gap: 9,
-        alignItems: "flex-start"
-      }
-    }, /*#__PURE__*/React.createElement(Icon, {
-      name: "info",
-      size: 16,
-      color: "var(--text-muted)",
-      style: {
-        marginTop: 2,
-        flex: "none"
-      }
-    }), "Support is structured for early-stage authorities; outcomes depend on your operation, lanes, and market conditions.")), /*#__PURE__*/React.createElement(FinalCTA, {
+    }, it))))))), /*#__PURE__*/React.createElement(FinalCTA, {
       navigate: navigate
     }));
   }
@@ -4628,30 +5721,30 @@ try { (() => {
   }) {
     const items = [{
       icon: "shield-check",
-      tag: "Access",
+      tag: "Free quote",
       title: "Insurance",
-      short: "Introductions to vetted insurance contacts so you can review options and compare quotes for your operation.",
-      body: "As the relationship develops, we can point you to vetted insurance contacts so you can review options and compare quotes for your operation. The introduction is the value — you deal directly with the provider.",
-      note: "This is access to contacts, not a guaranteed savings or outcome — what you pay is set by the insurer."
+      short: "A free, no-obligation quote through vetted insurance partners — built around your equipment, history, state, and coverage needs.",
+      body: "Through our vetted insurance partners, we can arrange a free, no-obligation quote built around your equipment, history, state, and coverage needs. We're confident the options we bring you will be competitive — and there's no cost to find out where you stand.",
+      note: "The quote is free and the choice stays yours — you deal directly with the provider."
     }, {
       icon: "git-branch-plus",
       tag: "Referral",
       title: "Lease-on connections",
       short: "For carriers without an active MC — a referral to vetted lease-on opportunities so you can keep moving freight.",
       body: "For carriers without an active MC, we can refer and connect you to vetted lease-on opportunities so you can keep moving freight while you decide on your own authority.",
-      note: "This is a referral/connection — LogiBell does not hold your authority or operate as the carrier."
+      note: "We make the connection — the lease-on relationship is directly between you and the carrier you join."
     }, {
       icon: "network",
       tag: "Network",
       title: "Factoring & compliance",
       short: "Factoring and compliance introductions that open up as the relationship develops and our network expands.",
       body: "Potential partner access for factoring and compliance opens up as the relationship develops and our network expands — introductions where they're a genuine fit.",
-      note: "Availability grows with the relationship; these aren't standard day-one features."
+      note: "Introductions are made where they're a genuine fit, as the network expands."
     }];
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(PageHero, {
       eyebrow: "Partner Access",
       title: "A network that opens up as the relationship develops.",
-      intro: "Beyond dispatch, LogiBell can connect carriers to vetted partners. These are opportunities that open up as the relationship develops \u2014 not standard day-one features \u2014 and they're framed as access and referrals, never guarantees."
+      intro: "Beyond dispatch, LogiBell connects carriers to vetted partners \u2014 free, competitive insurance quotes, lease-on referrals, and factoring and compliance contacts that open up as the relationship develops."
     }), /*#__PURE__*/React.createElement(Section, {
       pt: 40
     }, /*#__PURE__*/React.createElement("div", {
@@ -4665,7 +5758,7 @@ try { (() => {
       key: i,
       className: "lb-flip-lift",
       backDark: true,
-      label: it.title + " — flip for the full detail and the honest fine print",
+      label: it.title + " — flip for the full detail",
       frontHint: "Tap for details",
       backHint: "Back",
       front: /*#__PURE__*/React.createElement(Card, {
@@ -4689,7 +5782,7 @@ try { (() => {
         style: {
           width: 52,
           height: 52,
-          borderRadius: "var(--radius-lg)",
+          borderRadius: "50%",
           background: "var(--navy-800)",
           display: "flex",
           alignItems: "center",
@@ -5248,7 +6341,8 @@ try { (() => {
       size: "lg",
       iconLeft: /*#__PURE__*/React.createElement(Icon, {
         name: "bell",
-        size: 18
+        size: 18,
+        color: "var(--gold-500)"
       }),
       onClick: () => navigate("contact", "onboard")
     }, "Ring the LogiBell \u2014 Get Onboarded"))));

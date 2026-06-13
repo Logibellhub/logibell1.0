@@ -125,7 +125,7 @@
           <div className="lb-wrap" style={{ textAlign: "center" }}>
             <h2 className="lb-display-md" style={{ marginBottom: 14 }}>Know your rate before you call.</h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, color: "var(--text-body)", marginBottom: 26 }}>Ring the LogiBell and we'll get you onboarded.</p>
-            <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
+            <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} color="var(--gold-500)" />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
           </div>
         </section>
       </div>

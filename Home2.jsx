@@ -28,7 +28,7 @@
           <div className="lb-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(20px, 3vw, 32px)" }}>
             {points.map(([ic, t, d], i) => (
               <div key={i} style={{ display: "flex", gap: 18, padding: 24, background: "var(--navy-900)", border: "1px solid var(--navy-700)", borderRadius: "var(--radius-lg)" }}>
-                <span style={{ width: 46, height: 46, borderRadius: "var(--radius-md)", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+                <span style={{ width: 46, height: 46, borderRadius: "50%", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
                   <Icon name={ic} size={22} color="var(--gold-500)" />
                 </span>
                 <div>
@@ -44,7 +44,7 @@
   }
 
   /* ---------- WHO WE ARE (reusable section) ---------- */
-  const NEW_AUTH_ITEMS = ["First-load strategy", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Tunnelling to the source ", "Structure through the first year"];
+  const NEW_AUTH_ITEMS = ["First-load strategy", "Early-stage authority support", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Insurance setup support"];
 
   function WhoWeAre({ navigate }) {
     return (
@@ -93,9 +93,9 @@
         <div className="lb-auth-grid" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 56, alignItems: "center" }}>
           <div>
             <Badge tone="goldsoft" uppercase>Special Treatment Program — Newer Authorities</Badge>
-            <h2 className="lb-display-lg" style={{ margin: "18px 0 18px" }}>Most won't work with you yet.<br /><span style={{ color: "var(--navy-700)" }}>We will.</span></h2>
+            <h2 className="lb-display-lg" style={{ margin: "18px 0 18px" }}>Authority age<br /><span style={{ color: "var(--navy-700)" }}>isn't the barrier here.</span></h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)", maxWidth: 480 }}>
-              Authority age isn't the barrier here. Brokers already know and trust LogiBell, so a young MC isn't a reason to turn you away — it's the same dispatch service, with extra effort and our established relationships working behind you.
+              Most brokers won't touch a new MC. We design a clear roadmap that channels you to the right sources — the same dispatch service, with extra effort and our established broker relationships working behind you while your authority gains age.
             </p>
             <div style={{ marginTop: 26 }}>
               <Button variant="primary" size="md" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => go("authority")}>The Special Treatment Program</Button>
@@ -125,7 +125,7 @@
           <NavyDrift variant={1} />
           {/* Full-color brand emblem in a clean white tile — reads cleanly on the navy band */}
           <div className="lb-cta-bell" aria-hidden="true" style={{ position: "absolute", right: 56, top: "50%", transform: "translateY(-50%)", width: 150, height: 150, borderRadius: "var(--radius-xl)", background: "#FFFFFF", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "var(--shadow-lg)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, pointerEvents: "none", overflow: "hidden" }}>
-            <img src="./assets/logo/logibell-emblem.jpg" alt="" style={{ width: 130, height: 130, objectFit: "contain", display: "block" }} />
+            <img src="../../assets/logo/logibell-emblem.jpg" alt="" style={{ width: 130, height: 130, objectFit: "contain", display: "block" }} />
           </div>
           <div style={{ position: "relative", maxWidth: 640 }}>
             <Eyebrow onDark>Get Onboarded</Eyebrow>

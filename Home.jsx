@@ -34,7 +34,7 @@
     return (
       <div style={{ position: "relative" }}>
         <div style={{ position: "absolute", inset: "-26px -26px auto auto", width: 116, height: 116, background: "var(--white)", border: "1px solid var(--line)", borderRadius: "var(--radius-2xl)", boxShadow: "var(--shadow-md)", zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 14 }}>
-          <img src="./assets/logo/logibell-emblem.jpg" alt="" aria-hidden="true" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
+          <img src="../../assets/logo/logibell-emblem.jpg" alt="" aria-hidden="true" style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }} />
         </div>
         <Card surface="dark" radius="2xl" pad="none" style={{ position: "relative", zIndex: 1, overflow: "hidden", boxShadow: "var(--shadow-xl)" }}>
           {/* header */}
@@ -97,10 +97,17 @@
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
               <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
               <Button variant="secondary" size="lg" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => navigate("pricing")}>See our pricing</Button>
+              <Button variant="ghost" size="lg" iconLeft={<Icon name="phone" size={17} />} onClick={() => navigate("contact")}>Schedule a Call</Button>
             </div>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", marginTop: 18, display: "inline-flex", alignItems: "center", gap: 8 }}>
-              <Icon name="circle-check" size={15} color="var(--success)" /> Our pricing is published, so you know the cost before you call.
-            </p>
+            <div style={{ display: "flex", gap: 22, flexWrap: "wrap", alignItems: "center", marginTop: 18 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
+                <Icon name="circle-check" size={15} color="var(--success)" /> Our pricing is published, so you know the cost before you call.
+              </p>
+              {/* Phone confirmed by owner (June 2026) */}
+              <a href="tel:+18184811886" style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 7 }}>
+                <Icon name="phone" size={14} color="var(--gold-700)" /> (818) 481-1886
+              </a>
+            </div>
           </div>
 
           {/* Right: live load board */}
@@ -160,9 +167,9 @@
       blurb: "Access and referrals that grow with the working relationship.",
       points: [
         "Early-stage MC guidance & broker-readiness",
-        "Insurance partner access through vetted contacts (access, not a guaranteed outcome)",
-        "Lease-on connections for carriers without an active MC (a referral, not LogiBell holding the authority)",
-        "Potential factoring & compliance access as the network expands",
+        "Free, competitive insurance quotes through vetted partners",
+        "Lease-on referrals for carriers without an active MC",
+        "Factoring & compliance access as the network expands",
       ] },
   ];
 
@@ -184,7 +191,7 @@
             front={
               <Card surface="white" pad="lg" radius="xl" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                  <span style={{ width: 50, height: 50, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ width: 50, height: 50, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Icon name={c.icon} size={24} color="var(--gold-500)" />
                   </span>
                   <span style={{ fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 700, color: "var(--navy-800)", background: "rgba(25,57,96,0.08)", width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>{c.tag}</span>
@@ -248,7 +255,7 @@
         <div style={{ background: "var(--navy-800)", borderRadius: "var(--radius-2xl)", padding: "40px 44px", position: "relative", overflow: "hidden", display: "flex", gap: 32, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
           <div style={{ position: "absolute", top: -70, right: -50, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,203,31,0.12), transparent 70%)" }} />
           <div style={{ position: "relative", display: "flex", gap: 20, alignItems: "center", maxWidth: 680 }}>
-            <span style={{ width: 56, height: 56, borderRadius: "var(--radius-lg)", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+            <span style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
               <Icon name="users" size={26} color="var(--gold-500)" />
             </span>
             <div>

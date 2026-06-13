@@ -6,6 +6,7 @@
   const { FlipCard } = window.LBFlip;
   const { Section, Eyebrow, ServiceGrid, WhatIs, SERVICE_CATS } = window.LBHome;
   const { Different, WhoWeAre, FinalCTA, NEW_AUTH_ITEMS } = window.LBHome2;
+  const { LogiGuardSection } = window.LBGuard;
 
   /* Shared page header band. */
   function PageHero({ eyebrow, title, intro, badge }) {
@@ -27,9 +28,9 @@
         <div style={{ background: "var(--surface-soft)", border: "1px solid var(--hairline)", borderRadius: "var(--radius-2xl)", padding: "44px 48px", display: "flex", gap: 32, alignItems: "center", flexWrap: "wrap", justifyContent: "space-between" }}>
           <div style={{ maxWidth: 620 }}>
             <Badge tone="goldsoft" uppercase>Special Treatment Program — Newer Authorities</Badge>
-            <h3 className="lb-display-sm" style={{ margin: "16px 0 10px" }}>Most won't work with you yet. We will.</h3>
+            <h3 className="lb-display-sm" style={{ margin: "16px 0 10px" }}>Authority age isn't the barrier here.</h3>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16, lineHeight: 1.6, color: "var(--text-body)", margin: 0 }}>
-              The same dispatch service — with extra effort and our established broker relationships working behind a young authority, designed to keep your business running through the first stretch.
+              A clear roadmap that channels a young authority to the right sources — the same dispatch service, with extra effort and our established broker relationships working behind you through the first stretch.
             </p>
           </div>
           <Button variant="primary" size="lg" iconRight={<Icon name="arrow-right" size={17} />} onClick={() => navigate("authority")}>Learn about the program</Button>
@@ -72,7 +73,7 @@
       tagline: "What becomes possible as we build the relationship.",
       desc: "Over time, LogiBell connects carriers to vetted contacts in insurance, factoring, and compliance support. We also provide lane guidance based on market conditions to help you plan where your operation runs next.",
       cta: { label: "Learn about partner access", page: "partners" },
-      left: ["Lane planning & market guidance", "Vetted insurance contact introductions", "Vetted factoring contact introductions", "Early-stage MC guidance & broker readiness"],
+      left: ["Lane planning & market guidance", "Free, competitive insurance quotes", "Vetted factoring contact introductions", "Early-stage MC guidance & broker readiness"],
       right: ["Lease-on connections for carriers", "Compliance support contacts", "Quarterly lane and market review", "Carrier network access"],
     },
   ];
@@ -171,7 +172,7 @@
           <div className="lb-svc-panel-grid" style={{ display: "grid", gridTemplateColumns: "0.66fr 1fr", gap: 48 }}>
             {/* left column */}
             <div>
-              <span style={{ width: 48, height: 48, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
+              <span style={{ width: 48, height: 48, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 18 }}>
                 <Icon name={panel.icon} size={24} color="var(--gold-500)" />
               </span>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 700, letterSpacing: "1.4px", textTransform: "uppercase", color: "var(--gold-700)", marginBottom: 10 }}>Step {panel.tag} · {panel.step.toUpperCase()}</div>
@@ -204,7 +205,7 @@
         {/* operating-cost clarity (links to full Pricing) */}
         <div style={{ marginTop: 24, background: "var(--navy-800)", borderRadius: "var(--radius-2xl)", padding: "32px 38px", display: "flex", gap: 26, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
           <div style={{ display: "flex", gap: 20, alignItems: "center", maxWidth: 720 }}>
-            <span style={{ width: 52, height: 52, borderRadius: "var(--radius-lg)", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+            <span style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
               <Icon name="tag" size={24} color="var(--gold-500)" />
             </span>
             <div>
@@ -230,8 +231,9 @@
           intro="Dispatch starts the relationship. Operations support builds the business."
         />
         <ServicesExplorer navigate={navigate} />
-        <Different />
         <AuthorityCallout navigate={navigate} />
+        <LogiGuardSection />
+        <Different />
         <FinalCTA navigate={navigate} />
       </div>
     );
@@ -260,7 +262,7 @@
           <div className="lb-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(20px, 3vw, 32px)" }}>
             {values.map(([ic, t, d], i) => (
               <Card key={i} surface="white" pad="lg" radius="xl" interactive>
-                <span style={{ width: 48, height: 48, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                <span style={{ width: 48, height: 48, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
                   <Icon name={ic} size={22} color="var(--gold-500)" />
                 </span>
                 <h3 className="lb-title-md" style={{ marginBottom: 8 }}>{t}</h3>
@@ -281,19 +283,19 @@
     const how = [
       ["handshake", "Brokers already know LogiBell", "Established broker relationships let us direct capacity to loads — your authority's age isn't the deciding factor in the conversation."],
       ["rocket", "More effort, same service", "It's the same dispatch service, with extra effort and stronger connections applied while your authority is young."],
-      ["calendar-clock", "From activation through year one", "Structured for the hardest stretch — activation through roughly your first year — so the business keeps running while the authority gains age."],
+      ["calendar-clock", "Through the first months", "Structured for the hardest stretch — your first months on the road — so the business keeps running while the authority gains age."],
     ];
     return (
       <div>
         <PageHero
           badge="Special Treatment Program — Newer Authorities"
-          title={<React.Fragment>Most won't work with you yet.<br /><span style={{ color: "var(--navy-700)" }}>We will.</span></React.Fragment>}
+          title={<React.Fragment>Authority age<br /><span style={{ color: "var(--navy-700)" }}>isn't the barrier here.</span></React.Fragment>}
         />
         <Section pt={8} pb={84}>
           <div style={{ maxWidth: 720, marginBottom: 8 }}>
-            <p className="lb-display-sm" style={{ color: "var(--text-heading)", lineHeight: 1.35, marginBottom: 18 }}>Authority age isn't the barrier here.</p>
+            <p className="lb-display-sm" style={{ color: "var(--text-heading)", lineHeight: 1.35, marginBottom: 18 }}>Built for the hardest stretch — the first one.</p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 17.5, lineHeight: 1.65, color: "var(--text-body)" }}>
-              Most brokers won't touch a new MC. We're different — brokers already know and trust LogiBell, so a young authority isn't a reason to turn you away. It's the same dispatch service, with extra effort and our established broker relationships working behind you, designed to keep your business running through the hardest stretch — the first stretch — while your authority gains age.
+              Most brokers won't touch a new MC. We design a clear roadmap that channels you to the right sources, so a young authority isn't a reason to be turned away. It's the same dispatch service — with extra effort and our established broker relationships working behind you — built to keep your business moving through the hardest stretch, the first one, while your authority gains age.
             </p>
           </div>
         </Section>
@@ -307,7 +309,7 @@
           <div className="lb-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(20px, 3vw, 32px)" }}>
             {how.map(([ic, t, d], i) => (
               <Card key={i} surface="white" pad="lg" radius="xl">
-                <span style={{ width: 48, height: 48, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+                <span style={{ width: 48, height: 48, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
                   <Icon name={ic} size={22} color="var(--gold-500)" />
                 </span>
                 <h3 className="lb-title-md" style={{ marginBottom: 8 }}>{t}</h3>
@@ -322,7 +324,7 @@
           <div className="lb-auth-grid" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 56, alignItems: "center" }}>
             <div>
               <Eyebrow>Included support</Eyebrow>
-              <h2 className="lb-display-md" style={{ marginBottom: 16 }}>Structure for the first year on the road.</h2>
+              <h2 className="lb-display-md" style={{ marginBottom: 16 }}>Structure for the first months on the road.</h2>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)", maxWidth: 460 }}>
                 The same operational support every LogiBell carrier gets — with the early-stage essentials a newer authority needs most.
               </p>
@@ -344,13 +346,7 @@
           </div>
         </Section>
 
-        {/* Low-key honesty line (NOT a hero banner) */}
-        <Section pt={8} pb={88}>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, lineHeight: 1.6, color: "var(--text-muted)", maxWidth: 720, display: "flex", gap: 9, alignItems: "flex-start" }}>
-            <Icon name="info" size={16} color="var(--text-muted)" style={{ marginTop: 2, flex: "none" }} />
-            Support is structured for early-stage authorities; outcomes depend on your operation, lanes, and market conditions.
-          </p>
-        </Section>
+        {/* (the program speaks for itself — no disclaimer band, per brand voice) */}
         <FinalCTA navigate={navigate} />
       </div>
     );
@@ -362,22 +358,22 @@
   function PartnerPage({ navigate }) {
     const items = [
       {
-        icon: "shield-check", tag: "Access", title: "Insurance",
-        short: "Introductions to vetted insurance contacts so you can review options and compare quotes for your operation.",
-        body: "As the relationship develops, we can point you to vetted insurance contacts so you can review options and compare quotes for your operation. The introduction is the value — you deal directly with the provider.",
-        note: "This is access to contacts, not a guaranteed savings or outcome — what you pay is set by the insurer.",
+        icon: "shield-check", tag: "Free quote", title: "Insurance",
+        short: "A free, no-obligation quote through vetted insurance partners — built around your equipment, history, state, and coverage needs.",
+        body: "Through our vetted insurance partners, we can arrange a free, no-obligation quote built around your equipment, history, state, and coverage needs. We're confident the options we bring you will be competitive — and there's no cost to find out where you stand.",
+        note: "The quote is free and the choice stays yours — you deal directly with the provider.",
       },
       {
         icon: "git-branch-plus", tag: "Referral", title: "Lease-on connections",
         short: "For carriers without an active MC — a referral to vetted lease-on opportunities so you can keep moving freight.",
         body: "For carriers without an active MC, we can refer and connect you to vetted lease-on opportunities so you can keep moving freight while you decide on your own authority.",
-        note: "This is a referral/connection — LogiBell does not hold your authority or operate as the carrier.",
+        note: "We make the connection — the lease-on relationship is directly between you and the carrier you join.",
       },
       {
         icon: "network", tag: "Network", title: "Factoring & compliance",
         short: "Factoring and compliance introductions that open up as the relationship develops and our network expands.",
         body: "Potential partner access for factoring and compliance opens up as the relationship develops and our network expands — introductions where they're a genuine fit.",
-        note: "Availability grows with the relationship; these aren't standard day-one features.",
+        note: "Introductions are made where they're a genuine fit, as the network expands.",
       },
     ];
     return (
@@ -385,7 +381,7 @@
         <PageHero
           eyebrow="Partner Access"
           title="A network that opens up as the relationship develops."
-          intro="Beyond dispatch, LogiBell can connect carriers to vetted partners. These are opportunities that open up as the relationship develops — not standard day-one features — and they're framed as access and referrals, never guarantees."
+          intro="Beyond dispatch, LogiBell connects carriers to vetted partners — free, competitive insurance quotes, lease-on referrals, and factoring and compliance contacts that open up as the relationship develops."
         />
         <Section pt={40}>
           <div className="lb-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(20px, 3vw, 32px)" }}>
@@ -394,13 +390,13 @@
                 key={i}
                 className="lb-flip-lift"
                 backDark
-                label={it.title + " — flip for the full detail and the honest fine print"}
+                label={it.title + " — flip for the full detail"}
                 frontHint="Tap for details"
                 backHint="Back"
                 front={
                   <Card surface="white" radius="xl" pad="lg" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 16 }}>
-                      <span style={{ width: 52, height: 52, borderRadius: "var(--radius-lg)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+                      <span style={{ width: 52, height: 52, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
                         <Icon name={it.icon} size={24} color="var(--gold-500)" />
                       </span>
                       <Badge tone="goldsoft" uppercase>{it.tag}</Badge>

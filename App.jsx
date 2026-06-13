@@ -10,17 +10,19 @@
   const { ContactPage } = window.LBContact;
   const { ServicesPage, WhoWeArePage, NewAuthorityPage, PartnerPage } = window.LBPages;
   const { PrivacyPage, TermsPage, NotFound } = window.LBLegal;
+  const { LogiGuardStrip } = window.LBGuard;
+  const { FeedbackSection, FAQSection } = window.LBExtras;
 
   /* Per-page SEO metadata (title + description). Canonical/OG base lives in
      index.html; we update title + description + canonical path on navigation. */
   const SITE = "https://logibell.com"; // PROVISIONAL domain — confirm before launch
   const META = {
     home: { path: "/", title: "LogiBell — Carrier-Focused Operations Support", desc: "Carrier-focused operations support for carriers of every size — dispatch, broker communication, paperwork, and partner access. Published pricing. Your operation, fully backed." },
-    services: { path: "/services", title: "Services — LogiBell", desc: "Dispatch & load sourcing, operations & back-office, and partner & growth support for carriers of every size, from owner-operators to small and larger fleets." },
+    services: { path: "/services", title: "Services — LogiBell", desc: "Dispatch & load sourcing, operations & back-office, and partner & growth support — plus LogiGuard, a free verification check on any broker, MC, or load." },
     pricing: { path: "/pricing", title: "Published Pricing — LogiBell", desc: "Published dispatch pricing: Semi 6%, Box/Hotshot/Sprinter 6–8%. No setup fees, no monthly minimums. Know your rate before you call." },
     authority: { path: "/new-authority", title: "Special Treatment Program for Newer Authorities — LogiBell", desc: "Authority age isn't the barrier. The same dispatch service with extra effort and established broker relationships, structured for newer authorities through their first year." },
     about: { path: "/who-we-are", title: "Who We Are — LogiBell", desc: "A carrier-focused operations team built for carriers of every size — from owner-operators to small and larger fleets — supporting the work behind the wheel." },
-    partners: { path: "/partner-access", title: "Partner Access — LogiBell", desc: "Access to vetted insurance contacts, lease-on referrals, and factoring/compliance partners that open up as the relationship develops. Access and referrals, never guarantees." },
+    partners: { path: "/partner-access", title: "Partner Access — LogiBell", desc: "Free, competitive insurance quotes through vetted partners, lease-on referrals, and factoring/compliance contacts that open up as the relationship develops." },
     contact: { path: "/contact", title: "Ring the LogiBell — Get Onboarded", desc: "Tell us about your operation and we'll get you set up. Published pricing, no setup fees, no monthly minimums." },
     privacy: { path: "/privacy", title: "Privacy Policy — LogiBell", desc: "How LogiBell collects, uses, and protects your information." },
     terms: { path: "/terms", title: "Terms of Service — LogiBell", desc: "The terms that govern your use of the LogiBell website and services." },
@@ -74,7 +76,7 @@
       if (anchor) {
         const el = document.getElementById(anchor);
         if (el) {
-          const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 88;
+          const top = el.getBoundingClientRect().top - root.getBoundingClientRect().top + root.scrollTop - 128;
           root.scrollTo({ top, behavior: "smooth" });
           return;
         }
@@ -179,7 +181,10 @@
               <Different />
               <WhoWeAre navigate={navigate} />
               <NewAuthority navigate={navigate} />
+              <LogiGuardStrip navigate={navigate} />
               <ReferralBand navigate={navigate} />
+              <FeedbackSection />
+              <FAQSection navigate={navigate} />
               <FinalCTA navigate={navigate} />
             </React.Fragment>
           );
