@@ -13,6 +13,7 @@
 <link rel="icon" type="image/svg+xml" href="./assets/logo/logibell-mark.svg">
 <link rel="icon" type="image/png" href="./assets/logo/logibell-mark.png">
 <link rel="apple-touch-icon" href="./assets/logo/logibell-mark.png">
+<link rel="preload" as="image" href="./assets/logo/logibell-mark.svg" type="image/svg+xml">
 <link rel="preload" as="image" href="./assets/logo/logibell-emblem.jpg">
 <link rel="preload" as="image" href="./assets/logo/logibell-wordmark.png">
 <!-- Open Graph / social -->
@@ -21,11 +22,13 @@
 <meta property="og:title" content="LogiBell — Carrier-Focused Operations Support">
 <meta property="og:description" content="Carrier-focused operations support for carriers of every size. Published pricing. Your operation, fully backed.">
 <meta property="og:url" content="https://logibell.com/">
-<meta property="og:image" content="https://logibell.com/assets/logo/logibell-wordmark-onnavy.png">
+<meta property="og:image" content="https://logibell.com/assets/brand/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="LogiBell — Carrier-Focused Operations Support">
 <meta name="twitter:description" content="Carrier-focused operations support for carriers of every size. Published pricing. Your operation, fully backed.">
-<meta name="twitter:image" content="https://logibell.com/assets/logo/logibell-wordmark-onnavy.png">
+<meta name="twitter:image" content="https://logibell.com/assets/brand/og-card.png">
 <link rel="stylesheet" href="./styles.css">
 <style>
   html, body { margin: 0; padding: 0; background: var(--surface-page); scroll-behavior: smooth; }
@@ -46,9 +49,17 @@
     @keyframes lbBellFloat { 0%, 100% { transform: translateY(-1.5px); } 50% { transform: translateY(1.5px); } }
   }
 
+  /* ---- Sticky announcement bar + header phone ---- */
+  .lb-nav-phone { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-sans); font-size: 14.5px; font-weight: 600; color: var(--navy-800); text-decoration: none; white-space: nowrap; padding: 8px 10px; border-radius: var(--radius-sm); transition: background var(--dur-base); }
+  .lb-nav-phone:hover { background: var(--mist-100); }
+  @media (max-width: 1240px) { .lb-nav-phone { display: none !important; } }
+  @media (max-width: 760px) { .lb-announce-detail { display: none !important; } }
+  @media (max-width: 470px) { .lb-announce-label { display: none !important; } }
+
   /* ---- Responsive ---- */
   .lb-burger { display: none; }
-  .lb-desktop-nav a { white-space: nowrap; }
+  /* nowrap applies to top-level nav links only — dropdown panel text must wrap */
+  .lb-desktop-nav > a, .lb-desktop-nav > div > a { white-space: nowrap; }
   @media (min-width: 1001px) and (max-width: 1240px) {
     /* keep nav links + "Ring the LogiBell" CTA from clipping mid-range */
     .lb-desktop-nav { gap: 2px !important; }
@@ -78,7 +89,7 @@
   .lb-svc-tab { flex: 1; min-width: 200px; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: var(--radius-pill); border: 1px solid var(--line); background: var(--white); text-align: left; transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
   .lb-svc-tab:hover { border-color: var(--gold-500); }
   .lb-svc-tab:focus-visible { outline: 2px solid var(--gold-600); outline-offset: 2px; }
-  .lb-svc-tab.is-active { background: var(--navy-800); border-color: var(--navy-800); box-shadow: inset 3px 0 0 var(--gold-500); }
+  .lb-svc-tab.is-active { background: var(--navy-800); border-color: var(--navy-800); }
   .lb-svc-tab.is-active:hover { background: var(--navy-800); border-color: var(--navy-800); }
   .lb-svc-badge { width: 30px; height: 30px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; background: rgba(25,57,96,0.08); color: var(--navy-800); transition: background 180ms var(--ease-out), color 180ms var(--ease-out); }
   .lb-svc-tab:hover .lb-svc-badge { background: rgba(255,203,31,0.24); }
@@ -159,44 +170,43 @@
   }
   @media print { .lb-reveal { opacity: 1 !important; transform: none !important; } }
 
-  /* ---- Brand intro (logo-reveal, code-driven) ---------------------------
-     Crisp recreation of the LogiBell logo reveal: the emblem settles in and
-     "rings" (gold pulse rings), the wordmark wipes in, a gold road-line
-     sweeps beneath, and the slogan fades up. Plays on first load and every
-     time the user returns Home via the logo. Auto-dismisses (no skip);
-     reduced-motion shows the finished lockup briefly instead of animating. */
-  #lb-intro { position: fixed; inset: 0; z-index: 999; display: none; flex-direction: column; align-items: center; justify-content: center;
+  /* ---- Brand intro (logo reveal) ----------------------------------------
+     The LogiBell mark centered in a thin circular ring that draws itself,
+     the wordmark beneath, a gold underline sweep, and the tagline — all
+     crisp vector/native assets. Closes with a smooth scale-and-fade into
+     the homepage (no hard cut). Plays on first load and when returning
+     Home via the logo; reduced-motion shows the finished lockup briefly. */
+  #lb-intro { position: fixed; inset: 0; z-index: 999; display: none; align-items: center; justify-content: center;
     background: radial-gradient(125% 125% at 50% 43%, #FFFFFF 0%, #FFFFFF 55%, #EAEFF6 100%);
-    opacity: 0; transition: opacity 420ms cubic-bezier(0.4,0,0.2,1); }
+    opacity: 0; transition: opacity 480ms cubic-bezier(0.4,0,0.2,1); }
   #lb-intro.is-on { opacity: 1; }
-  #lb-intro.is-hidden { opacity: 0; transform: scale(1.03) translateY(-8px); pointer-events: none;
-    transition: opacity 640ms cubic-bezier(0.4,0,0.2,1), transform 640ms cubic-bezier(0.4,0,0.2,1); }
-  .lb-intro-lockup { display: flex; align-items: center; gap: clamp(12px, 3vw, 32px); position: relative; padding: 0 18px; max-width: 100vw; }
-  .lb-intro-emblem { position: relative; width: clamp(80px, 15vw, 168px); height: clamp(80px, 15vw, 168px); flex: none; }
-  .lb-intro-emblem img { width: 100%; height: 100%; object-fit: contain; display: block; position: relative; z-index: 2; }
-  .lb-intro-ring { position: absolute; left: 50%; top: 50%; width: 100%; height: 100%; border-radius: 50%;
-    border: 2px solid var(--gold-500); transform: translate(-50%,-50%) scale(0.5); opacity: 0; z-index: 1; }
-  .lb-intro-word { height: clamp(34px, 5.4vw, 64px); width: auto; max-width: 58vw; object-fit: contain; display: block; }
-  .lb-intro-sweep { position: absolute; left: 6px; right: 6px; bottom: -18px; height: 3px; border-radius: 3px;
-    background: linear-gradient(90deg, var(--gold-500), var(--gold-400)); transform-origin: left center; transform: scaleX(0); }
-  .lb-intro-tag { margin-top: clamp(30px, 6vh, 56px); text-align: center;
+  #lb-intro.is-hidden { opacity: 0; pointer-events: none;
+    transition: opacity 780ms cubic-bezier(0.55,0,0.3,1); }
+  .lb-intro-stage { display: flex; flex-direction: column; align-items: center; padding: 0 18px;
+    transition: transform 780ms cubic-bezier(0.55,0,0.3,1), opacity 620ms cubic-bezier(0.55,0,0.3,1); }
+  #lb-intro.is-hidden .lb-intro-stage { transform: scale(1.06) translateY(-12px); opacity: 0; }
+  .lb-intro-circle { position: relative; width: clamp(168px, 24vw, 248px); aspect-ratio: 1; }
+  .lb-intro-circle svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+  .lb-intro-ringpath { stroke-dasharray: 610; stroke-dashoffset: 0; }
+  .lb-intro-mark { position: absolute; left: 50%; top: 50%; width: 58%; height: 58%; transform: translate(-50%,-50%); object-fit: contain; }
+  .lb-intro-word { height: clamp(34px, 5vw, 52px); width: auto; max-width: 72vw; object-fit: contain; display: block; margin-top: clamp(24px, 4vh, 38px); }
+  .lb-intro-underline { width: clamp(56px, 7vw, 84px); height: 3px; border-radius: 3px; margin-top: clamp(16px, 2.6vh, 24px);
+    background: linear-gradient(90deg, var(--gold-500), var(--gold-400)); transform-origin: center; }
+  .lb-intro-tag { margin-top: 16px; text-align: center;
     font-family: var(--font-sans); font-size: clamp(12px, 1.4vw, 14px); font-weight: 600; letter-spacing: 2.6px; text-transform: uppercase;
     color: var(--text-muted); }
 
   @media (prefers-reduced-motion: no-preference) {
-    #lb-intro.is-playing .lb-intro-emblem { opacity: 0; transform: translateY(13px) scale(0.85); animation: lbInEmblem 600ms cubic-bezier(0.34,1.4,0.5,1) 80ms forwards; }
-    #lb-intro.is-playing .lb-intro-emblem img { transform-origin: 50% 18%; animation: lbInRing 720ms cubic-bezier(0.36,0.07,0.2,1) 640ms 1; }
-    #lb-intro.is-playing .lb-intro-ring { animation: lbRingPulse 1200ms ease-out 700ms 1; }
-    #lb-intro.is-playing .lb-intro-ring.r2 { animation-delay: 920ms; }
-    #lb-intro.is-playing .lb-intro-word { clip-path: inset(0 100% 0 0); opacity: 0; animation: lbInWord 620ms cubic-bezier(0.4,0,0.2,1) 440ms forwards; }
-    #lb-intro.is-playing .lb-intro-sweep { animation: lbInSweep 520ms cubic-bezier(0.4,0,0.2,1) 860ms forwards; }
-    #lb-intro.is-playing .lb-intro-tag { opacity: 0; animation: lbInTag 560ms ease-out 1100ms forwards; }
-    @keyframes lbInEmblem { to { opacity: 1; transform: translateY(0) scale(1); } }
-    @keyframes lbInWord { to { clip-path: inset(0 0 0 0); opacity: 1; } }
-    @keyframes lbInSweep { to { transform: scaleX(1); } }
-    @keyframes lbInTag { to { opacity: 1; } }
-    @keyframes lbInRing { 0%,100% { transform: rotate(0); } 28% { transform: rotate(7deg); } 55% { transform: rotate(-5deg); } 78% { transform: rotate(2.5deg); } }
-    @keyframes lbRingPulse { 0% { opacity: 0.55; transform: translate(-50%,-50%) scale(0.55); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1.85); } }
+    #lb-intro.is-playing .lb-intro-ringpath { stroke-dashoffset: 610; animation: lbRingDraw 1150ms cubic-bezier(0.55,0.08,0.25,1) 120ms forwards; }
+    #lb-intro.is-playing .lb-intro-mark { opacity: 0; transform: translate(-50%,-50%) scale(0.9); animation: lbMarkIn 700ms cubic-bezier(0.34,1.3,0.45,1) 430ms forwards; }
+    #lb-intro.is-playing .lb-intro-word { opacity: 0; transform: translateY(10px); animation: lbWordIn 620ms cubic-bezier(0.22,0.6,0.36,1) 820ms forwards; }
+    #lb-intro.is-playing .lb-intro-underline { transform: scaleX(0); animation: lbUnderIn 480ms cubic-bezier(0.4,0,0.2,1) 1150ms forwards; }
+    #lb-intro.is-playing .lb-intro-tag { opacity: 0; transform: translateY(8px); animation: lbTagIn 560ms cubic-bezier(0.22,0.6,0.36,1) 1320ms forwards; }
+    @keyframes lbRingDraw { to { stroke-dashoffset: 0; } }
+    @keyframes lbMarkIn { to { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
+    @keyframes lbWordIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes lbUnderIn { to { transform: scaleX(1); } }
+    @keyframes lbTagIn { to { opacity: 1; transform: translateY(0); } }
   }
   body.lb-intro-lock { overflow: hidden; }
 
@@ -228,16 +238,17 @@
 </head>
 <body>
 <div id="lb-intro" aria-hidden="true">
-  <div class="lb-intro-lockup">
-    <div class="lb-intro-emblem">
-      <span class="lb-intro-ring"></span>
-      <span class="lb-intro-ring r2"></span>
-      <img src="./assets/logo/logibell-emblem.jpg" alt="LogiBell" decoding="async">
+  <div class="lb-intro-stage">
+    <div class="lb-intro-circle">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <circle class="lb-intro-ringpath" cx="100" cy="100" r="97" fill="none" stroke="#C9D5E6" stroke-width="1.6" stroke-linecap="round"></circle>
+      </svg>
+      <img class="lb-intro-mark" src="./assets/logo/logibell-mark.svg" alt="LogiBell" decoding="async">
     </div>
     <img class="lb-intro-word" src="./assets/logo/logibell-wordmark.png" alt="LogiBell" decoding="async">
-    <span class="lb-intro-sweep"></span>
+    <span class="lb-intro-underline"></span>
+    <div class="lb-intro-tag">Carrier-Focused Operations Support</div>
   </div>
-  <div class="lb-intro-tag">Carrier-Focused Operations</div>
 </div>
 <script>
 (function () {
@@ -245,32 +256,32 @@
   if (!intro) return;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var playing = false, dismissT = null, hideT = null;
-  var HOLD = reduce ? 900 : 2050; // total on-screen time before the curtain lifts
+  var HOLD = reduce ? 1000 : 3150; // full reveal + a settled beat before the close begins
 
   function dismiss() {
     if (!playing) return;
     playing = false;
     clearTimeout(dismissT);
     intro.classList.remove('is-on');
-    intro.classList.add('is-hidden');
+    intro.classList.add('is-hidden'); // stage scales/fades, then the curtain lifts — no hard cut
     document.body.classList.remove('lb-intro-lock');
     hideT = setTimeout(function () {
       intro.style.display = 'none';
       intro.classList.remove('is-hidden', 'is-playing');
-    }, 660);
+    }, 820);
   }
 
   function play() {
-    clearTimeout(hideT);
-    clearTimeout(dismissT);
-    intro.classList.remove('is-hidden', 'is-playing');
+    clearTimeout(hideT); clearTimeout(dismissT);
+    intro.classList.remove('is-hidden', 'is-playing', 'is-on');
     intro.style.display = 'flex';
     void intro.offsetWidth; // reflow so animations restart cleanly on replay
     if (!reduce) intro.classList.add('is-playing');
-    intro.classList.add('is-on');
+    // add is-on a frame after the display flip so the opacity transition reliably runs
+    requestAnimationFrame(function () { requestAnimationFrame(function () { intro.classList.add('is-on'); }); });
     document.body.classList.add('lb-intro-lock');
     playing = true;
-    dismissT = setTimeout(dismiss, HOLD); // auto-dismiss — intentionally not skippable
+    dismissT = setTimeout(dismiss, HOLD);
   }
 
   window.__lbPlayIntro = play;
@@ -294,6 +305,8 @@
 <script type="text/babel" src="Chrome.jsx"></script>
 <script type="text/babel" src="Home.jsx"></script>
 <script type="text/babel" src="Home2.jsx"></script>
+<script type="text/babel" src="LogiGuard.jsx"></script>
+<script type="text/babel" src="Extras.jsx"></script>
 <script type="text/babel" src="Pricing.jsx"></script>
 <script type="text/babel" src="Contact.jsx"></script>
 <script type="text/babel" src="Pages.jsx"></script>

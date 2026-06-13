@@ -28,7 +28,7 @@
           <div className="lb-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(20px, 3vw, 32px)" }}>
             {points.map(([ic, t, d], i) => (
               <div key={i} style={{ display: "flex", gap: 18, padding: 24, background: "var(--navy-900)", border: "1px solid var(--navy-700)", borderRadius: "var(--radius-lg)" }}>
-                <span style={{ width: 46, height: 46, borderRadius: "var(--radius-md)", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+                <span style={{ width: 46, height: 46, borderRadius: "50%", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
                   <Icon name={ic} size={22} color="var(--gold-500)" />
                 </span>
                 <div>
@@ -44,7 +44,7 @@
   }
 
   /* ---------- WHO WE ARE (reusable section) ---------- */
-  const NEW_AUTH_ITEMS = ["First-load strategy", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Tunnelling to the source ", "Structure through the first year"];
+  const NEW_AUTH_ITEMS = ["First-load strategy", "Early-stage authority support", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Insurance setup support"];
 
   function WhoWeAre({ navigate }) {
     return (
@@ -74,7 +74,7 @@
               <span style={{ width: 46, height: 46, borderRadius: "50%", background: "var(--gold-500)", color: "var(--navy-900)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18 }}>T</span>
               <div>
                 <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 15, color: "#fff" }}>Thomas</div>
-                <div style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--on-navy-soft)" }}>Founder & Operations Lead, LogiBell</div>
+                <div style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--on-navy-soft)" }}>Founder, LogiBell</div>
               </div>
             </div>
           </Card>
@@ -93,9 +93,9 @@
         <div className="lb-auth-grid" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 56, alignItems: "center" }}>
           <div>
             <Badge tone="goldsoft" uppercase>Special Treatment Program — Newer Authorities</Badge>
-            <h2 className="lb-display-lg" style={{ margin: "18px 0 18px" }}>Most won't work with you yet.<br /><span style={{ color: "var(--navy-700)" }}>We will.</span></h2>
+            <h2 className="lb-display-lg" style={{ margin: "18px 0 18px" }}>Authority age<br /><span style={{ color: "var(--navy-700)" }}>isn't the barrier here.</span></h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)", maxWidth: 480 }}>
-              Authority age isn't the barrier here. Brokers already know and trust LogiBell, so a young MC isn't a reason to turn you away — it's the same dispatch service, with extra effort and our established relationships working behind you.
+              Most brokers won't touch a new MC. We design a clear roadmap that channels you to the right sources — the same dispatch service, with extra effort and our established broker relationships working behind you while your authority gains age.
             </p>
             <div style={{ marginTop: 26 }}>
               <Button variant="primary" size="md" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => go("authority")}>The Special Treatment Program</Button>
@@ -112,6 +112,78 @@
               ))}
             </div>
           </Card>
+        </div>
+      </Section>
+    );
+  }
+
+  /* ---------- PRICING (Home band) ----------
+     Brand strategy §L: published pricing belongs on the Home flow, with
+     Trusted Partner shown as the higher tier. Compact snapshot; the full
+     breakdown (worked examples, comparison table) lives on the Pricing page. */
+  function PricingBand({ navigate }) {
+    const go = navigate || window.__lbnav || (() => {});
+    const tiers = [
+      { name: "Semi trucks", rate: "6%", unit: "flat dispatch fee", desc: "Dry van, reefer, flatbed, power only — one flat dispatch fee." },
+      { name: "Box / Hotshot / Sprinter", rate: "6–8%", unit: "flat dispatch fee", desc: "Based on equipment and service needs. Your exact rate is confirmed at onboarding — not after." },
+      { name: "Trusted Partner", rate: "Below", unit: "standard rate", desc: "A higher tier every carrier can grow into — earned through the relationship, never purchased at signup.", dark: true, badge: "Higher tier" },
+    ];
+    return (
+      <Section id="pricing" pb={64}>
+        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, marginBottom: "clamp(40px, 5vw, 64px)", flexWrap: "wrap" }}>
+          <div style={{ maxWidth: 640 }}>
+            <Eyebrow>Published Pricing</Eyebrow>
+            <h2 className="lb-display-lg" style={{ marginBottom: 14 }}>The cost is clear before you call.</h2>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.6, color: "var(--text-body)", margin: 0 }}>
+              Our pricing is published because carriers should understand the cost of service before investing time in a conversation.
+            </p>
+          </div>
+          <Button variant="link" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => go("pricing")}>See full pricing</Button>
+        </div>
+        <div className="lb-3col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(20px, 3vw, 32px)", alignItems: "stretch" }}>
+          {tiers.map((t, i) => (
+            <Card key={i} surface={t.dark ? "dark" : "white"} radius="xl" pad="lg" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, marginBottom: 14 }}>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: 17.5, fontWeight: 600, color: t.dark ? "#fff" : "var(--text-heading)", margin: 0 }}>{t.name}</h3>
+                {t.badge ? <Badge tone="gold" uppercase>{t.badge}</Badge> : null}
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 12 }}>
+                <span style={{ fontFamily: "var(--font-display)", fontSize: 38, fontWeight: 700, letterSpacing: "-1px", lineHeight: 1, color: t.dark ? "var(--gold-500)" : "var(--navy-800)" }}>{t.rate}</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: t.dark ? "var(--on-navy-soft)" : "var(--text-muted)" }}>{t.unit}</span>
+              </div>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 14.5, lineHeight: 1.55, color: t.dark ? "var(--on-navy-soft)" : "var(--text-body)", margin: 0 }}>{t.desc}</p>
+            </Card>
+          ))}
+        </div>
+        <div style={{ display: "flex", gap: 22, flexWrap: "wrap", marginTop: 26 }}>
+          {[["circle-check", "No setup fees"], ["circle-check", "No monthly minimums"], ["gift", "Free first ELD cycle or week"]].map(([ic, t], i) => (
+            <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-sans)", fontSize: 14.5, fontWeight: 500, color: "var(--text-strong)" }}>
+              <Icon name={ic} size={17} color="var(--success)" /> {t}
+            </span>
+          ))}
+        </div>
+      </Section>
+    );
+  }
+
+  /* ---------- PARTNER & INSURANCE ACCESS (Home strip) ----------
+     Brand strategy §L: partner-network framing on the Home flow, no
+     guaranteed outcomes. Slim strip; full detail on the Partner Access page. */
+  function PartnerBand({ navigate }) {
+    const go = navigate || window.__lbnav || (() => {});
+    return (
+      <Section pt={0} pb={28}>
+        <div style={{ background: "var(--surface-card)", border: "1px solid var(--hairline)", borderRadius: "var(--radius-2xl)", padding: "26px 32px", display: "flex", gap: 22, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", boxShadow: "var(--shadow-xs)" }}>
+          <div style={{ display: "flex", gap: 18, alignItems: "center", maxWidth: 700 }}>
+            <span style={{ width: 50, height: 50, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+              <Icon name="handshake" size={24} color="var(--gold-500)" />
+            </span>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 15.5, lineHeight: 1.55, color: "var(--text-body)", margin: 0 }}>
+              <strong style={{ color: "var(--text-heading)", fontWeight: 600 }}>Partner &amp; insurance access.</strong>{" "}
+              A free, competitive insurance quote through vetted partners — plus lease-on and factoring contacts that open up as the relationship develops.
+            </p>
+          </div>
+          <Button variant="secondary" size="md" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => go("partners")}>Explore partner access</Button>
         </div>
       </Section>
     );
@@ -143,5 +215,5 @@
     );
   }
 
-  window.LBHome2 = { Different, WhoWeAre, NewAuthority, FinalCTA, NEW_AUTH_ITEMS };
+  window.LBHome2 = { Different, WhoWeAre, NewAuthority, PricingBand, PartnerBand, FinalCTA, NEW_AUTH_ITEMS };
 })();

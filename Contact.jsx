@@ -30,9 +30,6 @@
       return errs;
     }
 
-    const [submitting, setSubmitting] = React.useState(false);
-    const [submitError, setSubmitError] = React.useState("");
-
     function handleSubmit(e) {
       e.preventDefault();
       // Guard: only the explicit submit button (or implicit Enter-in-text-field
@@ -42,44 +39,17 @@
       if (submitter && submitter.getAttribute("type") !== "submit") return;
       const errs = validate();
       if (Object.keys(errs).length) { setErrors(errs); return; }
+      /* PROVISIONAL: wire to real backend before launch. Default destination =
+         Netlify Forms (name="onboarding"). Confirm destination + notification email. */
       setErrors({});
-      setSubmitError("");
-      setSubmitting(true);
-
-      // Inquiries are emailed via FormSubmit (https://formsubmit.co) — no backend
-      // required. First submission triggers a one-time confirmation email to the
-      // destination inbox; after that, every submission lands there directly.
-      const FORM_ENDPOINT = "https://formsubmit.co/ajax/tigransardaryan977@gmail.com";
-      fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: "New LogiBell onboarding inquiry — " + (form.name || "carrier"),
-          name: form.name,
-          company: form.company,
-          phone: form.phone,
-          email: form.email,
-          mc_number: form.mc,
-          equipment: equip,
-          notes: form.notes,
-        }),
-      })
-        .then((res) => {
-          if (!res.ok) throw new Error("Request failed");
-          setSubmitting(false);
-          setSent(true);
-        })
-        .catch(() => {
-          setSubmitting(false);
-          setSubmitError("Something went wrong sending your request. Please try again, or call/email us directly.");
-        });
+      setSent(true);
     }
 
     /* PROVISIONAL — confirm phone, email, address, hours before launch (PRE-LAUNCH.md) */
     const methods = [
       { ic: "phone", t: "Call us", v: "(818) 481-1886", href: "tel:+18184811886" },
       { ic: "mail", t: "Email", v: "info@logibell.com", href: "mailto:info@logibell.com" },
-      { ic: "map-pin", t: "Office", v: "Los Angeles, CA", href: null },
+      { ic: "map-pin", t: "Office", v: "5320 Harmony Ave, Los Angeles, CA 91601", href: null },
       { ic: "clock", t: "Hours", v: "Mon–Fri · after-hours when time-sensitive", href: null },
     ];
 
@@ -100,7 +70,7 @@
               {methods.map((m, i) => {
                 const inner = (
                   <React.Fragment>
-                    <span style={{ width: 44, height: 44, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none", marginBottom: 14 }}><Icon name={m.ic} size={20} color="var(--gold-500)" /></span>
+                    <span style={{ width: 44, height: 44, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none", marginBottom: 14 }}><Icon name={m.ic} size={20} color="var(--gold-500)" /></span>
                     <div style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.6px", marginBottom: 5 }}>{m.t}</div>
                     <div style={{ fontFamily: "var(--font-display)", fontSize: 15.5, fontWeight: 600, color: "var(--text-heading)", lineHeight: 1.35 }}>{m.v}</div>
                   </React.Fragment>
@@ -119,11 +89,11 @@
         </section>
 
         {/* ===== Referral program ===== */}
-        <section id="referral" style={{ background: "var(--surface-soft)", paddingTop: 56, paddingBottom: 56, scrollMarginTop: 88 }}>
+        <section id="referral" style={{ background: "var(--surface-soft)", paddingTop: 56, paddingBottom: 56, scrollMarginTop: 128 }}>
           <div className="lb-wrap" style={{ maxWidth: 980 }}>
             <div style={{ display: "flex", gap: 26, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
               <div style={{ display: "flex", gap: 20, alignItems: "center", maxWidth: 660 }}>
-                <span style={{ width: 56, height: 56, borderRadius: "var(--radius-lg)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}><Icon name="users" size={26} color="var(--gold-500)" /></span>
+                <span style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}><Icon name="users" size={26} color="var(--gold-500)" /></span>
                 <div>
                   <div style={{ marginBottom: 8 }}><Badge tone="goldsoft" uppercase>Referral Program</Badge></div>
                   <h2 className="lb-title-lg" style={{ marginBottom: 8 }}>Refer a carrier, get rewarded.</h2>
@@ -138,7 +108,7 @@
         </section>
 
         {/* ===== Get onboarded ("Ring the LogiBell" deep-links here) ===== */}
-        <section id="onboard" style={{ background: "var(--surface-page)", paddingTop: "clamp(72px, 9vw, 112px)", paddingBottom: "clamp(72px, 10vw, 128px)", scrollMarginTop: 80 }}>
+        <section id="onboard" style={{ background: "var(--surface-page)", paddingTop: "clamp(72px, 9vw, 112px)", paddingBottom: "clamp(72px, 10vw, 128px)", scrollMarginTop: 124 }}>
           <div className="lb-wrap">
             <div className="lb-contact-grid" style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: 48, alignItems: "start" }}>
               {/* Left: reassurance */}
@@ -173,7 +143,11 @@
                     <Button variant="secondary" size="md" onClick={() => setSent(false)}>Submit another</Button>
                   </div>
                 ) : (
-                  <form name="onboarding" noValidate onSubmit={handleSubmit}>
+                  <form name="onboarding" method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={handleSubmit}>
+                    {/* Netlify Forms plumbing (no-op in prototype) */}
+                    <input type="hidden" name="form-name" value="onboarding" />
+                    <input type="hidden" name="equipment" value={equip} />
+                    <p style={{ display: "none" }}><label>Don't fill this out: <input name="bot-field" /></label></p>
                     <h3 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 600, color: "var(--text-heading)", marginBottom: 6 }}>Start onboarding</h3>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", marginBottom: 24 }}>We'll only use this to get you set up.</p>
 
@@ -197,10 +171,7 @@
                       <Input label="Tell us about your operation" name="notes" multiline rows={4} placeholder="Lanes you prefer, current setup, what you need help with…" value={form.notes} onChange={set("notes")} />
                     </div>
 
-                    {submitError ? (
-                      <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--danger, #b3261e)", textAlign: "center", marginBottom: 14 }}>{submitError}</p>
-                    ) : null}
-                    <Button variant="primary" full size="lg" type="submit" disabled={submitting} iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />}>{submitting ? "Sending…" : "Ring the LogiBell"}</Button>
+                    <Button variant="primary" full size="lg" type="submit" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />}>Ring the LogiBell</Button>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
                       <Icon name="lock" size={13} color="var(--text-muted)" /> Your details stay between us. No spam, no obligations.
                     </p>

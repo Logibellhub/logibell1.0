@@ -42,7 +42,7 @@
             <span style={{ display: "inline-flex", alignItems: "center", gap: 10, fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 15.5, color: "#fff" }}>
               <Icon name="radio" size={17} color="var(--gold-500)" /> Lane activity
             </span>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: "var(--font-sans)", fontSize: 12.5, fontWeight: 600, color: "var(--success)" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 7, fontFamily: "var(--font-sans)", fontSize: 12.5, fontWeight: 600, color: "var(--success-on-dark)" }}>
               <span className="lb-live-dot" style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--success)", display: "inline-block" }} /> On the road
             </span>
           </div>
@@ -86,7 +86,7 @@
         <RouteMotif corner="br" />
         <div className="lb-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 64, alignItems: "center", position: "relative" }}>
           <div>
-            <Eyebrow>Carrier-Focused Operations</Eyebrow>
+            <Eyebrow>Carrier-Focused Operations Support</Eyebrow>
             <h1 className="lb-display-xl" style={{ marginBottom: 22 }}>Your Operation.<br /><span style={{ color: "var(--navy-700)" }}>Fully Backed.</span></h1>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 19, lineHeight: 1.55, color: "var(--text-strong)", maxWidth: 520, marginBottom: 14, fontWeight: 500 }}>
               Dispatch is the entry point; operational support builds the business.
@@ -97,10 +97,17 @@
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
               <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
               <Button variant="secondary" size="lg" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => navigate("pricing")}>See our pricing</Button>
+              <Button variant="ghost" size="lg" iconLeft={<Icon name="phone" size={17} />} onClick={() => navigate("contact")}>Schedule a Call</Button>
             </div>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", marginTop: 18, display: "inline-flex", alignItems: "center", gap: 8 }}>
-              <Icon name="circle-check" size={15} color="var(--success)" /> Our pricing is published, so you know the cost before you call.
-            </p>
+            <div style={{ display: "flex", gap: 22, flexWrap: "wrap", alignItems: "center", marginTop: 18 }}>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
+                <Icon name="circle-check" size={15} color="var(--success)" /> Our pricing is published, so you know the cost before you call.
+              </p>
+              {/* Phone confirmed by owner (June 2026) */}
+              <a href="tel:+18184811886" style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 7 }}>
+                <Icon name="phone" size={14} color="var(--gold-700)" /> (818) 481-1886
+              </a>
+            </div>
           </div>
 
           {/* Right: live load board */}
@@ -160,9 +167,9 @@
       blurb: "Access and referrals that grow with the working relationship.",
       points: [
         "Early-stage MC guidance & broker-readiness",
-        "Insurance partner access through vetted contacts (access, not a guaranteed outcome)",
-        "Lease-on connections for carriers without an active MC (a referral, not LogiBell holding the authority)",
-        "Potential factoring & compliance access as the network expands",
+        "Free, competitive insurance quotes through vetted partners",
+        "Lease-on referrals for carriers without an active MC",
+        "Factoring & compliance access as the network expands",
       ] },
   ];
 
@@ -184,7 +191,7 @@
             front={
               <Card surface="white" pad="lg" radius="xl" style={{ display: "flex", flexDirection: "column", height: "100%" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-                  <span style={{ width: 50, height: 50, borderRadius: "var(--radius-md)", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ width: 50, height: 50, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Icon name={c.icon} size={24} color="var(--gold-500)" />
                   </span>
                   <span style={{ fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 700, color: "var(--navy-800)", background: "rgba(25,57,96,0.08)", width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>{c.tag}</span>
@@ -248,7 +255,7 @@
         <div style={{ background: "var(--navy-800)", borderRadius: "var(--radius-2xl)", padding: "40px 44px", position: "relative", overflow: "hidden", display: "flex", gap: 32, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
           <div style={{ position: "absolute", top: -70, right: -50, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,203,31,0.12), transparent 70%)" }} />
           <div style={{ position: "relative", display: "flex", gap: 20, alignItems: "center", maxWidth: 680 }}>
-            <span style={{ width: 56, height: 56, borderRadius: "var(--radius-lg)", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+            <span style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
               <Icon name="users" size={26} color="var(--gold-500)" />
             </span>
             <div>
