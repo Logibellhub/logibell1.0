@@ -97,7 +97,7 @@
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
               <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
               <Button variant="secondary" size="lg" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => navigate("pricing")}>See our pricing</Button>
-              <Button variant="ghost" size="lg" iconLeft={<Icon name="phone" size={17} />} onClick={() => navigate("contact")}>Schedule a Call</Button>
+              <Button variant="ghost" size="lg" iconLeft={<Icon name="phone" size={17} color="var(--gold-500)" />} onClick={() => navigate("contact")}>Schedule a Call</Button>
             </div>
             <div style={{ display: "flex", gap: 22, flexWrap: "wrap", alignItems: "center", marginTop: 18 }}>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
@@ -105,7 +105,7 @@
               </p>
               {/* Phone confirmed by owner (June 2026) */}
               <a href="tel:+18184811886" style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 7 }}>
-                <Icon name="phone" size={14} color="var(--gold-700)" /> (818) 481-1886
+                <Icon name="phone" size={14} color="var(--gold-500)" /> (818) 481-1886
               </a>
             </div>
           </div>

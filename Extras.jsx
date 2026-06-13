@@ -114,7 +114,7 @@
             <Eyebrow>Feedback</Eyebrow>
             <h2 className="lb-display-md" style={{ marginBottom: 18 }}>What carriers say.</h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)", maxWidth: 460, marginBottom: 14 }}>
-              Real feedback from the people we work with — collected as we go, never invented, and moderated to keep it genuine.
+              Honest feedback from the carriers, drivers, and brokers we work with — shared as it comes in and moderated to keep it genuine.
             </p>
             {REVIEWS.length === 0 ? (
               <React.Fragment>

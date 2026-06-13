@@ -154,7 +154,7 @@
             <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 12 }}>
               <Button variant="primary" full size="md" iconLeft={<Icon name="bell" size={16} />} onClick={() => { setOpen(false); navigate("contact", "onboard"); }}>Ring the LogiBell</Button>
               <a href="tel:+18184811886" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 9, fontFamily: "var(--font-sans)", fontSize: 15.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", padding: "12px 0", border: "1px solid var(--line)", borderRadius: "var(--radius-md)", background: "var(--white)" }}>
-                <Icon name="phone" size={16} color="var(--gold-700)" /> Call (818) 481-1886
+                <Icon name="phone" size={16} color="var(--gold-500)" /> Call (818) 481-1886
               </a>
             </div>
           </div>
