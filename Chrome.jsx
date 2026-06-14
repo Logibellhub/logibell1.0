@@ -127,8 +127,8 @@
 
           <div style={{ display: "flex", alignItems: "center", gap: 12 }} className="lb-desktop-actions">
             {/* Phone confirmed by owner (June 2026) */}
-            <a className="lb-nav-phone" href="tel:+18184811886" aria-label="Call LogiBell">
-              <Icon name="phone" size={15} color="var(--gold-500)" /> (818) 481-1886
+            <a className="lb-nav-phone" href="tel:+19092777177" aria-label="Call LogiBell">
+              <Icon name="phone" size={15} color="var(--gold-500)" /> (909) 277-7177
             </a>
             <Button variant="primary" size="sm" iconLeft={<Icon name="bell" size={16} color="#FFCB1F" className="lb-cta-bell-float" />} onClick={() => navigate("contact", "onboard")}><span style={{ color: "#F6F7F8" }}>Ring the LogiBell</span></Button>
           </div>
@@ -153,8 +153,8 @@
             ))}
             <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 12 }}>
               <Button variant="primary" full size="md" iconLeft={<Icon name="bell" size={16} />} onClick={() => { setOpen(false); navigate("contact", "onboard"); }}>Ring the LogiBell</Button>
-              <a href="tel:+18184811886" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 9, fontFamily: "var(--font-sans)", fontSize: 15.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", padding: "12px 0", border: "1px solid var(--line)", borderRadius: "var(--radius-md)", background: "var(--white)" }}>
-                <Icon name="phone" size={16} color="var(--gold-500)" /> Call (818) 481-1886
+              <a href="tel:+19092777177" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 9, fontFamily: "var(--font-sans)", fontSize: 15.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", padding: "12px 0", border: "1px solid var(--line)", borderRadius: "var(--radius-md)", background: "var(--white)" }}>
+                <Icon name="phone" size={16} color="var(--gold-500)" /> Call (909) 277-7177
               </a>
             </div>
           </div>
@@ -203,7 +203,7 @@
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 8, fontFamily: "var(--font-sans)", fontSize: 14 }}>
                 {/* PROVISIONAL — confirm before launch: phone, email (see PRE-LAUNCH note). Address per brand strategy v1.9. */}
-                <a href="tel:+18184811886" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="phone" size={15} color="var(--gold-500)" /> (818) 481-1886</a>
+                <a href="tel:+19092777177" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="phone" size={15} color="var(--gold-500)" /> (909) 277-7177</a>
                 <a href="mailto:info@logibell.com" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="mail" size={15} color="var(--gold-500)" /> info@logibell.com</a>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><Icon name="map-pin" size={15} color="var(--gold-500)" /> 5320 Harmony Ave, Los Angeles, CA 91601</span>
               </div>
@@ -218,28 +218,4 @@
               </div>
             </div>
             {Object.keys(FOOT).map((col) => (
-              <div key={col}>
-                <div style={{ fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", color: "#fff", marginBottom: 16 }}>{col}</div>
-                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 11 }}>
-                  {FOOT[col].map((l) => (
-                    <li key={l.label}><a href={"#/" + l.page} onClick={link(l)} style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--on-navy-soft)", textDecoration: "none", transition: "color var(--dur-base)" }} onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold-500)")} onMouseLeave={(e) => (e.currentTarget.style.color = "var(--on-navy-soft)")}>{l.label}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div style={{ height: 1, background: "var(--navy-700)", margin: "40px 0 24px" }} />
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--on-navy-faint)" }}>
-            <span>© 2026 LogiBell. Carrier-focused operations support.</span>
-            <span style={{ display: "flex", gap: 20 }}>
-              <a href="#/privacy" onClick={(e) => { e.preventDefault(); navigate("privacy"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Privacy</a>
-              <a href="#/terms" onClick={(e) => { e.preventDefault(); navigate("terms"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Terms</a>
-            </span>
-          </div>
-        </div>
-      </footer>
-    );
-  }
-
-  window.LBChrome = { AnnouncementBar, TopNav, Footer };
-})();
+              <div key={

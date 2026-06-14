@@ -7,7 +7,7 @@
 
 | Item | Where | Status |
 |---|---|---|
-| **Phone** `(818) 481-1886` | `Chrome.jsx` (header + footer + mobile), `Home.jsx` (hero), `Contact.jsx` | ✅ Confirmed by owner (June 2026) |
+| **Phone** `(909) 277-7177` | `Chrome.jsx` (header + footer + mobile), `Home.jsx` (hero), `Contact.jsx` | ✅ Confirmed by owner (June 2026) |
 | **Address** `5320 Harmony Ave, Los Angeles, CA 91601` | `Chrome.jsx` (footer), `Contact.jsx` | ✅ Full address per brand strategy v1.9 Company Information |
 | **Email** `info@logibell.com` | `Chrome.jsx`, `Contact.jsx`, `Legal.jsx` | ⚠️ Provisional — confirm mailbox exists |
 | **Contact form destination** | `Contact.jsx` `<form name="onboarding" data-netlify="true">` | ⚠️ Defaults to **Netlify Forms**. Confirm destination + notification email, or swap to the real backend. Prototype currently shows a success state on submit. |
@@ -42,4 +42,4 @@
 
 ## Deploy folder
 
-A production deploy needs only: `index.html`, the `*.jsx` app files, `sitemap.xml`, `robots.txt`, plus the design-system assets it references (`../../styles.css`, `../../_ds_bundle.js`, `../../assets/logo/`). For a self-contained build, bundle the HTML and host the result.
+A production deploy needs only: `index.html`, the `*.jsx` app files, `sitemap.xml`, `robots.txt`, plus the design-system assets it references (`../../styles.css`, `../../_ds_bundle.js`, `../../assets/logo/`). For a self-contained 

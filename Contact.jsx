@@ -47,7 +47,7 @@
 
     /* PROVISIONAL — confirm phone, email, address, hours before launch (PRE-LAUNCH.md) */
     const methods = [
-      { ic: "phone", t: "Call us", v: "(818) 481-1886", href: "tel:+18184811886" },
+      { ic: "phone", t: "Call us", v: "(909) 277-7177", href: "tel:+19092777177" },
       { ic: "mail", t: "Email", v: "info@logibell.com", href: "mailto:info@logibell.com" },
       { ic: "map-pin", t: "Office", v: "5320 Harmony Ave, Los Angeles, CA 91601", href: null },
       { ic: "clock", t: "Hours", v: "Mon–Fri · after-hours when time-sensitive", href: null },
@@ -174,16 +174,4 @@
                     <Button variant="primary" full size="lg" type="submit" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />}>Ring the LogiBell</Button>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
                       <Icon name="lock" size={13} color="var(--text-muted)" /> Your details stay between us. No spam, no obligations.
-                    </p>
-                  </form>
-                )}
-              </Card>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  }
-
-  window.LBContact = { ContactPage };
-})();
+                
