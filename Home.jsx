@@ -7,8 +7,8 @@
 
   /* Atmosphere pass: generous default section rhythm. Explicit pt/pb still
      override for intentionally tight bands. */
-  const SECTION_PAD = "clamp(72px, 10vw, 128px)";
-  const HEAD_GAP = "clamp(48px, 6vw, 80px)";
+  const SECTION_PAD = "clamp(48px, 6vw, 88px)";
+  const HEAD_GAP = "clamp(32px, 4vw, 56px)";
   const GRID_GAP = "clamp(20px, 3vw, 32px)";
 
   const Section = ({ id, bg = "var(--surface-page)", pt = SECTION_PAD, pb = SECTION_PAD, children, style = {} }) => (

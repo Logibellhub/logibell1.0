@@ -14,11 +14,11 @@
       ["badge-dollar-sign", "Transparent published pricing", "The cost is clear before the conversation starts — published openly, every time."],
     ];
     return (
-      <section id="different" style={{ background: "var(--navy-800)", paddingTop: "clamp(72px, 10vw, 128px)", paddingBottom: "clamp(72px, 10vw, 128px)", position: "relative", overflow: "hidden" }}>
+      <section id="different" style={{ background: "var(--navy-800)", paddingTop: "clamp(48px, 6vw, 88px)", paddingBottom: "clamp(48px, 6vw, 88px)", position: "relative", overflow: "hidden" }}>
         <NavyDrift variant={0} />
         <div style={{ position: "absolute", top: -80, right: -80, width: 320, height: 320, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,203,31,0.10), transparent 70%)" }} />
         <div className="lb-wrap" style={{ position: "relative" }}>
-          <div style={{ maxWidth: 700, marginBottom: "clamp(48px, 6vw, 80px)" }}>
+          <div style={{ maxWidth: 700, marginBottom: "clamp(32px, 4vw, 56px)" }}>
             <Eyebrow onDark>What Makes LogiBell Different</Eyebrow>
             <h2 className="lb-display-lg" style={{ color: "#fff", marginBottom: 18 }}>Most carrier relationships start and end with booking a load.</h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 17.5, lineHeight: 1.6, color: "var(--on-navy-soft)", maxWidth: 620 }}>
