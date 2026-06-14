@@ -196,8 +196,8 @@
         <div style={{ background: "var(--navy-800)", borderRadius: "var(--radius-2xl)", padding: "64px 56px", position: "relative", overflow: "hidden" }}>
           <NavyDrift variant={1} />
           {/* Full-color brand emblem in a clean white tile — reads cleanly on the navy band */}
-          <div className="lb-cta-bell" aria-hidden="true" style={{ position: "absolute", right: 56, top: "50%", transform: "translateY(-50%)", width: 150, height: 150, borderRadius: "50%", background: "#FFFFFF", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "var(--shadow-lg)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, pointerEvents: "none", overflow: "hidden" }}>
-            <img src="./assets/logo/logibell-emblem.jpg" alt="" style={{ width: 130, height: 130, objectFit: "contain", display: "block" }} />
+          <div className="lb-cta-bell" aria-hidden="true" style={{ position: "absolute", right: 56, top: "50%", transform: "translateY(-50%)", width: 208, height: 208, borderRadius: "50%", background: "#FFFFFF", border: "1px solid rgba(255,255,255,0.7)", boxShadow: "var(--shadow-lg)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1, pointerEvents: "none", overflow: "hidden" }}>
+            <img src="./assets/logo/logibell-emblem.jpg" alt="" style={{ width: 178, height: 178, objectFit: "contain", display: "block" }} />
           </div>
           <div style={{ position: "relative", maxWidth: 640 }}>
             <Eyebrow onDark>Get Onboarded</Eyebrow>
