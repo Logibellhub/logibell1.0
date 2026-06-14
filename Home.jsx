@@ -210,7 +210,6 @@
                   <span style={{ width: 50, height: 50, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Icon name={c.icon} size={24} color="var(--gold-500)" />
                   </span>
-                  <span style={{ fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 700, color: "var(--navy-800)", background: "rgba(25,57,96,0.08)", width: 26, height: 26, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>{c.tag}</span>
                 </div>
                 <h3 className="lb-title-lg" style={{ marginBottom: 6 }}>{c.title}</h3>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, fontWeight: 600, color: "var(--navy-700)", marginBottom: 14 }}>{c.promise}</p>

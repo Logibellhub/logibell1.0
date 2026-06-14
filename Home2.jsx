@@ -126,7 +126,7 @@
     const tiers = [
       { name: "Semi trucks", rate: "6%", unit: "flat dispatch fee", desc: "Dry van, reefer, flatbed, power only — one flat dispatch fee." },
       { name: "Box / Hotshot / Sprinter", rate: "6–8%", unit: "flat dispatch fee", desc: "Based on equipment and service needs. Your exact rate is confirmed at onboarding — not after." },
-      { name: "Trusted Partner", rate: "Below", unit: "standard rate", desc: "A higher tier every carrier can grow into — earned through the relationship, never purchased at signup.", dark: true, badge: "Higher tier" },
+      { name: "Trusted Partner", rate: "Lower", unit: "than standard", desc: "A higher tier every carrier can grow into — earned through the relationship, never purchased at signup.", dark: true, badge: "Higher tier" },
     ];
     return (
       <Section id="pricing" pb={64}>

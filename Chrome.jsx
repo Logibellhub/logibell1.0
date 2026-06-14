@@ -63,7 +63,7 @@
     }
 
     return (
-      <header style={{ position: "sticky", top: "var(--announce-height)", zIndex: 50, background: scrolled ? "rgba(246,248,252,0.85)" : "var(--surface-page)", backdropFilter: scrolled ? "saturate(180%) blur(12px)" : "none", borderBottom: `1px solid ${scrolled ? "var(--hairline)" : "transparent"}`, transition: "background var(--dur-base), border-color var(--dur-base)" }}>
+      <header style={{ position: "sticky", top: "var(--announce-height)", zIndex: 50, background: scrolled ? "rgba(246,248,252,0.96)" : "var(--surface-page)", backdropFilter: scrolled ? "saturate(180%) blur(12px)" : "none", borderBottom: `1px solid ${scrolled ? "var(--hairline)" : "transparent"}`, transition: "background var(--dur-base), border-color var(--dur-base)" }}>
         <div className="lb-wrap" style={{ height: "var(--nav-height)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24 }}>
           <a href="#/" onClick={(e) => { e.preventDefault(); navigate("home"); }} style={{ display: "flex", alignItems: "center", padding: "4px 0" }} aria-label="LogiBell home">
             <img src={LOGO} alt="LogiBell" style={{ height: 42, width: "auto", display: "block" }} />
