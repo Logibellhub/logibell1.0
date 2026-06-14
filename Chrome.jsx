@@ -218,4 +218,28 @@
               </div>
             </div>
             {Object.keys(FOOT).map((col) => (
-              <div key={
+              <div key={col}>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 600, textTransform: "uppercase", letterSpacing: "1px", color: "#fff", marginBottom: 16 }}>{col}</div>
+                <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 11 }}>
+                  {FOOT[col].map((l) => (
+                    <li key={l.label}><a href={"#/" + l.page} onClick={link(l)} style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--on-navy-soft)", textDecoration: "none", transition: "color var(--dur-base)" }} onMouseEnter={(e) => (e.currentTarget.style.color = "var(--gold-500)")} onMouseLeave={(e) => (e.currentTarget.style.color = "var(--on-navy-soft)")}>{l.label}</a></li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <div style={{ height: 1, background: "var(--navy-700)", margin: "40px 0 24px" }} />
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--on-navy-faint)" }}>
+            <span>© 2026 LogiBell. Carrier-focused operations support.</span>
+            <span style={{ display: "flex", gap: 20 }}>
+              <a href="#/privacy" onClick={(e) => { e.preventDefault(); navigate("privacy"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Privacy</a>
+              <a href="#/terms" onClick={(e) => { e.preventDefault(); navigate("terms"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Terms</a>
+            </span>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
+  window.LBChrome = { AnnouncementBar, TopNav, Footer };
+})();

@@ -269,4 +269,25 @@
     return (
       <Section pt={16}>
         <div style={{ background: "var(--navy-800)", borderRadius: "var(--radius-2xl)", padding: "40px 44px", position: "relative", overflow: "hidden", display: "flex", gap: 32, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
-          <div style={{ position: "absolute", top: -
+          <div style={{ position: "absolute", top: -70, right: -50, width: 260, height: 260, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,203,31,0.12), transparent 70%)" }} />
+          <div style={{ position: "relative", display: "flex", gap: 20, alignItems: "center", maxWidth: 680 }}>
+            <span style={{ width: 56, height: 56, borderRadius: "50%", background: "var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+              <Icon name="users" size={26} color="var(--gold-500)" />
+            </span>
+            <div>
+              <h2 style={{ fontFamily: "var(--font-display)", fontSize: 24, fontWeight: 700, color: "#fff", margin: "0 0 8px", letterSpacing: "-0.3px" }}>Refer a carrier, get rewarded.</h2>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 15.5, lineHeight: 1.6, color: "var(--on-navy-soft)", margin: 0 }}>
+                Know another carrier who could use LogiBell? Refer them — when they come on board, you're rewarded for the connection.
+              </p>
+            </div>
+          </div>
+          <div style={{ position: "relative" }}>
+            <Button variant="gold" size="lg" iconRight={<Icon name="arrow-right" size={17} />} onClick={() => go("contact", "referral")}>Refer a carrier</Button>
+          </div>
+        </div>
+      </Section>
+    );
+  }
+
+  window.LBHome = { Hero, WhatIs, Services, ServiceGrid, SERVICE_CATS, LoadBoard, ReferralBand, Section, Eyebrow };
+})();

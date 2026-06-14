@@ -174,4 +174,16 @@
                     <Button variant="primary" full size="lg" type="submit" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />}>Ring the LogiBell</Button>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
                       <Icon name="lock" size={13} color="var(--text-muted)" /> Your details stay between us. No spam, no obligations.
-                
+                    </p>
+                  </form>
+                )}
+              </Card>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  window.LBContact = { ContactPage };
+})();
