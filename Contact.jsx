@@ -7,12 +7,19 @@
   const { Button, Card, Badge, Input, Tabs } = window.DS;
   const Icon = window.Icon;
 
+  /* Onboarding leads post to Formspree (works on Vercel - no backend needed).
+     Create a form at https://formspree.io and paste its endpoint ID below,
+     replacing mqeowqab. Submissions are emailed to info@logibell.com. */
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mqeowqab";
+
   function ContactPage({ navigate }) {
     const go = navigate || window.__lbnav || (() => {});
     const [equip, setEquip] = React.useState("semi");
     const [sent, setSent] = React.useState(false);
     const [form, setForm] = React.useState({ name: "", company: "", phone: "", email: "", mc: "", notes: "" });
     const [errors, setErrors] = React.useState({});
+    const [sending, setSending] = React.useState(false);
+    const [submitError, setSubmitError] = React.useState(false);
     const set = (k) => (e) => {
       const v = e.target.value;
       setForm((f) => ({ ...f, [k]: v }));
@@ -30,7 +37,7 @@
       return errs;
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
       // Guard: only the explicit submit button (or implicit Enter-in-text-field
       // submission, submitter == null) may submit. Any other control inside the
@@ -39,10 +46,26 @@
       if (submitter && submitter.getAttribute("type") !== "submit") return;
       const errs = validate();
       if (Object.keys(errs).length) { setErrors(errs); return; }
-      /* PROVISIONAL: wire to real backend before launch. Default destination =
-         Netlify Forms (name="onboarding"). Confirm destination + notification email. */
       setErrors({});
-      setSent(true);
+      setSubmitError(false);
+      setSending(true);
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            name: form.name, company: form.company, phone: form.phone,
+            email: form.email, mc: form.mc, equipment: equip, notes: form.notes,
+            _subject: "New onboarding request - LogiBell website",
+          }),
+        });
+        if (!res.ok) throw new Error("submit failed");
+        setSent(true);
+      } catch (err) {
+        setSubmitError(true);
+      } finally {
+        setSending(false);
+      }
     }
 
     /* PROVISIONAL — confirm phone, email, address, hours before launch (PRE-LAUNCH.md) */
@@ -143,11 +166,9 @@
                     <Button variant="secondary" size="md" onClick={() => setSent(false)}>Submit another</Button>
                   </div>
                 ) : (
-                  <form name="onboarding" method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={handleSubmit}>
-                    {/* Netlify Forms plumbing (no-op in prototype) */}
-                    <input type="hidden" name="form-name" value="onboarding" />
-                    <input type="hidden" name="equipment" value={equip} />
-                    <p style={{ display: "none" }}><label>Don't fill this out: <input name="bot-field" /></label></p>
+                  <form noValidate onSubmit={handleSubmit}>
+                    {/* Formspree honeypot - bots fill this hidden field; real users never see it */}
+                    <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
                     <h3 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 600, color: "var(--text-heading)", marginBottom: 6 }}>Start onboarding</h3>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", marginBottom: 24 }}>We'll only use this to get you set up.</p>
 
@@ -171,7 +192,12 @@
                       <Input label="Tell us about your operation" name="notes" multiline rows={4} placeholder="Lanes you prefer, current setup, what you need help with…" value={form.notes} onChange={set("notes")} />
                     </div>
 
-                    <Button variant="primary" full size="lg" type="submit" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />}>Ring the LogiBell</Button>
+                    <Button variant="primary" full size="lg" type="submit" disabled={sending} iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />}>{sending ? "Ringing..." : "Ring the LogiBell"}</Button>
+                    {submitError && (
+                      <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "#c0392b", textAlign: "center", marginTop: 12 }}>
+                        Something went wrong sending that. Please try again, or call (909) 277-7177.
+                      </p>
+                    )}
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
                       <Icon name="lock" size={13} color="var(--text-muted)" /> Your details stay between us. No spam, no obligations.
                     </p>

@@ -16,10 +16,14 @@
   ];
 
   /* ---- Free check form (open to non-clients) ----
-     PROVISIONAL: wire to real backend before launch. Default destination =
-     Netlify Forms (name="logiguard-check") → reply goes out from info@logibell.com. */
+     Submissions post to Formspree (works on Vercel - no backend needed). Create a
+     form at https://formspree.io and paste its endpoint ID below, replacing
+     mzdqyrzj. Replies go out from info@logibell.com. */
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mzdqyrzj";
   function LogiGuardCheckForm() {
     const [sent, setSent] = React.useState(false);
+    const [sending, setSending] = React.useState(false);
+    const [submitError, setSubmitError] = React.useState(false);
     const [form, setForm] = React.useState({ broker: "", mc: "", email: "", details: "" });
     const [errors, setErrors] = React.useState({});
     const set = (k) => (e) => {
@@ -36,14 +40,31 @@
       return errs;
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
       const submitter = e.nativeEvent && e.nativeEvent.submitter;
       if (submitter && submitter.getAttribute("type") !== "submit") return;
       const errs = validate();
       if (Object.keys(errs).length) { setErrors(errs); return; }
       setErrors({});
-      setSent(true);
+      setSubmitError(false);
+      setSending(true);
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            broker: form.broker, mc: form.mc, email: form.email, details: form.details,
+            _subject: "New LogiGuard check - LogiBell website",
+          }),
+        });
+        if (!res.ok) throw new Error("submit failed");
+        setSent(true);
+      } catch (err) {
+        setSubmitError(true);
+      } finally {
+        setSending(false);
+      }
     }
 
     return (
@@ -60,9 +81,9 @@
             <Button variant="secondary" size="md" onClick={() => { setSent(false); setForm({ broker: "", mc: "", email: "", details: "" }); }}>Run another check</Button>
           </div>
         ) : (
-          <form name="logiguard-check" method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={handleSubmit}>
-            <input type="hidden" name="form-name" value="logiguard-check" />
-            <p style={{ display: "none" }}><label>Don't fill this out: <input name="bot-field" /></label></p>
+          <form noValidate onSubmit={handleSubmit}>
+            {/* Formspree honeypot - bots fill this hidden field; real users never see it */}
+            <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>
               <h3 style={{ fontFamily: "var(--font-display)", fontSize: 22, fontWeight: 600, color: "var(--text-heading)", margin: 0 }}>Run a free check</h3>
               <Badge tone="goldsoft" uppercase>Free</Badge>
@@ -78,7 +99,12 @@
             <div style={{ marginBottom: 22 }}>
               <Input label="Load details (optional)" name="details" multiline rows={3} placeholder="Lane, rate, pickup date, anything that felt off…" value={form.details} onChange={set("details")} />
             </div>
-            <Button variant="primary" full size="lg" type="submit" iconLeft={<Icon name="shield-check" size={18} color="rgb(255, 203, 31)" />}>Verify before you haul</Button>
+            <Button variant="primary" full size="lg" type="submit" disabled={sending} iconLeft={<Icon name="shield-check" size={18} color="rgb(255, 203, 31)" />}>{sending ? "Checking..." : "Verify before you haul"}</Button>
+            {submitError && (
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "#c0392b", textAlign: "center", marginTop: 12 }}>
+                Something went wrong sending that. Please try again, or email info@logibell.com.
+              </p>
+            )}
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
               <Icon name="lock" size={13} color="var(--text-muted)" /> Results go to your email only. No spam, no obligations.
             </p>
