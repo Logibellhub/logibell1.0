@@ -16,9 +16,9 @@
    ─────────────────────────────────────────────────────────────────────────── */
 window.LB_LANES_UPDATED = "Updated weekly"; // PROVISIONAL — set to a real week label, e.g. "Week of Jun 2"
 window.LB_LANES = [
-  { from: "Los Angeles, CA", to: "Phoenix, AZ",       equipment: "Dry Van",    mode: "FTL", rate: "$1,850" },
-  { from: "Dallas, TX",      to: "Memphis, TN",       equipment: "Reefer",     mode: "FTL", rate: "$2,300" },
-  { from: "Atlanta, GA",     to: "Miami, FL",         equipment: "Flatbed",    mode: "FTL", rate: "$1,650" },
-  { from: "Chicago, IL",     to: "Detroit, MI",       equipment: "Power Only", mode: "FTL", rate: "$900"   },
-  { from: "Houston, TX",     to: "New Orleans, LA",   equipment: "Box",        mode: "LTL", rate: "$780"   },
+  { from: "Perris, CA",          to: "Mesa, AZ",     equipment: "Dry Van", mode: "FTL",        rate: "$1,928" },
+  { from: "Los Angeles, CA",     to: "Salt Lake City, UT", equipment: "Dry Van", mode: "FTL",  rate: "$3,800" },
+  { from: "Santa Fe Springs, CA", to: "Dallas, TX",  equipment: "Dry Van", mode: "FTL",        rate: "$4,800" },
+  { from: "Garden Grove, CA",    to: "Dayton, TX",   equipment: "Dry Van", mode: "Multi-Stop", rate: "$5,100" },
+  { from: "Ogden, UT",           to: "Ontario, CA",  equipment: "Dry Van", mode: "LTL",        rate: "$1,000" },
 ];

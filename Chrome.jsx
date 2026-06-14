@@ -207,6 +207,15 @@
                 <a href="mailto:info@logibell.com" style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "var(--on-navy-soft)", textDecoration: "none" }}><Icon name="mail" size={15} color="var(--gold-500)" /> info@logibell.com</a>
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 9 }}><Icon name="map-pin" size={15} color="var(--gold-500)" /> 5320 Harmony Ave, Los Angeles, CA 91601</span>
               </div>
+              {/* Social — LogiBell Instagram + Facebook */}
+              <div style={{ display: "flex", gap: 10, marginTop: 22 }}>
+                <a href="https://www.instagram.com/logibell.dispatch?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="LogiBell on Instagram" className="lb-social-link" style={{ width: 36, height: 36, borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1px solid var(--navy-700)", color: "var(--on-navy-soft)", transition: "background var(--dur-base), border-color var(--dur-base), color var(--dur-base)" }}>
+                  <Icon name="instagram" size={17} />
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61588442100021&mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="LogiBell on Facebook" className="lb-social-link" style={{ width: 36, height: 36, borderRadius: "50%", display: "inline-flex", alignItems: "center", justifyContent: "center", border: "1px solid var(--navy-700)", color: "var(--on-navy-soft)", transition: "background var(--dur-base), border-color var(--dur-base), color var(--dur-base)" }}>
+                  <Icon name="facebook" size={17} />
+                </a>
+              </div>
             </div>
             {Object.keys(FOOT).map((col) => (
               <div key={col}>

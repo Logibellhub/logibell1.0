@@ -28,9 +28,10 @@
      Modern "live lane activity" board. Data comes from window.LB_LANES
      (see lanes.js) so the owner can update booked lanes weekly without
      touching layout. Anonymized lanes only — no names. */
-  function LoadBoard() {
+  function LoadBoard({ navigate }) {
     const lanes = (typeof window !== "undefined" && window.LB_LANES) || [];
     const updated = (typeof window !== "undefined" && window.LB_LANES_UPDATED) || "Updated weekly";
+    const goContact = () => { if (navigate) navigate("contact", "onboard"); };
     return (
       <div style={{ position: "relative" }}>
         <div style={{ position: "absolute", inset: "-26px -26px auto auto", width: 116, height: 116, background: "var(--white)", border: "1px solid var(--line)", borderRadius: "var(--radius-2xl)", boxShadow: "var(--shadow-md)", zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 14 }}>
@@ -47,7 +48,7 @@
             </span>
           </div>
           {/* column header */}
-          <div style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, padding: "11px 20px", background: "var(--navy-950)", borderBottom: "1px solid var(--navy-700)", fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: "1px", textTransform: "uppercase", color: "var(--on-navy-faint)" }}>
+          <div className="lb-lane-row lb-lane-headrow" style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, padding: "11px 20px", background: "var(--navy-950)", borderBottom: "1px solid var(--navy-700)", fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: "1px", textTransform: "uppercase", color: "var(--on-navy-faint)" }}>
             <span>Lane</span><span>Equipment</span><span>Mode</span><span style={{ textAlign: "right" }}>Rate</span>
           </div>
           {/* rows */}
@@ -57,21 +58,36 @@
                 Recent lanes — updated weekly.
               </div>
             ) : lanes.map((l, i) => (
-              <div key={i} className="lb-lane-row" style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, alignItems: "center", padding: "14px 20px", borderBottom: i < lanes.length - 1 ? "1px solid var(--navy-800)" : "none", animationDelay: (i * 90) + "ms" }}>
+              <div
+                key={i}
+                className="lb-lane-row"
+                role="button"
+                tabIndex={0}
+                aria-label={"Lane " + l.from + " to " + l.to + " — Ring the LogiBell to get onboarded"}
+                onClick={goContact}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goContact(); } }}
+                style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, alignItems: "center", padding: "14px 20px", borderBottom: i < lanes.length - 1 ? "1px solid var(--navy-800)" : "none", animationDelay: (i * 90) + "ms", "--lb-glow-delay": (i * 1.6) + "s" }}
+              >
                 <span style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 500, color: "#fff", minWidth: 0 }}>
                   <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.from}</span>
-                  <Icon name="arrow-right" size={13} color="var(--gold-500)" style={{ flex: "none" }} />
+                  <Icon name="arrow-right" size={13} color="var(--gold-500)" className="lb-lane-arrow" style={{ flex: "none" }} />
                   <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.to}</span>
                 </span>
                 <span><span style={{ display: "inline-block", fontFamily: "var(--font-sans)", fontSize: 11.5, fontWeight: 600, color: "var(--on-navy)", background: "var(--navy-700)", border: "1px solid var(--navy-600)", borderRadius: "var(--radius-pill)", padding: "3px 10px", whiteSpace: "nowrap" }}>{l.equipment}</span></span>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--on-navy-soft)" }}>{l.mode}</span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 14, fontWeight: 600, color: "var(--gold-500)", textAlign: "right" }}>{l.rate}</span>
+                <span className="lb-lane-rate" style={{ fontFamily: "var(--font-mono)", fontSize: 14, fontWeight: 600, color: "var(--gold-500)", textAlign: "right", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 6 }}>
+                  <span className="lb-lane-rate-num">{l.rate}</span>
+                  <Icon name="arrow-up-right" size={13} color="var(--gold-500)" className="lb-lane-go" style={{ flex: "none" }} />
+                </span>
               </div>
             ))}
           </div>
           {/* footer */}
-          <div style={{ padding: "15px 22px", borderTop: "1px solid var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, background: "var(--navy-950)" }}>
-            <span style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--on-navy-faint)" }}>{updated}</span>
+          <div className="lb-lane-foot" style={{ padding: "15px 22px", borderTop: "1px solid var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap", background: "var(--navy-950)" }}>
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--on-navy-faint)", display: "inline-flex", alignItems: "center", gap: 7 }}>
+              {updated}
+              <span className="lb-lane-hint" style={{ color: "var(--on-navy-faint)" }}>· Tap a lane to get started</span>
+            </span>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: 13.5, color: "var(--gold-500)", fontWeight: 600 }}>Flat fee · Semi 6% · Box 6–8%</span>
           </div>
         </Card>
@@ -111,7 +127,7 @@
           </div>
 
           {/* Right: live load board */}
-          <LoadBoard />
+          <LoadBoard navigate={navigate} />
         </div>
       </Section>
     );

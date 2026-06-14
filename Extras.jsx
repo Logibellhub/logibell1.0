@@ -32,8 +32,25 @@
   ];
   const roleLabel = (id) => (ROLES.find((r) => r.id === id) || {}).label || id;
 
+  /* PROVISIONAL: form submissions post to Formspree (free tier, no backend
+     needed — works on Vercel, unlike the previous Netlify-only setup).
+     Setup (one-time, ~2 min): create a free form at https://formspree.io,
+     then replace "YOUR_FORM_ID" below with the ID it gives you. Submissions
+     land in your email + the Formspree dashboard, where you can read each
+     one and decide whether to approve it. To publish an approved review,
+     add it to the REVIEWS array above (or send it to me and I'll add it
+     and push the update). */
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mpqeoedr";
+
+  /* PROVISIONAL: link to your Google Business review form. Find it in your
+     Google Business Profile under "Get more reviews," or build one at
+     https://search.google.com/local/writereview using your Place ID. */
+  const GOOGLE_REVIEW_URL = "https://share.google/R94XivQ8cRbL0OLaA";
+
   function FeedbackForm() {
     const [sent, setSent] = React.useState(false);
+    const [sending, setSending] = React.useState(false);
+    const [submitError, setSubmitError] = React.useState(false);
     const [role, setRole] = React.useState("carrier");
     const [customRole, setCustomRole] = React.useState("");
     const [form, setForm] = React.useState({ name: "", text: "" });
@@ -44,7 +61,7 @@
       setErrors((er) => (er[k] ? { ...er, [k]: undefined } : er));
     };
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
       const submitter = e.nativeEvent && e.nativeEvent.submitter;
       if (submitter && submitter.getAttribute("type") !== "submit") return;
@@ -52,9 +69,23 @@
       if (!form.name.trim()) errs.name = "Please add your name.";
       if (!form.text.trim()) errs.text = "Tell us how it went — a sentence is plenty.";
       if (Object.keys(errs).length) { setErrors(errs); return; }
-      /* PROVISIONAL: Netlify Forms (name="feedback") — confirm destination before launch. */
       setErrors({});
-      setSent(true);
+      setSubmitError(false);
+      setSending(true);
+      const roleValue = role === "other" ? (customRole.trim() || "other") : role;
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ name: form.name, role: roleValue, feedback: form.text, _subject: "New LogiBell website feedback" }),
+        });
+        if (!res.ok) throw new Error("submit failed");
+        setSent(true);
+      } catch (err) {
+        setSubmitError(true);
+      } finally {
+        setSending(false);
+      }
     }
 
     return (
@@ -70,10 +101,7 @@
             </p>
           </div>
         ) : (
-          <form name="feedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" noValidate onSubmit={handleSubmit}>
-            <input type="hidden" name="form-name" value="feedback" />
-            <input type="hidden" name="role" value={role === "other" ? (customRole.trim() || "other") : role} />
-            <p style={{ display: "none" }}><label>Don't fill this out: <input name="bot-field" /></label></p>
+          <form noValidate onSubmit={handleSubmit}>
             <h3 style={{ fontFamily: "var(--font-display)", fontSize: 21, fontWeight: 600, color: "var(--text-heading)", marginBottom: 6 }}>Share your experience</h3>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", marginBottom: 20 }}>Worked with us? We'd like to hear how it went.</p>
             <div style={{ marginBottom: 16 }}>
@@ -91,7 +119,12 @@
             <div style={{ marginBottom: 20 }}>
               <Input label="Your feedback" name="text" multiline rows={4} placeholder="How was working with LogiBell?" required error={errors.text} value={form.text} onChange={set("text")} />
             </div>
-            <Button variant="primary" full size="md" type="submit">Submit feedback</Button>
+            {submitError ? (
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--danger)", marginBottom: 12 }}>
+                Something went wrong sending this. Please try again, or email us directly at info@logibell.com.
+              </p>
+            ) : null}
+            <Button variant="primary" full size="md" type="submit" disabled={sending}>{sending ? "Sending…" : "Submit feedback"}</Button>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 12 }}>
               Reviews are moderated before they appear, to keep feedback genuine.
             </p>
@@ -116,6 +149,12 @@
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)", maxWidth: 460, marginBottom: 14 }}>
               Honest feedback from the carriers, drivers, and brokers we work with — shared as it comes in and moderated to keep it genuine.
             </p>
+            <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer"
+              style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "var(--font-sans)", fontSize: 13.5, fontWeight: 600, color: "var(--navy-800)", textDecoration: "none", border: "1px solid var(--line)", borderRadius: "var(--radius-pill)", padding: "9px 16px", marginBottom: 24, background: "var(--white)" }}>
+              <Icon name="star" size={15} color="var(--gold-500)" />
+              Leave us a Google review
+              <Icon name="arrow-up-right" size={13} color="var(--text-muted)" />
+            </a>
             {REVIEWS.length === 0 ? (
               <React.Fragment>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, lineHeight: 1.6, color: "var(--text-muted)", maxWidth: 480, display: "flex", gap: 8, alignItems: "flex-start" }}>

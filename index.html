@@ -226,13 +226,40 @@
   @media (max-width: 760px) { .lb-back-top { width: 52px; height: 52px; border-radius: 14px; } }
   @media (prefers-reduced-motion: reduce) { .lb-back-top { transition: opacity 200ms linear, visibility 200ms linear; transform: none; } .lb-back-top:hover { transform: none; } }
 
-  /* ---- Load board ---- */
+  /* ---- Footer social icons ---- */
+  .lb-social-link:hover, .lb-social-link:focus-visible { background: var(--gold-500); border-color: var(--gold-500); color: var(--navy-900); }
+
+  /* ---- Load board ----
+     "Live, breathing, interactive" board: rows are clickable (→ Get Onboarded),
+     hover/focus reveal a gold "go" cue, and a slow ambient glow sweeps through
+     rows on a loop to read as active/alive without claiming real-time tracking. */
   .lb-live-dot { box-shadow: 0 0 0 0 rgba(31,138,91,0.5); }
+  .lb-lane-row:not(.lb-lane-headrow) { cursor: pointer; transition: background 180ms var(--ease-out), box-shadow 180ms var(--ease-out); }
+  .lb-lane-row:not(.lb-lane-headrow):hover, .lb-lane-row:not(.lb-lane-headrow):focus-visible { background: rgba(255,203,31,0.07); }
+  .lb-lane-row:not(.lb-lane-headrow):focus-visible { outline: 2px solid var(--gold-500); outline-offset: -2px; }
+  .lb-lane-go { opacity: 0; transform: translate(-3px, 3px) scale(0.85); transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out); }
+  .lb-lane-row:hover .lb-lane-go, .lb-lane-row:focus-visible .lb-lane-go { opacity: 1; transform: translate(0,0) scale(1); }
+  .lb-lane-arrow { transition: transform 220ms var(--ease-out); }
+  .lb-lane-row:hover .lb-lane-arrow, .lb-lane-row:focus-visible .lb-lane-arrow { transform: translateX(3px); }
+  .lb-lane-hint { display: none; }
+  @media (min-width: 1001px) { .lb-lane-hint { display: inline; } }
   @media (prefers-reduced-motion: no-preference) {
     .lb-live-dot { animation: lbPulse 2s var(--ease-out) infinite; }
     @keyframes lbPulse { 0% { box-shadow: 0 0 0 0 rgba(31,138,91,0.5); } 70% { box-shadow: 0 0 0 7px rgba(31,138,91,0); } 100% { box-shadow: 0 0 0 0 rgba(31,138,91,0); } }
     .lb-lane-row { opacity: 0; animation: lbRowIn 460ms var(--ease-out) forwards; }
+    .lb-lane-row:not(.lb-lane-headrow) { animation-name: lbRowIn, lbLaneGlow; animation-duration: 460ms, 8s; animation-timing-function: var(--ease-out), ease-in-out; animation-iteration-count: 1, infinite; animation-fill-mode: forwards, none; animation-delay: var(--lb-glow-delay, 0s), calc(2.4s + var(--lb-glow-delay, 0s)); }
     @keyframes lbRowIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes lbLaneGlow {
+      0%, 78%, 100% { box-shadow: inset 3px 0 0 0 transparent; background-color: transparent; }
+      4% { box-shadow: inset 3px 0 0 0 var(--gold-500); background-color: rgba(255,203,31,0.05); }
+      14% { box-shadow: inset 3px 0 0 0 transparent; background-color: transparent; }
+    }
+  }
+  @media (max-width: 480px) {
+    .lb-lane-row { grid-template-columns: 1.6fr 0.7fr 0.9fr !important; padding: 12px 16px !important; }
+    .lb-lane-row > span:nth-child(3) { display: none; } /* hide Mode column on very small screens */
+    .lb-lane-foot { padding: 14px 16px !important; gap: 8px !important; }
+    .lb-lane-foot > span:last-child { font-size: 12px !important; }
   }
 </style>
 </head>
