@@ -105,15 +105,14 @@
             <Eyebrow>Carrier-Focused Operations Support</Eyebrow>
             <h1 className="lb-display-xl" style={{ marginBottom: 22 }}>Your Operation.<br /><span style={{ color: "var(--navy-700)" }}>Fully Backed.</span></h1>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 19, lineHeight: 1.55, color: "var(--text-strong)", maxWidth: 520, marginBottom: 14, fontWeight: 500 }}>
-              Dispatch is the entry point; operational support builds the business.
+              The business behind every load — handled, so you can keep your focus on the road.
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.6, color: "var(--text-body)", maxWidth: 520, marginBottom: 30 }}>
-              We handle the administrative work behind every load — broker communication, paperwork, rate confirmations — and connect you to a vetted partner network as your operation grows. Stay as hands-on as you want: we carry as much of the business side as you'd like, and you stay in control of your operation.
+              From sourcing loads to broker calls, rate confirmations, and paperwork, we handle the back office behind every load — and connect you to a vetted partner network as you grow. Stay as hands-on as you want; you keep control of your operation.
             </p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
               <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
               <Button variant="secondary" size="lg" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => navigate("pricing")}>See our pricing</Button>
-              <Button variant="ghost" size="lg" iconLeft={<Icon name="phone" size={17} color="var(--gold-500)" />} onClick={() => navigate("contact")}>Schedule a Call</Button>
             </div>
             <div style={{ display: "flex", gap: 22, flexWrap: "wrap", alignItems: "center", marginTop: 18 }}>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
@@ -141,7 +140,7 @@
         <div style={{ maxWidth: 880, margin: "0 auto", textAlign: "center", position: "relative" }}>
           <Eyebrow>What LogiBell Is</Eyebrow>
           <p className="lb-display-md" style={{ color: "var(--text-heading)", lineHeight: 1.3, letterSpacing: "-0.5px" }}>
-            LogiBell is a carrier-focused operations support company helping carriers of every size — from owner-operators to small and larger fleets — with <span style={{ color: "var(--navy-700)", borderBottom: "3px solid var(--gold-500)" }}>dispatch</span>, broker communication, paperwork coordination, and partner access.
+            For carriers of every size — from owner-operators to larger fleets — LogiBell handles <span style={{ color: "var(--navy-700)", borderBottom: "3px solid var(--gold-500)" }}>dispatch</span>, broker communication, paperwork, and partner access, so your authority is represented and your back office stays organized.
           </p>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 17, lineHeight: 1.6, color: "var(--text-body)", marginTop: 26, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
             Dispatch starts the relationship. Operational support builds the business.
