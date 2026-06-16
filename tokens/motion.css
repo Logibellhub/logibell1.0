@@ -1,0 +1,43 @@
+/* ============================================================
+   LogiBell — motion layer (added 2026-06-14)
+   Auto-scrolling Lane Activity board + gently flowing route motif.
+   Animations are transform/stroke only and fully disabled under
+   prefers-reduced-motion (WCAG 2.1). On-brand: subtle, not flashy.
+   ============================================================ */
+
+/* Lane Activity — seamless upward marquee. The lane rows are rendered
+   twice inside .lb-lane-track, so translateY(-50%) advances exactly one
+   full set and the loop is seamless. Duration is set inline per lane count. */
+.lb-lane-scroll { height: 232px; overflow: hidden; position: relative; }
+.lb-lane-track {
+  animation-name: lb-lane-marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+.lb-lane-scroll:hover .lb-lane-track,
+.lb-lane-scroll:focus-within .lb-lane-track { animation-play-state: paused; }
+@keyframes lb-lane-marquee {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+/* Soft fade at the top and bottom edges so rows ease in and out of view
+   instead of cutting off hard. Gradient color matches the dark card. */
+.lb-lane-scroll::before,
+.lb-lane-scroll::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 26px;
+  pointer-events: none; z-index: 2;
+}
+.lb-lane-scroll::before { top: 0; background: linear-gradient(to bottom, var(--navy-800), rgba(25,57,96,0)); }
+.lb-lane-scroll::after  { bottom: 0; background: linear-gradient(to top, var(--navy-800), rgba(25,57,96,0)); }
+
+/* Route motif — the dotted path's dots drift along the route like lane
+   markings passing by. Subtle (path opacity stays at 0.07). */
+.lb-route-line { animation: lb-route-flow 7.5s linear infinite; }
+@keyframes lb-route-flow { to { stroke-dashoffset: -110; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .lb-lane-track { animation: none; }
+  .lb-route-line { animation: none; }
+}

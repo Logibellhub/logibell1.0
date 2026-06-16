@@ -42,8 +42,9 @@
     );
   }
 
-  /* Static dotted route-line motif for light sections — anchored in a corner
-     so text columns stay clean. Non-animated by design. */
+  /* Dotted route-line motif for light sections — anchored in a corner so text
+     columns stay clean. Dots flow gently along the route like lane markings
+     (.lb-route-line in styles.css); fully disabled under reduced-motion. */
   function RouteMotif({ corner = "tr", width = 440 }) {
     const pos = {
       tr: { top: -24, right: -36 },
@@ -54,7 +55,7 @@
     return (
       <div className="lb-amb" aria-hidden="true">
         <svg width={width} height={Math.round(width * 0.55)} viewBox="0 0 440 242" fill="none" style={{ position: "absolute", ...pos }}>
-          <path d="M8 222 C 96 158, 158 206, 224 136 S 348 44, 432 20" stroke="var(--navy-800)" strokeOpacity="0.07" strokeWidth="2" strokeDasharray="1 10" strokeLinecap="round"></path>
+          <path className="lb-route-line" d="M8 222 C 96 158, 158 206, 224 136 S 348 44, 432 20" stroke="var(--navy-800)" strokeOpacity="0.07" strokeWidth="2" strokeDasharray="1 10" strokeLinecap="round"></path>
           <circle cx="8" cy="222" r="4" fill="var(--navy-800)" fillOpacity="0.07"></circle>
           <circle cx="432" cy="20" r="4" fill="var(--navy-800)" fillOpacity="0.07"></circle>
         </svg>
