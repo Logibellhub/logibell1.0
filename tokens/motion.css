@@ -9,18 +9,9 @@
    twice inside .lb-lane-track, so translateY(-50%) advances exactly one
    full set and the loop is seamless. Duration is set inline per lane count. */
 .lb-lane-scroll { height: 232px; overflow: hidden; position: relative; }
-.lb-lane-track {
-  animation-name: lb-lane-marquee;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  will-change: transform;
-}
-.lb-lane-scroll:hover .lb-lane-track,
-.lb-lane-scroll:focus-within .lb-lane-track { animation-play-state: paused; }
-@keyframes lb-lane-marquee {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-50%); }
-}
+/* The upward scroll is driven by JS (requestAnimationFrame) in Home.jsx so it
+   keeps running on iOS Safari, where CSS animations pause under Low Power Mode. */
+.lb-lane-track { will-change: transform; }
 
 /* Soft fade at the top and bottom edges so rows ease in and out of view
    instead of cutting off hard. Gradient color matches the dark card. */

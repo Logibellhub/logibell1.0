@@ -76,7 +76,7 @@
         updated="June 15, 2026"
         intro="These terms govern your use of the LogiBell website and services."
         sections={[
-          { h: "Agreement to these terms", p: ["By using the LogiBell website or services, you agree to these terms. If you do not agree, please do not use them. These terms form an agreement between you (the carrier or visitor) and LogiBell."] },
+          { h: "Agreement to these terms", p: ["By using the LogiBell website or services, you agree to these terms. If you do not agree, please do not use them. These terms form an agreement between you (the carrier or visitor) and LogiBell LLC, referred to here as LogiBell."] },
           { h: "Our services", p: [
             "LogiBell provides carrier-focused operations support, starting with dispatch — load sourcing, broker communication, paperwork coordination, and access to vetted partners.",
             "LogiBell is not a freight broker, does not hold your operating authority, and does not operate as the carrier. You remain the motor carrier of record, responsible for your authority, your equipment, and the loads you accept.",
