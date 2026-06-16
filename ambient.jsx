@@ -69,51 +69,39 @@
      never affected. Trucks animate via SMIL and are omitted entirely under
      prefers-reduced-motion. */
   function FreightNetwork() {
-    const reduce = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const Truck = ({ pathId, dur, begin, color }) => (
-      <g>
-        <g fill={color} fillOpacity="0.9">
-          <rect x="-12" y="-6" width="15" height="10" rx="1.4" />
-          <rect x="3" y="-3.6" width="6" height="7.6" rx="1" />
-          <circle cx="-7" cy="5.4" r="1.8" fill="var(--navy-900)" />
-          <circle cx="-1" cy="5.4" r="1.8" fill="var(--navy-900)" />
-          <circle cx="7" cy="5.4" r="1.8" fill="var(--navy-900)" />
-        </g>
-        <animateMotion dur={dur + "s"} begin={(begin || 0) + "s"} repeatCount="indefinite" rotate="auto">
-          <mpath href={"#" + pathId} />
-        </animateMotion>
+    // Static, calm route-map texture. The left half is fully masked out so it
+    // never sits behind the headline/body copy; the visible network lives in the
+    // top-right band above the lane board. Two small trucks read as "trucking"
+    // without any perpetual motion (motion lives in the one-time welcome).
+    const Truck = ({ x, y, r, color }) => (
+      <g transform={"translate(" + x + " " + y + ") rotate(" + r + ")"} fill={color} fillOpacity="0.8">
+        <rect x="-11" y="-5.5" width="14" height="9.5" rx="1.4" />
+        <rect x="3" y="-3.4" width="5.5" height="7" rx="1" />
+        <circle cx="-6.5" cy="5" r="1.6" fill="var(--navy-900)" />
+        <circle cx="-0.5" cy="5" r="1.6" fill="var(--navy-900)" />
+        <circle cx="6.5" cy="5" r="1.6" fill="var(--navy-900)" />
       </g>
     );
     return (
       <div className="lb-amb" aria-hidden="true">
         <svg viewBox="0 0 1200 560" preserveAspectRatio="xMidYMid slice"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%",
-            WebkitMaskImage: "linear-gradient(90deg, transparent 0%, #000 32%, #000 100%)",
-            maskImage: "linear-gradient(90deg, transparent 0%, #000 32%, #000 100%)" }}>
-          <g stroke="var(--navy-800)" strokeOpacity="0.07" strokeWidth="1.4" fill="none">
-            <path d="M150 150 L370 230" /><path d="M370 230 L620 170" /><path d="M620 170 L1000 150" />
-            <path d="M370 230 L560 360" /><path d="M560 360 L840 250" /><path d="M840 250 L1000 150" />
+            WebkitMaskImage: "linear-gradient(90deg, transparent 0%, transparent 50%, #000 74%, #000 100%)",
+            maskImage: "linear-gradient(90deg, transparent 0%, transparent 50%, #000 74%, #000 100%)" }}>
+          <g stroke="var(--navy-800)" strokeOpacity="0.06" strokeWidth="1.4" fill="none">
+            <path d="M620 170 L1000 150" /><path d="M560 360 L840 250" /><path d="M840 250 L1000 150" />
             <path d="M840 250 L910 410" /><path d="M910 410 L1090 340" /><path d="M620 170 L840 250" />
-            <path d="M330 400 L560 360" /><path d="M370 230 L330 400" />
+            <path d="M620 170 L560 360" />
           </g>
-          <g fill="var(--navy-800)" fillOpacity="0.11">
-            <circle cx="150" cy="150" r="3.5" /><circle cx="370" cy="230" r="3.5" /><circle cx="330" cy="400" r="3" />
+          <g fill="var(--navy-800)" fillOpacity="0.10">
             <circle cx="560" cy="360" r="3.5" /><circle cx="1000" cy="150" r="3.5" /><circle cx="910" cy="410" r="3" />
             <circle cx="1090" cy="340" r="3" />
           </g>
-          <g fill="var(--gold-500)" fillOpacity="0.5">
+          <g fill="var(--gold-500)" fillOpacity="0.45">
             <circle cx="620" cy="170" r="4" /><circle cx="840" cy="250" r="4" />
           </g>
-          <path id="lbfn-r1" d="M150 150 L370 230 L620 170 L840 250 L1000 150" fill="none" stroke="none" />
-          <path id="lbfn-r2" d="M330 400 L560 360 L910 410 L1090 340" fill="none" stroke="none" />
-          <path id="lbfn-r3" d="M370 230 L560 360 L840 250" fill="none" stroke="none" />
-          {!reduce ? (
-            <React.Fragment>
-              <Truck pathId="lbfn-r1" dur={21} begin={0} color="var(--gold-500)" />
-              <Truck pathId="lbfn-r2" dur={26} begin={4} color="var(--gold-600)" />
-              <Truck pathId="lbfn-r3" dur={24} begin={8} color="var(--navy-600)" />
-            </React.Fragment>
-          ) : null}
+          <Truck x={730} y={205} r={20} color="var(--gold-500)" />
+          <Truck x={925} y={198} r={-32} color="var(--navy-600)" />
         </svg>
       </div>
     );
