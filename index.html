@@ -344,23 +344,11 @@
 <div id="root"></div>
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/lucide@0.544.0/dist/umd/lucide.min.js"></script>
 <script src="./_ds_bundle.js"></script>
 <script src="lanes.js"></script>
-<script type="text/babel" src="icons.jsx"></script>
-<script type="text/babel" src="ds.jsx"></script>
-<script type="text/babel" src="FlipCard.jsx"></script>
-<script type="text/babel" src="ambient.jsx"></script>
-<script type="text/babel" src="Chrome.jsx"></script>
-<script type="text/babel" src="Home.jsx"></script>
-<script type="text/babel" src="Home2.jsx"></script>
-<script type="text/babel" src="LogiGuard.jsx"></script>
-<script type="text/babel" src="Extras.jsx"></script>
-<script type="text/babel" src="Pricing.jsx"></script>
-<script type="text/babel" src="Contact.jsx"></script>
-<script type="text/babel" src="Pages.jsx"></script>
-<script type="text/babel" src="Legal.jsx"></script>
-<script type="text/babel" src="App.jsx"></script>
+<!-- App is precompiled & minified into app.min.js (no in-browser Babel) for speed.
+     Source of truth is the .jsx files; rebuild app.min.js when they change. -->
+<script src="./app.min.js"></script>
 </body>
 </html>
