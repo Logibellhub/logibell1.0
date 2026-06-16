@@ -177,11 +177,11 @@
                       <Tabs value={equip} onChange={setEquip} tabs={[{ id: "semi", label: "Semi" }, { id: "box", label: "Box / Hotshot" }, { id: "sprinter", label: "Sprinter / Non-CDL" }]} />
                     </div>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                    <div className="lb-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
                       <Input label="Full name" name="name" placeholder="Jordan Carter" required error={errors.name} value={form.name} onChange={set("name")} />
                       <Input label="Company / MC name" name="company" placeholder="Carter Freight LLC" value={form.company} onChange={set("company")} />
                     </div>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+                    <div className="lb-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
                       <Input label="Phone" name="phone" type="tel" placeholder="(000) 000-0000" required error={errors.phone} value={form.phone} onChange={set("phone")} />
                       <Input label="Email" name="email" type="email" placeholder="you@company.com" error={errors.email} value={form.email} onChange={set("email")} />
                     </div>
