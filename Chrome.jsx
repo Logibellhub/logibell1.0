@@ -230,7 +230,7 @@
           </div>
           <div style={{ height: 1, background: "var(--navy-700)", margin: "40px 0 24px" }} />
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16, flexWrap: "wrap", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--on-navy-faint)" }}>
-            <span>© 2026 LogiBell. Carrier-focused operations support.</span>
+            <span>© 2026 LogiBell LLC. Carrier-focused operations support.</span>
             <span style={{ display: "flex", gap: 20 }}>
               <a href="#/privacy" onClick={(e) => { e.preventDefault(); navigate("privacy"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Privacy</a>
               <a href="#/terms" onClick={(e) => { e.preventDefault(); navigate("terms"); }} style={{ color: "var(--on-navy-faint)", textDecoration: "none" }}>Terms</a>

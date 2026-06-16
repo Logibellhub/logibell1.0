@@ -32,6 +32,37 @@
     const lanes = (typeof window !== "undefined" && window.LB_LANES) || [];
     const updated = (typeof window !== "undefined" && window.LB_LANES_UPDATED) || "Updated weekly";
     const goContact = () => { if (navigate) navigate("contact", "onboard"); };
+
+    // Auto-scroll the lane list with JS (requestAnimationFrame) instead of a CSS
+    // animation: iOS Safari pauses CSS animations under Low Power Mode, which
+    // froze the board on iPhone. JS keeps it moving. Honors prefers-reduced-motion
+    // and pauses on hover. Rows are rendered twice, so we loop at half the height.
+    const trackRef = React.useRef(null);
+    const winRef = React.useRef(null);
+    React.useEffect(() => {
+      const track = trackRef.current, win = winRef.current;
+      if (!track || !win) return;
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      let raf, y = 0, last = null, paused = false;
+      const SPEED = 26; // px per second
+      const step = (t) => {
+        if (last == null) last = t;
+        const dt = Math.min((t - last) / 1000, 0.05); last = t;
+        if (!paused) {
+          const half = track.scrollHeight / 2;
+          y += SPEED * dt;
+          if (half > 0 && y >= half) y -= half;
+          track.style.transform = "translateY(" + (-y).toFixed(2) + "px)";
+        }
+        raf = requestAnimationFrame(step);
+      };
+      const enter = () => { paused = true; }, leave = () => { paused = false; };
+      win.addEventListener("mouseenter", enter);
+      win.addEventListener("mouseleave", leave);
+      raf = requestAnimationFrame(step);
+      return () => { cancelAnimationFrame(raf); win.removeEventListener("mouseenter", enter); win.removeEventListener("mouseleave", leave); };
+    }, [lanes.length]);
+
     return (
       <div style={{ position: "relative" }}>
         <div style={{ position: "absolute", inset: "-26px -26px auto auto", width: 116, height: 116, background: "var(--white)", border: "1px solid var(--line)", borderRadius: "var(--radius-2xl)", boxShadow: "var(--shadow-md)", zIndex: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: 14 }}>
@@ -51,16 +82,15 @@
           <div className="lb-lane-row lb-lane-headrow" style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, padding: "11px 20px", background: "var(--navy-950)", borderBottom: "1px solid var(--navy-700)", fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: "1px", textTransform: "uppercase", color: "var(--on-navy-faint)" }}>
             <span>Lane</span><span>Equipment</span><span>Mode</span><span style={{ textAlign: "right" }}>Rate</span>
           </div>
-          {/* rows — auto-scrolling marquee window. Lanes are rendered twice so
-             the upward scroll loops seamlessly (track animates to -50%). Hover
-             pauses it; prefers-reduced-motion disables it (see styles.css). */}
+          {/* rows — JS-driven auto-scroll (see the effect above). Lanes are
+             rendered twice so the upward scroll loops seamlessly at half height. */}
           {lanes.length === 0 ? (
             <div style={{ padding: "34px 22px", textAlign: "center", fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--on-navy-soft)" }}>
               Recent lanes — updated weekly.
             </div>
           ) : (
-            <div className="lb-lane-scroll">
-              <div className="lb-lane-track" style={{ animationDuration: Math.max(lanes.length * 2.6, 12) + "s" }}>
+            <div className="lb-lane-scroll" ref={winRef}>
+              <div className="lb-lane-track" ref={trackRef}>
                 {lanes.concat(lanes).map((l, idx) => {
                   const clone = idx >= lanes.length;
                   return (
