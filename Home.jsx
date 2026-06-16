@@ -3,7 +3,7 @@
   const { Button, Card, Badge } = window.DS;
   const Icon = window.Icon;
   const { FlipCard } = window.LBFlip;
-  const { RouteMotif } = window.LBAmbient;
+  const { RouteMotif, FreightNetwork } = window.LBAmbient;
 
   /* Atmosphere pass: generous default section rhythm. Explicit pt/pb still
      override for intentionally tight bands. */
@@ -109,7 +109,7 @@
   function Hero({ navigate }) {
     return (
       <Section pt={76} pb={88} style={{ position: "relative", overflow: "hidden" }}>
-        <RouteMotif corner="br" />
+        <FreightNetwork />
         <div className="lb-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 64, alignItems: "center", position: "relative" }}>
           <div>
             <Eyebrow>Carrier-Focused Operations Support</Eyebrow>
