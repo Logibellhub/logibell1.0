@@ -19,7 +19,6 @@
     return (
       <section style={{ background: "var(--surface-page)", paddingTop: 56, paddingBottom: 96 }}>
         <div className="lb-wrap" style={{ maxWidth: 820 }}>
-          <DraftFlag />
           <Eyebrow>Legal</Eyebrow>
           <h1 className="lb-display-lg" style={{ marginBottom: 12 }}>{title}</h1>
           <p style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: "var(--text-muted)", marginBottom: 28 }}>Last updated: {updated}</p>
@@ -44,7 +43,7 @@
       <LegalLayout
         title="Privacy Policy"
         updated="June 15, 2026"
-        intro="This policy describes how LogiBell collects, uses, and protects the information you share with us when you contact us or use our services. This is a provisional draft and will be finalized with counsel before launch."
+        intro="This policy describes how LogiBell collects, uses, and protects the information you share with us when you contact us or use our services."
         sections={[
           { h: "Information we collect", p: [
             "Information you give us: when you submit our onboarding or contact form, request a verification check, or reach us directly, we collect details such as your name, company or MC/DOT number, phone number, email, equipment and lane information, and any notes you share about your operation.",
@@ -75,7 +74,7 @@
       <LegalLayout
         title="Terms of Service"
         updated="June 15, 2026"
-        intro="These terms govern your use of the LogiBell website and services. This is a provisional draft and will be finalized with counsel before launch."
+        intro="These terms govern your use of the LogiBell website and services."
         sections={[
           { h: "Agreement to these terms", p: ["By using the LogiBell website or services, you agree to these terms. If you do not agree, please do not use them. These terms form an agreement between you (the carrier or visitor) and LogiBell."] },
           { h: "Our services", p: [
