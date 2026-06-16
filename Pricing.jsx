@@ -95,7 +95,7 @@
                     <Badge tone="goldsoft" uppercase>Custom quote</Badge>
                   </div>
                   <p style={{ fontFamily: "var(--font-sans)", fontSize: 14.5, lineHeight: 1.6, color: "var(--text-body)", margin: 0 }}>
-                    If your authority carries added compliance or record flags, placing your trucks takes more legwork on our side. We take that on — and quote you a fair, flat rate after a quick review, confirmed upfront before you commit. Same transparent approach, just priced for the added effort.
+                    If your authority carries added compliance or record flags, placing your trucks takes more legwork — and your custom rate includes us working with you to improve your standing over time. As your record strengthens, you can move down to our standard published pricing. The rate is quoted after a quick review and confirmed upfront — priced for the added effort while we build that foundation together.
                   </p>
                 </div>
               </div>
