@@ -43,7 +43,7 @@
     return (
       <LegalLayout
         title="Privacy Policy"
-        updated="Provisional — TBD"
+        updated="June 15, 2026"
         intro="This policy describes how LogiBell collects, uses, and protects the information you share with us when you contact us or use our services. This is a provisional draft and will be finalized with counsel before launch."
         sections={[
           { h: "Information we collect", p: [
@@ -64,7 +64,7 @@
           ] },
           { h: "Your privacy rights", p: ["Depending on your U.S. state of residence, you may have the right to access, correct, delete, or receive a copy of your personal information, and to opt out of certain processing. To make a request, contact us using the details below; we may need to verify your identity first."] },
           { h: "Children", p: ["Our services are intended for businesses and adults. We do not knowingly collect information from anyone under 18. If you believe a minor has provided us information, contact us and we will remove it."] },
-          { h: "Changes & contact", p: ["We may update this policy from time to time; the date above will reflect any changes. Questions or requests can be directed to info@logibell.com. (Contact details are provisional pending launch confirmation.)"] },
+          { h: "Changes & contact", p: ["We may update this policy from time to time; the date above will reflect any changes. Questions or requests can be directed to info@logibell.com or (909) 277-7177."] },
         ]}
       />
     );
@@ -74,7 +74,7 @@
     return (
       <LegalLayout
         title="Terms of Service"
-        updated="Provisional — TBD"
+        updated="June 15, 2026"
         intro="These terms govern your use of the LogiBell website and services. This is a provisional draft and will be finalized with counsel before launch."
         sections={[
           { h: "Agreement to these terms", p: ["By using the LogiBell website or services, you agree to these terms. If you do not agree, please do not use them. These terms form an agreement between you (the carrier or visitor) and LogiBell."] },
@@ -94,7 +94,7 @@
           { h: "Website & content", p: ["The LogiBell name, logo, site content, and design are owned by LogiBell and may not be copied or reused without permission. You receive a limited right to use the site for its intended purpose."] },
           { h: "Disclaimers & limitation of liability", p: ["The website and services are provided on an as-is basis to the extent permitted by law. To the fullest extent the law allows, LogiBell is not liable for indirect, incidental, or consequential damages, or for losses arising from loads, brokers, partners, or market conditions outside our control."] },
           { h: "Indemnification", p: ["You agree to indemnify and hold LogiBell harmless from claims, damages, and costs arising out of your operation, your use of the services, or your violation of these terms or applicable law."] },
-          { h: "Governing law & changes", p: ["These terms are governed by the laws of the state in which LogiBell operates, without regard to conflict-of-law rules. We may update these terms; material changes will be posted on this page, and continued use of our services means you accept the current terms. Questions: info@logibell.com."] },
+          { h: "Governing law & changes", p: ["These terms are governed by the laws of the State of California, without regard to conflict-of-law rules. We may update these terms; material changes will be posted on this page, and continued use of our services means you accept the current terms. Questions: info@logibell.com or (909) 277-7177."] },
         ]}
       />
     );
