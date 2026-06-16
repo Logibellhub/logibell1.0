@@ -41,3 +41,10 @@
   .lb-lane-track { animation: none; }
   .lb-route-line { animation: none; }
 }
+
+/* Mobile: let tab rows (e.g. the onboarding "Equipment type" selector) wrap and
+   shrink to the screen instead of overflowing horizontally on narrow phones. */
+@media (max-width: 520px) {
+  [role="tablist"] { flex-wrap: wrap; max-width: 100%; }
+  [role="tablist"] [role="tab"] { padding: 8px 13px !important; font-size: 13.5px !important; }
+}

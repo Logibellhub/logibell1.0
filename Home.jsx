@@ -60,7 +60,7 @@
             </div>
           ) : (
             <div className="lb-lane-scroll">
-              <div className="lb-lane-track" style={{ animationDuration: Math.max(lanes.length * 3.4, 14) + "s" }}>
+              <div className="lb-lane-track" style={{ animationDuration: Math.max(lanes.length * 2.6, 12) + "s" }}>
                 {lanes.concat(lanes).map((l, idx) => {
                   const clone = idx >= lanes.length;
                   return (
