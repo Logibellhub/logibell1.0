@@ -81,6 +81,26 @@
                 back={<ExampleBack dark title="Same $2,000 load, preferred rate" rows={[["Standard dispatch fee (6%)", "$120"], ["Trusted Partner fee", "Below $120"]]} emphasis={["You keep", "More per load"]} note="The exact preferred rate is set as the relationship grows — earned through sustained work together, never sold at signup." ctaLabel="See how it's earned" onCta={() => navigate("pricing", "trusted-partner")} />}
               />
             </div>
+            {/* Conditional Carriers — secondary, by-quote tier. Deliberately not
+                one of the three published cards, so the headline rates stay the
+                anchor. Supportive framing; no vendor names, stats, or guarantees. */}
+            <Card surface="white" radius="xl" pad="lg" style={{ marginTop: "clamp(20px, 3vw, 32px)", display: "flex", gap: 24, alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", gap: 18, alignItems: "flex-start", maxWidth: 660 }}>
+                <span style={{ width: 50, height: 50, borderRadius: "50%", background: "var(--navy-800)", display: "flex", alignItems: "center", justifyContent: "center", flex: "none" }}>
+                  <Icon name="shield-check" size={24} color="var(--gold-500)" />
+                </span>
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8, flexWrap: "wrap" }}>
+                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: 18, fontWeight: 600, color: "var(--text-heading)", margin: 0 }}>Conditional Carriers</h3>
+                    <Badge tone="goldsoft" uppercase>Custom quote</Badge>
+                  </div>
+                  <p style={{ fontFamily: "var(--font-sans)", fontSize: 14.5, lineHeight: 1.6, color: "var(--text-body)", margin: 0 }}>
+                    If your authority carries added compliance or record flags, placing your trucks takes more legwork — and your custom rate includes us working with you to improve your standing over time. As your record strengthens, you can move down to our standard published pricing. The rate is quoted after a quick review and confirmed upfront — priced for the added effort while we build that foundation together.
+                  </p>
+                </div>
+              </div>
+              <Button variant="primary" size="md" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => navigate("contact", "onboard")}>Talk to a dispatch specialist</Button>
+            </Card>
             {/* why 6-8 note */}
             <Card surface="soft" radius="lg" pad="lg" style={{ marginTop: 24, display: "flex", gap: 16, alignItems: "flex-start" }}>
               <Icon name="info" size={22} color="var(--navy-700)" style={{ marginTop: 2, flex: "none" }} />

@@ -95,10 +95,8 @@
 
     const navigate = React.useCallback((to, anchor) => {
       const target = PAGES.includes(to) ? to : "notfound";
-      // Replay the brand intro film whenever the user returns Home via the logo.
-      if (target === "home" && !anchor && typeof window.__lbPlayIntro === "function") {
-        window.__lbPlayIntro();
-      }
+      // Internal nav (incl. returning Home via the logo) no longer replays the
+      // welcome — section content eases in via the scroll-reveal instead.
       pendingAnchor.current = anchor || null;
       const newHash = hashFor(target, anchor);
       if (window.location.hash !== newHash) {

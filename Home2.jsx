@@ -20,9 +20,9 @@
         <div className="lb-wrap" style={{ position: "relative" }}>
           <div style={{ maxWidth: 700, marginBottom: "clamp(32px, 4vw, 56px)" }}>
             <Eyebrow onDark>What Makes LogiBell Different</Eyebrow>
-            <h2 className="lb-display-lg" style={{ color: "#fff", marginBottom: 18 }}>Most carrier relationships start and end with booking a load.</h2>
+            <h2 className="lb-display-lg" style={{ color: "#fff", marginBottom: 18 }}>Booking the load is just the start.</h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 17.5, lineHeight: 1.6, color: "var(--on-navy-soft)", maxWidth: 620 }}>
-              LogiBell is built differently. Dispatch is where we begin — but the relationship is operational. It is a support relationship around your operation, not a single transaction.
+              We start with dispatch, then stay with you — handling the paperwork, the broker calls, and the day-to-day issues that come up after a load is booked. Support that continues past the booking, not a one-off transaction.
             </p>
           </div>
           <div className="lb-2col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(20px, 3vw, 32px)" }}>
@@ -46,18 +46,24 @@
   /* ---------- WHO WE ARE (reusable section) ---------- */
   const NEW_AUTH_ITEMS = ["First-load strategy", "Early-stage authority support", "Broker-readiness guidance", "Rate education", "Compliance guidance", "Insurance setup support"];
 
-  function WhoWeAre({ navigate }) {
+  function WhoWeAre({ navigate, embedded }) {
     return (
       <Section>
         <div className="lb-who-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center" }}>
           <div>
-            <Eyebrow>Who We Are</Eyebrow>
-            <h2 className="lb-display-md" style={{ marginBottom: 20 }}>A team behind the carrier's authority.</h2>
+            {/* Header is hidden when embedded under a page hero that already carries
+               the eyebrow + headline (e.g. the Who We Are page), to avoid a duplicate. */}
+            {!embedded ? (
+              <React.Fragment>
+                <Eyebrow>Who We Are</Eyebrow>
+                <h2 className="lb-display-md" style={{ marginBottom: 20 }}>A team of logistics professionals behind your authority.</h2>
+              </React.Fragment>
+            ) : null}
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)", marginBottom: 16 }}>
-              LogiBell is a carrier-focused operations team built for carriers of every size — from owner-operators to small and larger fleets. We support the work behind the wheel: load sourcing, broker communication, paperwork, issue coordination, and access to trusted service partners.
+              Behind the LogiBell name is a team of logistics professionals focused on one thing: carriers. We put real industry experience into the work behind the wheel — sourcing loads, dealing with brokers, keeping paperwork moving, and sorting out problems when they come up — so your authority is represented by people who know the business, whatever size you run.
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.65, color: "var(--text-body)" }}>
-              Our goal is simple — help carriers operate with more structure, more clarity, and stronger representation.
+              Our goal is simple: improve the way your operation runs today and bring real value to the carriers — and the industry — we work in. High-level service, backed by pricing you can see before you call.
             </p>
             {navigate ? (
               <div style={{ marginTop: 24 }}>
@@ -203,7 +209,7 @@
             <Eyebrow onDark>Get Onboarded</Eyebrow>
             <h2 className="lb-display-lg" style={{ color: "#fff", marginBottom: 16 }}>Ready when you are. Ring the LogiBell.</h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 17, lineHeight: 1.6, color: "var(--on-navy-soft)", marginBottom: 30, maxWidth: 540 }}>
-              Dispatch is where we start. Our pricing is published, so you know the cost before you call — no setup fees, no monthly minimums.
+              Get a dispatch specialist working your authority, with the broker calls and paperwork handled behind you. Pricing is published up front — no setup fees, no monthly minimums.
             </p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
               <Button variant="gold" size="lg" iconLeft={<Icon name="bell" size={18} />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell</Button>

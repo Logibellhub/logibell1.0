@@ -3,7 +3,7 @@
   const { Button, Card, Badge } = window.DS;
   const Icon = window.Icon;
   const { FlipCard } = window.LBFlip;
-  const { RouteMotif } = window.LBAmbient;
+  const { RouteMotif, FreightNetwork } = window.LBAmbient;
 
   /* Atmosphere pass: generous default section rhythm. Explicit pt/pb still
      override for intentionally tight bands. */
@@ -51,37 +51,47 @@
           <div className="lb-lane-row lb-lane-headrow" style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, padding: "11px 20px", background: "var(--navy-950)", borderBottom: "1px solid var(--navy-700)", fontFamily: "var(--font-mono)", fontSize: 10.5, letterSpacing: "1px", textTransform: "uppercase", color: "var(--on-navy-faint)" }}>
             <span>Lane</span><span>Equipment</span><span>Mode</span><span style={{ textAlign: "right" }}>Rate</span>
           </div>
-          {/* rows */}
-          <div>
-            {lanes.length === 0 ? (
-              <div style={{ padding: "34px 22px", textAlign: "center", fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--on-navy-soft)" }}>
-                Recent lanes — updated weekly.
+          {/* rows — auto-scrolling marquee window. Lanes are rendered twice so
+             the upward scroll loops seamlessly (track animates to -50%). Hover
+             pauses it; prefers-reduced-motion disables it (see styles.css). */}
+          {lanes.length === 0 ? (
+            <div style={{ padding: "34px 22px", textAlign: "center", fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--on-navy-soft)" }}>
+              Recent lanes — updated weekly.
+            </div>
+          ) : (
+            <div className="lb-lane-scroll">
+              <div className="lb-lane-track" style={{ animationDuration: Math.max(lanes.length * 3.4, 14) + "s" }}>
+                {lanes.concat(lanes).map((l, idx) => {
+                  const clone = idx >= lanes.length;
+                  return (
+                    <div
+                      key={idx}
+                      className="lb-lane-row"
+                      role="button"
+                      tabIndex={clone ? -1 : 0}
+                      aria-hidden={clone ? "true" : undefined}
+                      aria-label={"Lane " + l.from + " to " + l.to + " — Ring the LogiBell to get onboarded"}
+                      onClick={goContact}
+                      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goContact(); } }}
+                      style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, alignItems: "center", padding: "14px 20px", borderBottom: "1px solid var(--navy-800)" }}
+                    >
+                      <span style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 500, color: "#fff", minWidth: 0 }}>
+                        <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.from}</span>
+                        <Icon name="arrow-right" size={13} color="var(--gold-500)" className="lb-lane-arrow" style={{ flex: "none" }} />
+                        <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.to}</span>
+                      </span>
+                      <span><span style={{ display: "inline-block", fontFamily: "var(--font-sans)", fontSize: 11.5, fontWeight: 600, color: "var(--on-navy)", background: "var(--navy-700)", border: "1px solid var(--navy-600)", borderRadius: "var(--radius-pill)", padding: "3px 10px", whiteSpace: "nowrap" }}>{l.equipment}</span></span>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--on-navy-soft)" }}>{l.mode}</span>
+                      <span className="lb-lane-rate" style={{ fontFamily: "var(--font-mono)", fontSize: 14, fontWeight: 600, color: "var(--gold-500)", textAlign: "right", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 6 }}>
+                        <span className="lb-lane-rate-num">{l.rate}</span>
+                        <Icon name="arrow-up-right" size={13} color="var(--gold-500)" className="lb-lane-go" style={{ flex: "none" }} />
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
-            ) : lanes.map((l, i) => (
-              <div
-                key={i}
-                className="lb-lane-row"
-                role="button"
-                tabIndex={0}
-                aria-label={"Lane " + l.from + " to " + l.to + " — Ring the LogiBell to get onboarded"}
-                onClick={goContact}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goContact(); } }}
-                style={{ display: "grid", gridTemplateColumns: "2fr 0.82fr 0.45fr 0.7fr", gap: 10, alignItems: "center", padding: "14px 20px", borderBottom: i < lanes.length - 1 ? "1px solid var(--navy-800)" : "none", animationDelay: (i * 90) + "ms", "--lb-glow-delay": (i * 1.6) + "s" }}
-              >
-                <span style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 500, color: "#fff", minWidth: 0 }}>
-                  <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.from}</span>
-                  <Icon name="arrow-right" size={13} color="var(--gold-500)" className="lb-lane-arrow" style={{ flex: "none" }} />
-                  <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{l.to}</span>
-                </span>
-                <span><span style={{ display: "inline-block", fontFamily: "var(--font-sans)", fontSize: 11.5, fontWeight: 600, color: "var(--on-navy)", background: "var(--navy-700)", border: "1px solid var(--navy-600)", borderRadius: "var(--radius-pill)", padding: "3px 10px", whiteSpace: "nowrap" }}>{l.equipment}</span></span>
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--on-navy-soft)" }}>{l.mode}</span>
-                <span className="lb-lane-rate" style={{ fontFamily: "var(--font-mono)", fontSize: 14, fontWeight: 600, color: "var(--gold-500)", textAlign: "right", display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 6 }}>
-                  <span className="lb-lane-rate-num">{l.rate}</span>
-                  <Icon name="arrow-up-right" size={13} color="var(--gold-500)" className="lb-lane-go" style={{ flex: "none" }} />
-                </span>
-              </div>
-            ))}
-          </div>
+            </div>
+          )}
           {/* footer */}
           <div className="lb-lane-foot" style={{ padding: "15px 22px", borderTop: "1px solid var(--navy-700)", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10, flexWrap: "wrap", background: "var(--navy-950)" }}>
             <span style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--on-navy-faint)", display: "inline-flex", alignItems: "center", gap: 7 }}>
@@ -99,21 +109,20 @@
   function Hero({ navigate }) {
     return (
       <Section pt={76} pb={88} style={{ position: "relative", overflow: "hidden" }}>
-        <RouteMotif corner="br" />
+        <FreightNetwork />
         <div className="lb-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 0.95fr", gap: 64, alignItems: "center", position: "relative" }}>
           <div>
             <Eyebrow>Carrier-Focused Operations Support</Eyebrow>
             <h1 className="lb-display-xl" style={{ marginBottom: 22 }}>Your Operation.<br /><span style={{ color: "var(--navy-700)" }}>Fully Backed.</span></h1>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 19, lineHeight: 1.55, color: "var(--text-strong)", maxWidth: 520, marginBottom: 14, fontWeight: 500 }}>
-              Dispatch is the entry point; operational support builds the business.
+              The business behind every load — handled, so you can keep your focus on the road.
             </p>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 16.5, lineHeight: 1.6, color: "var(--text-body)", maxWidth: 520, marginBottom: 30 }}>
-              We handle the administrative work behind every load — broker communication, paperwork, rate confirmations — and connect you to a vetted partner network as your operation grows. Stay as hands-on as you want: we carry as much of the business side as you'd like, and you stay in control of your operation.
+              From sourcing loads to broker calls, rate confirmations, and paperwork, we handle the back office behind every load — and connect you to a vetted partner network as you grow. Stay as hands-on as you want; you keep control of your operation.
             </p>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", alignItems: "center" }}>
               <Button variant="primary" size="lg" iconLeft={<Icon name="bell" size={18} color="rgb(255, 203, 31)" />} onClick={() => navigate("contact", "onboard")}>Ring the LogiBell — Get Onboarded</Button>
               <Button variant="secondary" size="lg" iconRight={<Icon name="arrow-right" size={16} />} onClick={() => navigate("pricing")}>See our pricing</Button>
-              <Button variant="ghost" size="lg" iconLeft={<Icon name="phone" size={17} color="var(--gold-500)" />} onClick={() => navigate("contact")}>Schedule a Call</Button>
             </div>
             <div style={{ display: "flex", gap: 22, flexWrap: "wrap", alignItems: "center", marginTop: 18 }}>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: 13.5, color: "var(--text-muted)", margin: 0, display: "inline-flex", alignItems: "center", gap: 8 }}>
@@ -141,7 +150,7 @@
         <div style={{ maxWidth: 880, margin: "0 auto", textAlign: "center", position: "relative" }}>
           <Eyebrow>What LogiBell Is</Eyebrow>
           <p className="lb-display-md" style={{ color: "var(--text-heading)", lineHeight: 1.3, letterSpacing: "-0.5px" }}>
-            LogiBell is a carrier-focused operations support company helping carriers of every size — from owner-operators to small and larger fleets — with <span style={{ color: "var(--navy-700)", borderBottom: "3px solid var(--gold-500)" }}>dispatch</span>, broker communication, paperwork coordination, and partner access.
+            For carriers of every size — from owner-operators to larger fleets — LogiBell handles <span style={{ color: "var(--navy-700)", borderBottom: "3px solid var(--gold-500)" }}>dispatch</span>, broker communication, paperwork, and partner access, so your authority is represented and your back office stays organized.
           </p>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 17, lineHeight: 1.6, color: "var(--text-body)", marginTop: 26, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
             Dispatch starts the relationship. Operational support builds the business.

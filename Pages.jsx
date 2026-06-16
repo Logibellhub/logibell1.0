@@ -250,10 +250,9 @@
       <div>
         <PageHero
           eyebrow="Who We Are"
-          title="A team behind the carrier's authority."
-          intro="LogiBell is a carrier-focused operations team supporting the work behind the wheel — built for carriers of every size, from owner-operators to small and larger fleets."
+          title="A team of logistics professionals behind your authority."
         />
-        <WhoWeAre />
+        <WhoWeAre embedded />
         <Section bg="var(--surface-soft)">
           <div style={{ maxWidth: 640, marginBottom: "clamp(48px, 6vw, 80px)" }}>
             <Eyebrow>What we stand on</Eyebrow>
