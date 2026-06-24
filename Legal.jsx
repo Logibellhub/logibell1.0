@@ -55,7 +55,11 @@
             "We do not sell your personal information, and we do not use it for unrelated marketing without your consent.",
           ] },
           { h: "Cookies & analytics", p: ["We use cookies and analytics tools to keep the site working and understand how it is used. You can control cookies through your browser settings; disabling some may affect how the site functions."] },
-          { h: "Calls & text messages", p: ["If you give us your phone number, we may call or text you about onboarding, your loads, and account matters. Message and data rates may apply; reply STOP to opt out of texts at any time. We do not share mobile opt-in information with third parties for their marketing."] },
+          { h: "SMS / text messaging", p: [
+            "By providing your mobile number and opting in, you consent to receive text messages from LogiBell LLC about onboarding, dispatch coordination, your loads, and account or service updates.",
+            "Message frequency varies based on your activity. Message and data rates may apply. Reply STOP at any time to unsubscribe, or reply HELP for help; you can also reach us at info@logibell.com or (909) 277-7177.",
+            "We do not sell, rent, or share your mobile phone number or your SMS opt-in consent with any third parties or affiliates for their marketing or promotional purposes. Your consent to receive text messages from LogiBell is never shared with third parties for marketing.",
+          ] },
           { h: "How we share information", p: ["We share information only as needed: with service providers who help us operate (under contract), with vetted partners you ask us to connect you with (for example insurance, lease-on, factoring, or compliance — sharing only what the introduction requires), when required by law or to protect safety, and in connection with a business transfer. Partners are independent and operate under their own terms and policies."] },
           { h: "Data retention & security", p: [
             "We keep your information only as long as needed to support our working relationship and meet legal, tax, and accounting obligations, then delete or de-identify it.",

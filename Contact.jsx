@@ -198,8 +198,9 @@
                         Something went wrong sending that. Please try again, or call (909) 277-7177.
                       </p>
                     )}
-                    <p style={{ fontFamily: "var(--font-sans)", fontSize: 12.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14, display: "flex", alignItems: "center", justifyContent: "center", gap: 7 }}>
-                      <Icon name="lock" size={13} color="var(--text-muted)" /> Your details stay between us. No spam, no obligations.
+                    <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, lineHeight: 1.5, color: "var(--text-muted)", textAlign: "center", marginTop: 14 }}>
+                      By submitting, you agree to receive calls and text messages from LogiBell about your onboarding and operation. Message frequency varies; message and data rates may apply. Reply STOP to opt out. See our{" "}
+                      <a href="#/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }} style={{ color: "var(--navy-700)", textDecoration: "underline" }}>Privacy Policy</a>. No spam — your details stay between us.
                     </p>
                   </form>
                 )}
