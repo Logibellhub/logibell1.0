@@ -1,0 +1,6 @@
+# Excluded from production deployment (stay in git, invisible on logibell.com)
+docs
+*.docx
+.copy-backups-*
+# JSX sources are compiled into app.min.js — never needed at runtime
+*.jsx
